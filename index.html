@@ -4,6 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ale & Pri — 10 · Octubre · 2026</title>
+
+<!-- Meta tags WhatsApp / redes sociales -->
+<meta property="og:title" content="Ale & Pri se casan 🤍">
+<meta property="og:description" content="Sábado 10 de Octubre 2026 · Qgat Restaurant, Barcelona. ¡Estás invitado!">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_ES">
+<meta name="theme-color" content="#F5F0E8">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Cormorant+Garamond:ital,wght@1,300&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -13,23 +21,23 @@ html{scroll-behavior:smooth;}
 body{background:var(--cream);color:var(--dark);font-family:'Montserrat',sans-serif;overflow-x:hidden;}
 
 /* WELCOME */
-#welcome-screen{position:fixed;inset:0;background:var(--cream);z-index:1000;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:32px 24px;}
+#welcome-screen{position:fixed;inset:0;background:var(--cream);z-index:1000;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:32px 24px;overflow-y:auto;}
 #welcome-screen.hide{animation:fadeOutUp 0.7s ease forwards;}
 @keyframes fadeOutUp{0%{opacity:1;transform:translateY(0);}100%{opacity:0;transform:translateY(-40px);pointer-events:none;}}
-.welcome-toronto{animation:torontoBounce 0.6s ease-in-out infinite alternate;margin-bottom:20px;}
+.welcome-toronto{animation:torontoBounce 0.6s ease-in-out infinite alternate;margin-bottom:16px;}
 @keyframes torontoBounce{0%{transform:translateY(0);}100%{transform:translateY(-8px);}}
-.welcome-tag{display:inline-block;font-family:'Fredoka One',cursive;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);border:1.5px solid var(--gold);padding:4px 14px;margin-bottom:18px;}
-.welcome-headline{font-family:'Fredoka One',cursive;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--mid);margin-bottom:6px;}
-.welcome-names{font-family:'Fredoka One',cursive;font-size:52px;line-height:1;color:var(--dark);margin-bottom:6px;}
+.welcome-tag{display:inline-block;font-family:'Fredoka One',cursive;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);border:1.5px solid var(--gold);padding:4px 14px;margin-bottom:14px;}
+.welcome-headline{font-family:'Fredoka One',cursive;font-size:14px;letter-spacing:2px;text-transform:uppercase;color:var(--mid);margin-bottom:4px;}
+.welcome-names{font-family:'Fredoka One',cursive;font-size:52px;line-height:1;color:var(--dark);margin-bottom:4px;}
 .welcome-names span{color:var(--gold);}
-.welcome-divider{width:120px;height:1.5px;background:var(--dark);margin:16px auto;}
-.welcome-msg{font-family:'Cormorant Garamond',serif;font-size:22px;font-style:italic;color:var(--dark);line-height:1.5;margin-bottom:6px;max-width:420px;}
-.welcome-submsg{font-size:13px;font-weight:300;color:var(--mid);margin-bottom:28px;line-height:1.6;max-width:360px;}
-.welcome-btn{background:var(--dark);border:none;color:var(--cream);font-family:'Fredoka One',cursive;font-size:16px;letter-spacing:1px;padding:14px 40px;cursor:pointer;}
+.welcome-divider{width:100px;height:1.5px;background:var(--dark);margin:12px auto;}
+.welcome-msg{font-family:'Cormorant Garamond',serif;font-size:21px;font-style:italic;color:var(--dark);line-height:1.5;margin-bottom:6px;max-width:400px;}
+.welcome-submsg{font-size:12px;font-weight:300;color:var(--mid);margin-bottom:24px;line-height:1.6;max-width:340px;}
+.welcome-btn{background:var(--dark);border:none;color:var(--cream);font-family:'Fredoka One',cursive;font-size:16px;letter-spacing:1px;padding:13px 36px;cursor:pointer;}
 .welcome-btn:hover{opacity:0.85;}
-.welcome-btn-sub{font-size:10px;color:var(--mid);margin-top:10px;letter-spacing:2px;text-transform:uppercase;}
+.welcome-btn-sub{font-size:10px;color:var(--mid);margin-top:9px;letter-spacing:2px;text-transform:uppercase;}
 
-/* FAB — aparece en ambas pantallas */
+/* FAB fixed */
 .fab-fixed{position:fixed;bottom:20px;right:20px;z-index:1500;}
 .fab{width:10px;height:10px;background:var(--gold);border-radius:50%;cursor:pointer;opacity:0.35;border:none;display:block;transition:opacity 0.2s;}
 .fab:hover{opacity:1;}
@@ -79,37 +87,51 @@ body{background:var(--cream);color:var(--dark);font-family:'Montserrat',sans-ser
 .dc-swatches{display:flex;justify-content:center;gap:12px;margin-bottom:14px;}
 .swatch{width:32px;height:32px;border-radius:50%;border:2px solid var(--dark);}
 .dc-text{font-size:13px;font-weight:300;color:var(--mid);line-height:1.8;max-width:360px;margin:0 auto;}
-.hotel-badge{display:inline-block;border:2px solid var(--dark);color:var(--dark);font-family:'Fredoka One',cursive;font-size:12px;padding:4px 14px;margin-bottom:12px;}
+.hotel-code-box{display:inline-block;border:2px solid var(--dark);padding:10px 24px;margin:12px 0 16px;background:var(--dark);}
+.hotel-code{font-family:'Fredoka One',cursive;font-size:20px;color:var(--cream);letter-spacing:3px;}
+.hotel-code-lbl{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--mid);margin-bottom:6px;}
 .hotel-text{font-size:13px;font-weight:300;color:var(--mid);line-height:1.8;}
 .regalo-quote{font-family:'Cormorant Garamond',serif;font-size:20px;font-style:italic;color:var(--dark);line-height:1.7;margin-bottom:12px;max-width:360px;margin-left:auto;margin-right:auto;}
 .regalo-sub{font-size:12px;font-weight:300;color:var(--mid);line-height:1.8;}
-.rsvp-form{max-width:440px;margin:0 auto;}
+
+/* RSVP */
+.rsvp-form{max-width:460px;margin:0 auto;}
 .form-note{font-family:'Fredoka One',cursive;font-size:20px;color:var(--dark);text-align:center;margin-bottom:20px;}
-.guest-item{display:flex;align-items:center;justify-content:space-between;padding:11px 15px;border:2px solid var(--dark);margin-bottom:7px;background:var(--cream);}
+.guest-block{border:2px solid var(--dark);margin-bottom:10px;background:var(--cream);}
+.guest-header{display:flex;align-items:center;justify-content:space-between;padding:11px 15px;border-bottom:1px solid var(--border);}
 .guest-name{font-size:14px;font-weight:500;color:var(--dark);}
+.guest-btns{display:flex;gap:8px;}
 .tbtn{padding:5px 14px;border:1.5px solid var(--dark);background:none;cursor:pointer;font-family:'Fredoka One',cursive;font-size:13px;color:var(--dark);transition:all 0.15s;}
 .tbtn.ay{background:var(--dark);color:var(--cream);}
 .tbtn.an{background:var(--mid);border-color:var(--mid);color:var(--cream);}
-.flabel{display:block;font-family:'Fredoka One',cursive;font-size:12px;letter-spacing:1px;color:var(--dark);margin-bottom:6px;}
-.finput,.fselect,.ftextarea{width:100%;border:2px solid var(--dark);background:var(--cream);padding:9px 13px;font-size:13px;font-family:'Montserrat',sans-serif;font-weight:300;color:var(--dark);outline:none;}
-.finput:focus,.fselect:focus,.ftextarea:focus{background:#fff;}
-.ftextarea{resize:none;min-height:66px;}
+.guest-diet{padding:10px 15px;display:none;}
+.guest-diet.show{display:block;}
+.flabel{display:block;font-family:'Fredoka One',cursive;font-size:11px;letter-spacing:1px;color:var(--mid);margin-bottom:5px;}
+.fselect,.finput,.ftextarea{width:100%;border:1.5px solid var(--border);background:var(--cream);padding:8px 12px;font-size:13px;font-family:'Montserrat',sans-serif;font-weight:300;color:var(--dark);outline:none;}
+.fselect:focus,.finput:focus,.ftextarea:focus{border-color:var(--gold);}
+.ftextarea{resize:none;min-height:66px;border:2px solid var(--dark);margin-top:4px;}
+.msg-wrap{margin:14px 0;}
 .sub-btn{width:100%;background:var(--dark);border:none;color:var(--cream);font-family:'Fredoka One',cursive;font-size:16px;padding:14px;cursor:pointer;margin-top:8px;}
 .sub-btn:hover{opacity:0.85;}
+.sub-btn:disabled{opacity:0.5;cursor:not-allowed;}
 .locked-rsvp{text-align:center;padding:36px 24px;}
 .locked-title{font-family:'Fredoka One',cursive;font-size:22px;color:var(--dark);margin:16px 0 8px;}
 .locked-sub{font-size:12px;font-weight:300;color:var(--mid);line-height:1.8;}
-.success-msg{display:none;text-align:center;padding:24px;border:2px solid var(--dark);background:var(--cream);}
-.success-msg p{font-family:'Fredoka One',cursive;font-size:22px;color:var(--dark);margin-bottom:4px;}
+.success-msg{display:none;text-align:center;padding:28px;border:2px solid var(--dark);background:var(--cream);}
+.success-msg p{font-family:'Fredoka One',cursive;font-size:22px;color:var(--dark);margin-bottom:6px;}
 .success-msg span{font-size:11px;color:var(--mid);letter-spacing:2px;text-transform:uppercase;}
+
+/* FOOTER */
 .footer{text-align:center;padding:44px 24px 120px;font-family:'Fredoka One',cursive;font-size:20px;color:var(--dark);}
 
 /* ADMIN */
 .admin-panel{display:none;padding:32px;background:#EDE8DF;border-top:2px solid var(--dark);}
 .admin-panel.open{display:block;}
 .ap-title{font-family:'Fredoka One',cursive;font-size:20px;color:var(--dark);margin-bottom:22px;text-align:center;}
-.color-editor{background:var(--cream);border:2px solid var(--dark);padding:22px;margin-bottom:22px;}
-.ce-title{font-family:'Fredoka One',cursive;font-size:13px;color:var(--dark);margin-bottom:12px;}
+.admin-section{background:var(--cream);border:2px solid var(--dark);padding:20px;margin-bottom:20px;}
+.admin-section-title{font-family:'Fredoka One',cursive;font-size:13px;color:var(--dark);margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;}
+.refresh-btn{background:none;border:1.5px solid var(--dark);font-family:'Fredoka One',cursive;font-size:11px;color:var(--dark);padding:3px 10px;cursor:pointer;}
+.refresh-btn:hover{background:var(--dark);color:var(--cream);}
 .preview-bar{height:6px;margin-bottom:14px;}
 .color-row{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
 .color-row label{font-size:12px;color:var(--dark);min-width:120px;}
@@ -121,34 +143,28 @@ body{background:var(--cream);color:var(--dark);font-family:'Montserrat',sans-ser
 .stat-card{background:var(--cream);border:2px solid var(--dark);padding:16px;text-align:center;}
 .stat-num{font-family:'Fredoka One',cursive;font-size:32px;color:var(--dark);display:block;line-height:1;}
 .stat-lbl{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--mid);display:block;margin-top:4px;}
-
-/* RSVP TABLE */
-.rsvp-cards{display:flex;flex-direction:column;gap:12px;}
-.rsvp-card{background:var(--cream);border:2px solid var(--dark);padding:14px 16px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px;}
+.rsvp-cards{display:flex;flex-direction:column;gap:10px;}
+.rsvp-card{background:#fff;border:1.5px solid var(--border);padding:14px 16px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px;}
 .rsvp-card-info{flex:1;min-width:0;}
 .rsvp-card-grupo{font-family:'Fredoka One',cursive;font-size:13px;color:var(--dark);margin-bottom:6px;}
-.rsvp-card-guests{display:flex;flex-direction:column;gap:4px;margin-bottom:6px;}
-.rsvp-guest-row{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--mid);}
-.bsi{display:inline-block;background:var(--dark);color:var(--cream);font-size:9px;padding:2px 8px;font-family:'Fredoka One',cursive;}
-.bno{display:inline-block;background:var(--mid);color:var(--cream);font-size:9px;padding:2px 8px;font-family:'Fredoka One',cursive;}
-.bpend{display:inline-block;background:#E8D5A3;color:#6B6860;font-size:9px;padding:2px 8px;font-family:'Fredoka One',cursive;}
-.rsvp-card-meta{font-size:10px;color:var(--mid);}
-.rsvp-card-diet{font-size:11px;color:var(--mid);margin-top:3px;}
+.rsvp-guest-row{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--mid);margin-bottom:3px;flex-wrap:wrap;}
+.bsi{display:inline-block;background:var(--dark);color:var(--cream);font-size:9px;padding:2px 7px;font-family:'Fredoka One',cursive;}
+.bno{display:inline-block;background:var(--mid);color:var(--cream);font-size:9px;padding:2px 7px;font-family:'Fredoka One',cursive;}
+.bpend{display:inline-block;background:#E8D5A3;color:#6B6860;font-size:9px;padding:2px 7px;font-family:'Fredoka One',cursive;}
+.bdiet{display:inline-block;background:rgba(201,168,76,0.15);color:var(--gold);font-size:9px;padding:2px 7px;border:1px solid var(--gold);}
+.rsvp-card-meta{font-size:10px;color:var(--mid);margin-top:4px;}
 .rsvp-card-msg{font-size:11px;color:var(--dark);font-style:italic;margin-top:3px;opacity:0.7;}
 .delete-btn{background:none;border:1.5px solid rgba(26,26,24,0.2);color:var(--mid);font-family:'Fredoka One',cursive;font-size:11px;padding:5px 10px;cursor:pointer;white-space:nowrap;transition:all 0.15s;flex-shrink:0;}
 .delete-btn:hover{background:#A32D2D;border-color:#A32D2D;color:#fff;}
-.empty{text-align:center;padding:32px;font-family:'Fredoka One',cursive;font-size:16px;color:var(--mid);}
-
-/* LINKS */
-.links-section{background:var(--cream);border:2px solid var(--dark);padding:22px;margin-bottom:22px;}
-.links-title{font-family:'Fredoka One',cursive;font-size:13px;color:var(--dark);margin-bottom:14px;}
 .link-item{padding:10px 12px;border:1px solid var(--border);margin-bottom:8px;background:#fff;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
 .link-left{flex:1;min-width:0;}
 .link-grupo{font-family:'Fredoka One',cursive;font-size:13px;color:var(--dark);margin-bottom:2px;}
-.link-personas{font-size:11px;color:var(--mid);margin-bottom:4px;}
+.link-personas{font-size:11px;color:var(--mid);margin-bottom:3px;}
 .link-url{font-size:10px;color:var(--gold);word-break:break-all;}
-.copy-btn{background:var(--dark);border:none;color:var(--cream);font-family:'Fredoka One',cursive;font-size:11px;padding:6px 12px;cursor:pointer;white-space:nowrap;flex-shrink:0;}
+.copy-btn{background:var(--dark);border:none;color:var(--cream);font-family:'Fredoka One',cursive;font-size:11px;padding:6px 12px;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:background 0.2s;}
 .copy-btn.copied{background:var(--gold);}
+.empty{text-align:center;padding:32px;font-family:'Fredoka One',cursive;font-size:15px;color:var(--mid);}
+.loading{text-align:center;padding:24px;font-size:12px;color:var(--mid);}
 
 /* MODAL */
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(26,26,24,0.65);z-index:2000;align-items:center;justify-content:center;}
@@ -157,7 +173,7 @@ body{background:var(--cream);color:var(--dark);font-family:'Montserrat',sans-ser
 .modal-title{font-family:'Fredoka One',cursive;font-size:22px;color:var(--dark);margin-bottom:4px;}
 .modal-sub{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--mid);margin-bottom:20px;}
 .modal-err{font-size:11px;color:#A32D2D;margin-bottom:10px;display:none;}
-.modal-in{width:100%;border:2px solid var(--dark);background:var(--cream);padding:10px 14px;font-size:14px;font-family:'Montserrat',sans-serif;color:var(--dark);outline:none;text-align:center;letter-spacing:6px;margin-bottom:14px;}
+.modal-in{width:100%;border:2px solid var(--dark);background:var(--cream);padding:10px 14px;font-size:16px;font-family:'Montserrat',sans-serif;color:var(--dark);outline:none;text-align:center;letter-spacing:6px;margin-bottom:14px;}
 .modal-in:focus{border-color:var(--gold);}
 .modal-btn{width:100%;background:var(--dark);border:none;color:var(--cream);font-family:'Fredoka One',cursive;font-size:15px;padding:11px;cursor:pointer;margin-bottom:8px;}
 .modal-cancel{background:none;border:none;font-size:11px;color:var(--mid);cursor:pointer;font-family:'Montserrat',sans-serif;letter-spacing:2px;}
@@ -169,17 +185,17 @@ body{background:var(--cream);color:var(--dark);font-family:'Montserrat',sans-ser
   .sec{padding:36px 20px;}
   .welcome-msg{font-size:18px;}
   .rsvp-card{flex-direction:column;}
+  .admin-panel{padding:20px;}
 }
 </style>
 </head>
 <body>
 
-<!-- FAB visible en ambas pantallas -->
 <div class="fab-fixed">
   <button class="fab" id="fab-btn" title="Admin"></button>
 </div>
 
-<!-- WELCOME SCREEN -->
+<!-- WELCOME -->
 <div id="welcome-screen">
   <div class="welcome-toronto">
     <svg width="110" height="78" viewBox="0 0 110 78">
@@ -213,7 +229,7 @@ body{background:var(--cream);color:var(--dark);font-family:'Montserrat',sans-ser
   <p class="welcome-msg" id="welcome-msg">Toronto corrió muy rápido para traerte esta invitación</p>
   <p class="welcome-submsg" id="welcome-submsg">Ale & Pri tienen el honor de invitarte a celebrar el día más especial de sus vidas.</p>
   <button class="welcome-btn" onclick="enterPage()">Ver invitación →</button>
-  <p class="welcome-btn-sub">Sábado · Barcelona</p>
+  <p class="welcome-btn-sub">Sábado · Qgat Barcelona</p>
 </div>
 
 <!-- TORONTO RUNNER -->
@@ -247,6 +263,7 @@ body{background:var(--cream);color:var(--dark);font-family:'Montserrat',sans-ser
 
 <!-- MAIN PAGE -->
 <div class="page" id="main-page" style="display:none;">
+
   <div class="hero">
     <svg width="200" height="200" viewBox="0 0 200 200" style="display:block;margin:0 auto 20px;">
       <rect x="68" y="140" width="14" height="50" rx="4" fill="#1A1A18"/>
@@ -375,8 +392,12 @@ body{background:var(--cream);color:var(--dark);font-family:'Montserrat',sans-ser
         <rect x="30" y="28" width="10" height="10" rx="1" fill="#F5F0E8"/>
         <rect x="22" y="38" width="16" height="12" rx="1" fill="#F5F0E8"/>
       </svg>
-      <span class="hotel-badge">Próximamente</span>
-      <p class="hotel-text">Para quienes viajan desde lejos, pronto<br>compartiremos un link con tarifa especial.</p>
+      <p class="hotel-text" style="margin-bottom:12px;">El venue tiene habitaciones disponibles.<br>Usa el código de descuento al reservar:</p>
+      <p class="hotel-code-lbl">Código de descuento</p>
+      <div class="hotel-code-box">
+        <span class="hotel-code">BODAQGAT2026</span>
+      </div>
+      <p class="hotel-text" style="margin-top:10px;">Reserva directo en el hotel mencionando<br>la boda de Alejandro y Priscila.</p>
     </div>
   </div>
 
@@ -413,11 +434,12 @@ body{background:var(--cream);color:var(--dark);font-family:'Montserrat',sans-ser
     </svg>
   </div>
 
+  <!-- ADMIN PANEL -->
   <div class="admin-panel" id="admin-panel">
     <p class="ap-title">Panel Admin · Ale & Pri</p>
 
-    <div class="color-editor">
-      <p class="ce-title">Personalizar colores</p>
+    <div class="admin-section">
+      <p class="admin-section-title">Personalizar colores</p>
       <div class="preview-bar" id="prev-bar"></div>
       <div class="color-row"><label>Fondo crema</label><input type="color" id="cpa" value="#F5F0E8"><span class="hex" id="cpa-v">#F5F0E8</span></div>
       <div class="color-row"><label>Color principal</label><input type="color" id="cdk" value="#1A1A18"><span class="hex" id="cdk-v">#1A1A18</span></div>
@@ -429,18 +451,24 @@ body{background:var(--cream);color:var(--dark);font-family:'Montserrat',sans-ser
       </div>
     </div>
 
-    <div class="links-section">
-      <p class="links-title">Links por grupo</p>
+    <div class="admin-section">
+      <p class="admin-section-title">Links por grupo</p>
       <div id="links-list"></div>
     </div>
 
     <div class="stats-grid">
-      <div class="stat-card"><span class="stat-num" id="s-yes">0</span><span class="stat-lbl">Confirmados</span></div>
-      <div class="stat-card"><span class="stat-num" id="s-no">0</span><span class="stat-lbl">No asisten</span></div>
-      <div class="stat-card"><span class="stat-num" id="s-tot">0</span><span class="stat-lbl">Respuestas</span></div>
+      <div class="stat-card"><span class="stat-num" id="s-yes">—</span><span class="stat-lbl">Confirmados</span></div>
+      <div class="stat-card"><span class="stat-num" id="s-no">—</span><span class="stat-lbl">No asisten</span></div>
+      <div class="stat-card"><span class="stat-num" id="s-tot">—</span><span class="stat-lbl">Respuestas</span></div>
     </div>
 
-    <div id="rsvp-list"></div>
+    <div class="admin-section">
+      <p class="admin-section-title">
+        Confirmaciones
+        <button class="refresh-btn" onclick="loadRSVPs()">Actualizar</button>
+      </p>
+      <div id="rsvp-list"><p class="loading">Cargando...</p></div>
+    </div>
   </div>
 </div>
 
@@ -458,37 +486,50 @@ body{background:var(--cream);color:var(--dark);font-family:'Montserrat',sans-ser
 
 <script src="invitados.js"></script>
 <script>
-const WD=new Date('2026-10-10T18:00:00');
-const PASS_HASH='e40aa9d56ec908c9d868bad75e3079f772bbf5778b2264bd1abe2bf488cbddaf';
-const params=new URLSearchParams(window.location.search);
-const pG=params.get('grupo')||'',pP=params.get('personas')||'';
-const pList=pP?pP.split(',').map(s=>s.trim()).filter(Boolean):[];
-const isReal=pG.length>0&&pList.length>0;
-const activeGroup=isReal?pG:'';
-const activeGuests=isReal?pList:[];
-const gAns={};
+const WD = new Date('2026-10-10T18:00:00');
+const PASS_HASH = 'e40aa9d56ec908c9d868bad75e3079f772bbf5778b2264bd1abe2bf488cbddaf';
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbyAQc8ZmW3a_256zLcNkYIrHAAKGgQJ2u-5IoQQSySx_VEmZcOyShSYBf5NJhZFdtUG5Q/exec';
+const SECRET = 'torontoboda2026';
+const DIETS = ['Sin restricciones','Vegetariano','Vegano','Sin gluten','Sin lactosa','Halal','Otro'];
 
+const params = new URLSearchParams(window.location.search);
+const pG = params.get('grupo')||'', pP = params.get('personas')||'';
+const pList = pP ? pP.split(',').map(s=>s.trim()).filter(Boolean) : [];
+const isReal = pG.length > 0 && pList.length > 0;
+const activeGroup = isReal ? pG : '';
+const activeGuests = isReal ? pList : [];
+const gAns = {}, gDiet = {}, gDietOther = {};
+
+// WELCOME
 function setupWelcome(){
   if(!isReal) return;
-  const nombres=activeGuests.map(n=>n.split(' ')[0]);
-  let saludo=nombres.length===1?nombres[0]:nombres.length===2?nombres[0]+' y '+nombres[1]:nombres.slice(0,-1).join(', ')+' y '+nombres[nombres.length-1];
-  document.getElementById('welcome-headline').textContent='¡Hola '+saludo+'!';
-  document.getElementById('welcome-msg').innerHTML='Toronto corrió muy rápido para traerles esta invitación.<br>Ale & Pri los invitan a su boda.';
-  document.getElementById('welcome-submsg').textContent='Tienen el honor de invitarlos a celebrar el día más especial de sus vidas.';
+  const names = activeGuests.map(n=>n.split(' ')[0]);
+  const saludo = names.length===1 ? names[0] : names.length===2 ? names[0]+' y '+names[1] : names.slice(0,-1).join(', ')+' y '+names[names.length-1];
+  document.getElementById('welcome-headline').textContent = '¡Hola '+saludo+'!';
+  document.getElementById('welcome-msg').innerHTML = 'Toronto corrió muy rápido para traerles esta invitación.<br>Ale & Pri los invitan a su boda.';
+  document.getElementById('welcome-submsg').textContent = 'Tienen el honor de invitarlos a celebrar el día más especial de sus vidas.';
 }
 
 function enterPage(){
-  const ws=document.getElementById('welcome-screen');
+  const ws = document.getElementById('welcome-screen');
   ws.classList.add('hide');
   setTimeout(()=>{
     ws.style.display='none';
     document.getElementById('main-page').style.display='block';
-    renderRSVP();tick();setInterval(tick,1000);
+    renderRSVP(); tick(); setInterval(tick,1000);
   },700);
 }
 
+// RSVP
+function dietSelect(i){
+  return `<select class="fselect" id="diet-${i}" onchange="gDiet[${i}]=this.value;document.getElementById('diet-other-${i}').style.display=this.value==='Otro'?'block':'none'">
+    ${DIETS.map(d=>`<option value="${d}">${d}</option>`).join('')}
+  </select>
+  <input type="text" class="finput" id="diet-other-${i}" placeholder="Especifica..." style="display:none;margin-top:6px;" oninput="gDietOther[${i}]=this.value">`;
+}
+
 function renderRSVP(){
-  const c=document.getElementById('rsvp-content');
+  const c = document.getElementById('rsvp-content');
   if(!isReal){
     c.innerHTML=`<div class="locked-rsvp">
       <svg width="36" height="36" viewBox="0 0 36 36" fill="none" style="display:block;margin:0 auto;">
@@ -501,69 +542,71 @@ function renderRSVP(){
     </div>`;
     return;
   }
-  const first=activeGuests[0].split(' ')[0];
-  const items=activeGuests.map((n,i)=>`
-    <div class="guest-item">
-      <span class="guest-name">${n}</span>
-      <div style="display:flex;gap:8px;">
-        <button class="tbtn" id="y${i}" onclick="setG(${i},'yes')">Sí, voy!</button>
-        <button class="tbtn" id="n${i}" onclick="setG(${i},'no')">No puedo</button>
+  const first = activeGuests[0].split(' ')[0];
+  const blocks = activeGuests.map((n,i)=>`
+    <div class="guest-block">
+      <div class="guest-header">
+        <span class="guest-name">${n}</span>
+        <div class="guest-btns">
+          <button class="tbtn" id="y${i}" onclick="setG(${i},'yes')">Sí, voy!</button>
+          <button class="tbtn" id="n${i}" onclick="setG(${i},'no')">No puedo</button>
+        </div>
+      </div>
+      <div class="guest-diet" id="gdiet-${i}">
+        <label class="flabel">Restricción alimentaria</label>
+        ${dietSelect(i)}
       </div>
     </div>`).join('');
   c.innerHTML=`<div class="rsvp-form" id="rsvp-wrap">
     <p class="form-note">¡Hola ${first}! ¿Vienes?</p>
-    <div style="margin-bottom:18px;">${items}</div>
-    <div style="margin-bottom:13px;"><label class="flabel">Restricciones alimentarias</label>
-      <select class="fselect" id="diet-sel">
-        <option value="">Sin restricciones</option>
-        <option value="vegetariano">Vegetariano</option>
-        <option value="vegano">Vegano</option>
-        <option value="sin-gluten">Sin gluten</option>
-        <option value="sin-lactosa">Sin lactosa</option>
-        <option value="halal">Halal</option>
-        <option value="otro">Otro</option>
-      </select>
-    </div>
-    <div style="margin-bottom:13px;display:none;" id="diet-ow">
-      <label class="flabel">Especifica</label>
-      <input type="text" class="finput" id="diet-ot" placeholder="Cuéntanos">
-    </div>
-    <div style="margin-bottom:13px;"><label class="flabel">Mensaje para los novios</label>
+    ${blocks}
+    <div class="msg-wrap">
+      <label class="flabel" style="font-size:12px;color:var(--dark);margin-bottom:6px;display:block;">Mensaje para los novios (opcional)</label>
       <textarea class="ftextarea" id="msg-in" placeholder="Un mensaje de cariño..."></textarea>
     </div>
-    <button class="sub-btn" onclick="submitRSVP()">¡Confirmar asistencia!</button>
-    <p style="font-size:11px;color:var(--mid);text-align:center;margin-top:11px;">Confirma a la brevedad posible, por favor</p>
+    <button class="sub-btn" id="confirm-btn" onclick="submitRSVP()">¡Confirmar asistencia!</button>
+    <p style="font-size:11px;color:var(--mid);text-align:center;margin-top:10px;">Confirma a la brevedad posible, por favor</p>
   </div>
   <div class="success-msg" id="succ-msg">
     <p>¡Gracias! Los esperamos</p>
-    <span>Confirmación recibida</span>
+    <span>Confirmación recibida · Ale & Pri</span>
   </div>`;
-  document.getElementById('diet-sel').addEventListener('change',function(){
-    document.getElementById('diet-ow').style.display=this.value==='otro'?'block':'none';
-  });
 }
 
 function setG(i,v){
   gAns[i]=v;
-  const y=document.getElementById('y'+i),n=document.getElementById('n'+i);
-  if(y)y.className='tbtn'+(v==='yes'?' ay':'');
-  if(n)n.className='tbtn'+(v==='no'?' an':'');
+  document.getElementById('y'+i).className='tbtn'+(v==='yes'?' ay':'');
+  document.getElementById('n'+i).className='tbtn'+(v==='no'?' an':'');
+  const dietDiv=document.getElementById('gdiet-'+i);
+  if(v==='yes') dietDiv.classList.add('show');
+  else dietDiv.classList.remove('show');
 }
 
-function submitRSVP(){
-  const diet=document.getElementById('diet-sel').value;
-  const dO=document.getElementById('diet-ot')?document.getElementById('diet-ot').value:'';
-  const msg=document.getElementById('msg-in').value;
-  const data={id:Date.now(),grupo:activeGroup,timestamp:new Date().toLocaleString('es-ES'),guests:activeGuests.map((n,i)=>({name:n,attending:gAns[i]||'pendiente'})),diet:diet==='otro'?dO:diet,message:msg};
-  try{const ex=localStorage.getItem('rsvps');const l=ex?JSON.parse(ex):[];l.push(data);localStorage.setItem('rsvps',JSON.stringify(l));}catch(e){}
+async function submitRSVP(){
+  const msg = document.getElementById('msg-in').value;
+  const btn = document.getElementById('confirm-btn');
+  btn.textContent='Enviando...'; btn.disabled=true;
+  const guests = activeGuests.map((n,i)=>{
+    let diet = gDiet[i]||'Sin restricciones';
+    if(diet==='Otro') diet = gDietOther[i]||'Otro';
+    return {name:n, attending:gAns[i]||'pendiente', diet};
+  });
+  const data={
+    id:Date.now(), secret:SECRET, grupo:activeGroup,
+    timestamp:new Date().toLocaleString('es-ES'),
+    guests, message:msg
+  };
+  try{
+    await fetch(SHEET_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+  }catch(e){console.warn('Sheet:',e);}
   document.getElementById('rsvp-wrap').style.display='none';
   document.getElementById('succ-msg').style.display='block';
-  const resumen=data.guests.map(g=>g.name+': '+(g.attending==='yes'?'Sí':'No')).join(', ');
-  const msgWA=encodeURIComponent('Nueva confirmación boda Ale & Pri!\n'+resumen+(data.diet?'\nDieta: '+data.diet:'')+(data.message?'\nMensaje: '+data.message:''));
-  setTimeout(()=>window.open('https://wa.me/34684319632?text='+msgWA,'_blank'),800);
+  const resumen = guests.map(g=>`${g.name}: ${g.attending==='yes'?'Sí':'No'}${g.diet&&g.diet!=='Sin restricciones'?' ('+g.diet+')':''}`).join(', ');
+  const waMsg = encodeURIComponent(`Nueva confirmación boda Ale & Pri!\n${resumen}${msg?'\nMensaje: '+msg:''}`);
+  setTimeout(()=>window.open('https://wa.me/34684319632?text='+waMsg,'_blank'),800);
 }
 
-// ADMIN
+// ADMIN AUTH
 document.getElementById('fab-btn').addEventListener('click',()=>{
   document.getElementById('auth-modal').classList.add('open');
   setTimeout(()=>document.getElementById('auth-in').focus(),50);
@@ -571,20 +614,13 @@ document.getElementById('fab-btn').addEventListener('click',()=>{
 document.getElementById('auth-in').addEventListener('keydown',e=>{if(e.key==='Enter')checkAuth();});
 
 async function checkAuth(){
-  const input=document.getElementById('auth-in').value;
-  const encoder=new TextEncoder();
-  const data=encoder.encode(input);
-  const hashBuffer=await crypto.subtle.digest('SHA-256',data);
-  const hashArray=Array.from(new Uint8Array(hashBuffer));
-  const hashHex=hashArray.map(b=>b.toString(16).padStart(2,'0')).join('');
-  if(hashHex===PASS_HASH){
+  const input = document.getElementById('auth-in').value;
+  const hash = Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(input)))).map(b=>b.toString(16).padStart(2,'0')).join('');
+  if(hash===PASS_HASH){
     closeModal();
     if(document.getElementById('welcome-screen').style.display!=='none'){
-      enterPage();
-      setTimeout(openAdmin,800);
-    } else {
-      openAdmin();
-    }
+      enterPage(); setTimeout(openAdmin,800);
+    } else { openAdmin(); }
   } else {
     document.getElementById('auth-err').style.display='block';
     document.getElementById('auth-in').value='';
@@ -601,55 +637,72 @@ function openAdmin(){
   p.classList.add('open');
   p.scrollIntoView({behavior:'smooth'});
   renderLinks();
-  renderRSVPList();
+  loadRSVPs();
 }
 
-function getRSVPs(){
-  try{const s=localStorage.getItem('rsvps');return s?JSON.parse(s):[];}catch(e){return [];}
-}
-function saveRSVPs(list){
-  try{localStorage.setItem('rsvps',JSON.stringify(list));}catch(e){}
+// LOAD RSVPs FROM SHEET
+async function loadRSVPs(){
+  const w=document.getElementById('rsvp-list');
+  w.innerHTML='<p class="loading">Cargando respuestas...</p>';
+  try{
+    const res = await fetch(`${SHEET_URL}?action=get&secret=${SECRET}`);
+    const json = await res.json();
+    renderRSVPCards(json.rows||[]);
+  }catch(e){
+    w.innerHTML='<p class="empty">Error al conectar con el Sheet.<br>Verifica tu conexión o abre el Sheet directo.</p>';
+    document.getElementById('s-yes').textContent='—';
+    document.getElementById('s-no').textContent='—';
+    document.getElementById('s-tot').textContent='—';
+  }
 }
 
-function deleteRSVP(id){
-  if(!confirm('¿Eliminar esta confirmación?')) return;
-  const list=getRSVPs().filter(r=>r.id!==id);
-  saveRSVPs(list);
-  renderRSVPList();
-}
-
-function renderRSVPList(){
-  const rv=getRSVPs();
-  let yes=0,no=0,tot=0;
-  rv.forEach(r=>r.guests.forEach(g=>{tot++;if(g.attending==='yes')yes++;else if(g.attending==='no')no++;}));
+function renderRSVPCards(rows){
+  // Group rows by ID
+  const groups = {};
+  rows.forEach(r=>{
+    const key = r.id||r.timestamp+'_'+r.grupo;
+    if(!groups[key]) groups[key]={grupo:r.grupo,timestamp:r.timestamp,message:r.mensaje,id:r.id,guests:[]};
+    groups[key].guests.push({name:r.nombre,attending:r.asiste,diet:r.dieta});
+  });
+  const grouped = Object.values(groups);
+  const yes = rows.filter(r=>r.asiste==='Sí').length;
+  const no = rows.filter(r=>r.asiste==='No').length;
   document.getElementById('s-yes').textContent=yes;
   document.getElementById('s-no').textContent=no;
-  document.getElementById('s-tot').textContent=tot;
+  document.getElementById('s-tot').textContent=rows.length;
   const w=document.getElementById('rsvp-list');
-  if(!rv.length){w.innerHTML='<p class="empty">Aún sin confirmaciones</p>';return;}
-  w.innerHTML='<div class="rsvp-cards">'+rv.map(r=>`
+  if(!grouped.length){w.innerHTML='<p class="empty">Aún sin confirmaciones</p>';return;}
+  w.innerHTML='<div class="rsvp-cards">'+grouped.map((g,i)=>`
     <div class="rsvp-card">
       <div class="rsvp-card-info">
-        <p class="rsvp-card-grupo">${r.grupo}</p>
-        <div class="rsvp-card-guests">
-          ${r.guests.map(g=>`<div class="rsvp-guest-row">
-            <span>${g.name}</span>
-            ${g.attending==='yes'?'<span class="bsi">Sí</span>':g.attending==='no'?'<span class="bno">No</span>':'<span class="bpend">Pendiente</span>'}
+        <p class="rsvp-card-grupo">${g.grupo}</p>
+        ${g.guests.map(gu=>`
+          <div class="rsvp-guest-row">
+            <span>${gu.name}</span>
+            ${gu.attending==='Sí'?'<span class="bsi">Sí</span>':gu.attending==='No'?'<span class="bno">No</span>':'<span class="bpend">Pendiente</span>'}
+            ${gu.diet&&gu.diet!=='Sin restricciones'?`<span class="bdiet">${gu.diet}</span>`:''}
           </div>`).join('')}
-        </div>
-        ${r.diet?`<p class="rsvp-card-diet">Dieta: ${r.diet}</p>`:''}
-        ${r.message?`<p class="rsvp-card-msg">"${r.message}"</p>`:''}
-        <p class="rsvp-card-meta">${r.timestamp}</p>
+        ${g.message?`<p class="rsvp-card-msg">"${g.message}"</p>`:''}
+        <p class="rsvp-card-meta">${g.timestamp}</p>
       </div>
-      <button class="delete-btn" onclick="deleteRSVP(${r.id})">Eliminar</button>
+      <button class="delete-btn" onclick="deleteRSVP(${i},${JSON.stringify(g.id)})">Eliminar</button>
     </div>`).join('')+'</div>';
 }
 
+async function deleteRSVP(idx,id){
+  if(!confirm('¿Eliminar esta confirmación?')) return;
+  try{
+    await fetch(SHEET_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({action:'delete',rowIndex:idx,id,secret:SECRET})});
+  }catch(e){}
+  setTimeout(loadRSVPs,800);
+}
+
+// LINKS
 function renderLinks(){
   if(typeof INVITADOS==='undefined') return;
   const base=window.location.origin+window.location.pathname;
-  const container=document.getElementById('links-list');
-  container.innerHTML=INVITADOS.map((inv,i)=>{
+  document.getElementById('links-list').innerHTML=INVITADOS.map((inv,i)=>{
     const url=base+'?grupo='+encodeURIComponent(inv.grupo)+'&personas='+encodeURIComponent(inv.personas.join(','));
     return `<div class="link-item">
       <div class="link-left">
@@ -657,17 +710,16 @@ function renderLinks(){
         <p class="link-personas">${inv.mesa} · ${inv.personas.length} persona${inv.personas.length>1?'s':''}</p>
         <p class="link-url">${url}</p>
       </div>
-      <button class="copy-btn" id="cbtn-${i}" onclick="copyLink('${url}','cbtn-${i}')">Copiar</button>
+      <button class="copy-btn" id="cb${i}" onclick="copyLink('${url}','cb${i}')">Copiar</button>
     </div>`;
   }).join('');
 }
 
 function copyLink(url,btnId){
   navigator.clipboard.writeText(url).then(()=>{
-    const btn=document.getElementById(btnId);
-    btn.textContent='¡Listo!';
-    btn.classList.add('copied');
-    setTimeout(()=>{btn.textContent='Copiar';btn.classList.remove('copied');},2000);
+    const b=document.getElementById(btnId);
+    b.textContent='¡Listo!';b.classList.add('copied');
+    setTimeout(()=>{b.textContent='Copiar';b.classList.remove('copied');},2000);
   });
 }
 
@@ -697,6 +749,7 @@ function loadColors(){
   try{const s=localStorage.getItem('wc');if(s){const{pa,dk,p,m}=JSON.parse(s);document.getElementById('cpa').value=pa;document.getElementById('cdk').value=dk;document.getElementById('cp').value=p;document.getElementById('cm').value=m;applyColors();}}catch(e){}
 }
 
+// COUNTDOWN
 function tick(){
   const diff=WD-new Date();
   if(diff<=0){const el=document.getElementById('cd');if(el)el.innerHTML='<p style="font-family:Fredoka One,cursive;font-size:22px;color:var(--dark);">¡Hoy es el gran día!</p>';return;}
