@@ -577,7 +577,8 @@ function populateContent(){
   if(document.getElementById('welcome-tag')) document.getElementById('welcome-tag').textContent = PAGE_CONTENT.welcome.tag;
   if(document.getElementById('welcome-names')) {
     const name = PAGE_CONTENT.welcome.names;
-    document.getElementById('welcome-names').innerHTML = name.split(' ')[0] + ' <span>&</span> ' + name.split(' ')[1];
+    const parts = name.split(' ').filter(p => p !== '&');
+    document.getElementById('welcome-names').innerHTML = parts[0] + ' <span>&</span> ' + parts[1];
   }
   if(document.getElementById('welcome-btn-sub')) document.getElementById('welcome-btn-sub').textContent = PAGE_CONTENT.welcome.locationSubtitle;
 
@@ -585,7 +586,8 @@ function populateContent(){
   if(document.getElementById('hero-arch')) document.getElementById('hero-arch').textContent = PAGE_CONTENT.hero.arch;
   if(document.getElementById('hero-names')) {
     const name = PAGE_CONTENT.hero.names;
-    document.getElementById('hero-names').innerHTML = name.split(' ')[0] + ' <span>&</span> ' + name.split(' ')[1];
+    const parts = name.split(' ').filter(p => p !== '&');
+    document.getElementById('hero-names').innerHTML = parts[0] + ' <span>&</span> ' + parts[1];
   }
   if(document.getElementById('hero-fullnames')) document.getElementById('hero-fullnames').textContent = PAGE_CONTENT.hero.fullNames;
   if(document.getElementById('hero-date')) document.getElementById('hero-date').textContent = PAGE_CONTENT.hero.date;
