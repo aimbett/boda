@@ -603,10 +603,29 @@ function enterPage(){
 
 // RSVP
 function dietSelect(i){
-  return `<select class="fselect" id="diet-${i}" onchange="gDiet[${i}]=this.value;document.getElementById('diet-other-${i}').style.display=this.value==='Otro'?'block':'none'">
-    ${DIETS.map(d=>`<option value="${d}">${d}</option>`).join('')}
-  </select>
-  <input type="text" class="finput" id="diet-other-${i}" placeholder="Especifica..." style="display:none;margin-top:6px;" oninput="gDietOther[${i}]=this.value">`;
+  // Initialize gDiet[i] as empty array if not exists
+  if(!gDiet[i]) gDiet[i]=[];
+
+  const checkboxes = DIETS.map(d=>`
+    <label style="display:block;margin:6px 0;font-size:13px;cursor:pointer;font-weight:300;">
+      <input type="checkbox" value="${d}" style="margin-right:6px;cursor:pointer;" onchange="
+        if(this.checked){
+          if(!gDiet[${i}].includes('${d}')) gDiet[${i}].push('${d}');
+        } else {
+          gDiet[${i}]=gDiet[${i}].filter(x=>x!=='${d}');
+        }
+        document.getElementById('diet-other-${i}').style.display=gDiet[${i}].includes('Otro')?'block':'none';
+      ">
+      ${d}
+    </label>
+  `).join('');
+
+  return `
+    <div style="margin:6px 0;">
+      ${checkboxes}
+      <input type="text" class="finput" id="diet-other-${i}" placeholder="Especifica..." style="display:none;margin-top:8px;" oninput="gDietOther[${i}]=this.value">
+    </div>
+  `;
 }
 
 function renderRSVP(){
@@ -668,8 +687,15 @@ async function submitRSVP(){
   const btn = document.getElementById('confirm-btn');
   btn.textContent='Enviando...'; btn.disabled=true;
   const guests = activeGuests.map((n,i)=>{
-    let diet = gDiet[i]||'Sin restricciones';
-    if(diet==='Otro') diet = gDietOther[i]||'Otro';
+    // Handle multiple dietary restrictions (array)
+    let diets = gDiet[i]||[];
+    // If "Otro" is selected, add custom text
+    if(diets.includes('Otro')){
+      const customDiet = gDietOther[i]||'Otro';
+      diets = diets.map(d=>d==='Otro'?customDiet:d);
+    }
+    // Join multiple restrictions into comma-separated string
+    const diet = diets.length > 0 ? diets.join(', ') : 'Sin restricciones';
     return {name:n, attending:gAns[i]||'pendiente', diet};
   });
   const data={

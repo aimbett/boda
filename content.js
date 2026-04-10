@@ -85,7 +85,7 @@ const PAGE_CONTENT = {
       greeting: '¡Hola {name}! ¿Vienes?',
       yesButton: 'Sí, voy!',
       noButton: 'No puedo',
-      dietLabel: 'Restricción alimentaria',
+      dietLabel: 'Restricciones alimentarias (selecciona todas las que apliquen)',
       messageLabel: 'Mensaje para los novios (opcional)',
       messagePlaceholder: 'Un mensaje de cariño...',
       submitButton: '¡Confirmar asistencia!',
