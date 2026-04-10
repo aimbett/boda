@@ -18,7 +18,7 @@ const PAGE_CONTENT = {
   hero: {
     arch: '¡Nos casamos!',
     names: 'Ale & Pri',
-    fullNames: 'Alejandro & Priscila',
+    fullNames: 'Los Papás de Toronto Josè',
     date: '10 · OCTUBRE · 2026',
     countdownLabels: {
       days: 'días',
@@ -53,7 +53,7 @@ const PAGE_CONTENT = {
   // Dress code
   dressCode: {
     title: 'Vestimenta',
-    text: 'Etiqueta formal. Caballeros: traje oscuro o esmoquin.<br>Damas: vestido largo o cocktail elegante.',
+    text: 'Etiqueta formal. Caballeros: traje oscuro corbata.<br>Damas: vestido largo o cocktail elegante sin estampados.',
     emphasis: 'Sin blanco, por favor',
   },
 
