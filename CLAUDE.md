@@ -520,7 +520,9 @@ Guest clicks "¿Vienes?"
     ↓
 Guest selects Sí/No for each person
     ↓
-Shows dietary restrictions if "Sí"
+Shows dietary restrictions if "Sí" (multiple choice checkboxes)
+    ↓
+Guest can select multiple dietary restrictions
     ↓
 Guest adds optional message
     ↓
@@ -537,7 +539,7 @@ Admin panel shows new entry in real-time (after refresh)
 
 ### RSVP Form Data
 
-**What gets sent (line 589-597):**
+**What gets sent (line 689-697):**
 ```javascript
 {
   id: Date.now(),           // Unique submission ID
@@ -545,12 +547,41 @@ Admin panel shows new entry in real-time (after refresh)
   grupo: "Familia-Garcia",  // Which group this is
   timestamp: new Date(),    // When submitted
   guests: [
-    { name: "María García", attending: "yes", diet: "Vegetariano" },
+    { name: "María García", attending: "yes", diet: "Vegetariano, Sin gluten" },
+    // ↑ Multiple dietary restrictions joined by comma (can select multiple)
     { name: "Carlos García", attending: "no", diet: "Sin restricciones" }
   ],
   message: "¡Nos vemos!" // Optional message
 }
 ```
+
+### Dietary Restrictions (Multiple Choice)
+
+**Location:** `content.js` → `rsvp.dietOptions`
+
+Guests can now **select multiple dietary restrictions** via checkboxes:
+
+```javascript
+rsvp: {
+  dietOptions: [
+    'Sin restricciones',
+    'Vegetariano',
+    'Vegano',
+    'Sin gluten',
+    'Sin lactosa',
+    'Halal',
+    'Otro',
+  ],
+}
+```
+
+**Example guest selections:**
+- Just vegetarian: `"Vegetariano"`
+- Vegetarian + no gluten: `"Vegetariano, Sin gluten"`
+- Multiple restrictions: `"Vegano, Sin lactosa, Halal"`
+- Custom: `"Vegano, Mi alergia específica"` (if "Otro" is selected)
+
+**In Google Sheet, diet column shows:** `"Vegetariano, Sin gluten"` (comma-separated)
 
 ### Google Sheets Structure
 
