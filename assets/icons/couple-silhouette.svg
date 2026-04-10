@@ -1,0 +1,21 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Minimalist Single Line Art: Couple -->
+  <!-- Left figure (person 1) -->
+  <circle cx="60" cy="35" r="8" fill="none" stroke="#1A1A18" stroke-width="2"/>
+  <path d="M 60 43 L 60 75" stroke="#1A1A18" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M 60 50 L 35 70" stroke="#1A1A18" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M 60 50 L 85 70" stroke="#1A1A18" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M 60 75 L 45 110" stroke="#1A1A18" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M 60 75 L 75 110" stroke="#1A1A18" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+  <!-- Right figure (person 2) -->
+  <circle cx="140" cy="35" r="8" fill="none" stroke="#1A1A18" stroke-width="2"/>
+  <path d="M 140 43 L 140 75" stroke="#1A1A18" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M 140 50 L 115 70" stroke="#1A1A18" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M 140 50 L 165 70" stroke="#1A1A18" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M 140 75 L 125 110" stroke="#1A1A18" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M 140 75 L 155 110" stroke="#1A1A18" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+  <!-- Holding hands -->
+  <path d="M 85 70 Q 100 75 115 70" stroke="#1A1A18" stroke-width="2" fill="none" stroke-linecap="round"/>
+</svg>
