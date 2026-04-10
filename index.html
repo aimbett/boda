@@ -61,6 +61,21 @@ body{background:var(--cream);color:var(--dark);font-family:'Montserrat',sans-ser
 .dog-ear{transform-origin:top center;animation:earFlap 0.4s ease-in-out infinite alternate;}
 @keyframes earFlap{0%{transform:rotate(-8deg);}100%{transform:rotate(8deg);}}
 
+/* TORONTO CELEBRATING - Hero Section */
+@keyframes torontoJump{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+.toronto-celebrating{position:absolute;right:20px;top:50%;transform:translateY(-50%);animation:torontoJump 0.8s ease-in-out infinite;width:80px;height:60px;}
+
+/* TORONTO EATING - Gift Section */
+@keyframes torontoChew{0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.95);}}
+.toronto-eating{display:inline-block;margin-bottom:20px;animation:torontoChew 0.8s ease-in-out infinite;width:70px;height:52px;}
+
+/* TORONTO SLEEPING - Below RSVP */
+@keyframes torontoSleep{0%,100%{transform:translateY(0);}50%{transform:translateY(-2px);}}
+.toronto-sleeping{display:block;text-align:center;margin:40px 0;animation:torontoSleep 2s ease-in-out infinite;width:70px;height:52px;margin-left:auto;margin-right:auto;}
+
+/* Mobile scaling for all new Torontos */
+@media(max-width:480px){.toronto-celebrating,.toronto-eating,.toronto-sleeping{transform:scale(0.65);}.toronto-celebrating{right:10px;}}
+
 /* MAIN PAGE */
 .page{max-width:680px;margin:0 auto;padding:0 0 100px;}
 .hero{text-align:center;padding:52px 24px 44px;border-bottom:2px solid var(--dark);}
@@ -316,6 +331,23 @@ body{background:var(--cream);color:var(--dark);font-family:'Montserrat',sans-ser
       <span class="cd-sep">·</span>
       <div class="cd-item"><span class="cd-num" id="cd-s">--</span><span class="cd-lbl" id="cd-lbl-s">segundos</span></div>
     </div>
+    <div class="toronto-celebrating">
+      <svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="50" cy="32" rx="26" ry="14" fill="var(--cream)" stroke="var(--dark)" stroke-width="1"/>
+        <ellipse cx="26" cy="28" rx="9" ry="8" fill="var(--cream)" stroke="var(--dark)" stroke-width="1"/>
+        <circle cx="20" cy="21" r="2.5" fill="var(--cream)" stroke="var(--dark)" stroke-width="0.5"/>
+        <circle cx="32" cy="21" r="2.5" fill="var(--cream)" stroke="var(--dark)" stroke-width="0.5"/>
+        <circle cx="23" cy="27" r="1.2" fill="var(--dark)"/>
+        <circle cx="29" cy="27" r="1.2" fill="var(--dark)"/>
+        <circle cx="26" cy="30" r="1" fill="var(--dark)"/>
+        <path d="M 24 31 Q 26 32 28 31" stroke="var(--dark)" stroke-width="0.8" fill="none" stroke-linecap="round"/>
+        <line x1="28" y1="28" x2="22" y2="15" stroke="var(--dark)" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="22" cy="14" r="1.5" fill="var(--dark)"/>
+        <line x1="32" y1="28" x2="38" y2="15" stroke="var(--dark)" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="38" cy="14" r="1.5" fill="var(--dark)"/>
+        <path d="M 74 30 Q 80 25 82 18" stroke="var(--dark)" stroke-width="2" fill="none" stroke-linecap="round"/>
+      </svg>
+    </div>
   </div>
 
   <div class="sec">
@@ -405,6 +437,22 @@ body{background:var(--cream);color:var(--dark);font-family:'Montserrat',sans-ser
         <path d="M30 14C30 14 38 10 38 5C38 2 35 0 33 3C31.5 5 30 9 30 9" stroke="#1A1A18" stroke-width="2" fill="none"/>
         <circle cx="30" cy="14" r="3" fill="#C9A84C"/>
       </svg>
+      <div class="toronto-eating">
+        <svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="50" cy="32" rx="26" ry="14" fill="var(--cream)" stroke="var(--dark)" stroke-width="1"/>
+          <ellipse cx="26" cy="28" rx="9" ry="8" fill="var(--cream)" stroke="var(--dark)" stroke-width="1"/>
+          <circle cx="20" cy="21" r="2.5" fill="var(--cream)" stroke="var(--dark)" stroke-width="0.5"/>
+          <circle cx="32" cy="21" r="2.5" fill="var(--cream)" stroke="var(--dark)" stroke-width="0.5"/>
+          <circle cx="23" cy="27" r="1.2" fill="var(--dark)"/>
+          <circle cx="29" cy="27" r="1.2" fill="var(--dark)"/>
+          <ellipse cx="26" cy="31" rx="2" ry="2.5" fill="var(--dark)"/>
+          <rect x="33" y="28" width="6" height="8" fill="#F4E4C1" stroke="var(--dark)" stroke-width="0.8"/>
+          <rect x="33" y="28" width="6" height="1.5" fill="#E31937" stroke="var(--dark)" stroke-width="0.4"/>
+          <line x1="28" y1="30" x2="32" y2="32" stroke="var(--dark)" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="32" y1="30" x2="36" y2="32" stroke="var(--dark)" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M 74 30 Q 78 28 80 24" stroke="var(--dark)" stroke-width="2" fill="none" stroke-linecap="round"/>
+        </svg>
+      </div>
       <p class="regalo-quote" id="gift-quote">"El mejor regalo es su presencia y su alegría."</p>
       <p class="regalo-sub" id="gift-message">Si desean tener un detalle, una contribución en efectivo<br>o transferencia será recibida con mucho amor.<br>
       <span style="font-family:'Fredoka One',cursive;font-size:12px;color:var(--dark);" id="gift-emphasis">Los datos se comparten personalmente.</span></p>
@@ -414,6 +462,25 @@ body{background:var(--cream);color:var(--dark);font-family:'Montserrat',sans-ser
   <div class="sec">
     <p class="sec-title" id="rsvp-title">¿Vienes? ¡Dinos!</p>
     <div id="rsvp-content"></div>
+  </div>
+
+  <div class="toronto-sleeping">
+    <svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="50" cy="35" rx="26" ry="14" fill="var(--cream)" stroke="var(--dark)" stroke-width="1"/>
+      <ellipse cx="28" cy="30" rx="9" ry="8" fill="var(--cream)" stroke="var(--dark)" stroke-width="1"/>
+      <circle cx="22" cy="23" r="2.5" fill="var(--cream)" stroke="var(--dark)" stroke-width="0.5"/>
+      <circle cx="34" cy="23" r="2.5" fill="var(--cream)" stroke="var(--dark)" stroke-width="0.5"/>
+      <path d="M 24 29 Q 26 30 28 29" stroke="var(--dark)" stroke-width="1" fill="none" stroke-linecap="round"/>
+      <path d="M 30 29 Q 32 30 34 29" stroke="var(--dark)" stroke-width="1" fill="none" stroke-linecap="round"/>
+      <circle cx="28" cy="32" r="0.8" fill="var(--dark)"/>
+      <path d="M 26 33 Q 28 34 30 33" stroke="var(--dark)" stroke-width="0.8" fill="none" stroke-linecap="round"/>
+      <line x1="30" y1="43" x2="25" y2="48" stroke="var(--dark)" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="35" y1="43" x2="40" y2="48" stroke="var(--dark)" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M 74 33 Q 80 35 82 28" stroke="var(--dark)" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <text x="70" y="15" font-size="4" fill="var(--dark)" font-family="Arial">Z</text>
+      <text x="76" y="10" font-size="3.5" fill="var(--dark)" font-family="Arial">z</text>
+      <text x="80" y="7" font-size="3" fill="var(--dark)" font-family="Arial">z</text>
+    </svg>
   </div>
 
   <div class="footer">
