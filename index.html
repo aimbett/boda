@@ -597,13 +597,15 @@ async function submitRSVP(){
     guests, message:msg
   };
   try{
+    // Using no-cors because Google Apps Script CORS headers may not be configured
+    // See docs/GOOGLE_DRIVE_SETUP.md for configuration details
     await fetch(SHEET_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
-  }catch(e){console.warn('Sheet:',e);}
+    console.log('RSVP submission successful for grupo:', activeGroup);
+  }catch(e){
+    console.error('RSVP submission error:', e);
+  }
   document.getElementById('rsvp-wrap').style.display='none';
   document.getElementById('succ-msg').style.display='block';
-  const resumen = guests.map(g=>`${g.name}: ${g.attending==='yes'?'Sí':'No'}${g.diet&&g.diet!=='Sin restricciones'?' ('+g.diet+')':''}`).join(', ');
-  const waMsg = encodeURIComponent(`Nueva confirmación boda Ale & Pri!\n${resumen}${msg?'\nMensaje: '+msg:''}`);
-  setTimeout(()=>window.open('https://wa.me/34684319632?text='+waMsg,'_blank'),800);
 }
 
 // ADMIN AUTH
