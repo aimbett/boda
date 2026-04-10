@@ -173,7 +173,86 @@ Main page: max-width: 680px; margin: 0 auto; centered container
 
 **Pro tip:** Keep similar weights (light, regular, bold) for replacement fonts.
 
-### Change Content (Text)
+### Change Content (Text) — Easy Method
+
+**All editable text is centralized in `content.js`** — This is the easiest way to customize any text!
+
+**File:** `content.js` (entire file, ~150 lines)
+
+**Structure:**
+```javascript
+const PAGE_CONTENT = {
+  welcome: { /* welcome screen texts */ },
+  hero: { /* main heading texts */ },
+  event: { /* event details */ },
+  venue: { /* venue information */ },
+  dressCode: { /* dress code */ },
+  hotel: { /* hotel info */ },
+  gift: { /* gift message */ },
+  rsvp: { /* RSVP form texts */ },
+  footer: { /* footer */ },
+  admin: { /* admin panel labels */ },
+  auth: { /* password modal */ },
+};
+```
+
+**Examples of editing:**
+
+**Change welcome message:**
+```javascript
+welcome: {
+  message: 'Toronto corrió muy rápido para traerte esta invitación',
+  // Change to:
+  message: 'You are cordially invited...',
+},
+```
+
+**Change venue:**
+```javascript
+venue: {
+  name: 'Qgat Restaurant, Events & Hotel',  // Change this
+  address: 'Carretera de Cerdanyola, Bellaterra<br>Barcelona, España',  // Or this
+  mapLink: 'https://maps.app.goo.gl/qsc3siNPAXJwGCEy6',  // Or the map link
+},
+```
+
+**Change hotel discount code:**
+```javascript
+hotel: {
+  code: 'BODAQGAT2026',  // Change this
+  // ... other fields
+},
+```
+
+**Change dietary options:**
+```javascript
+rsvp: {
+  dietOptions: [
+    'Sin restricciones',
+    'Vegetariano',  // Edit or remove any options
+    'Vegano',
+    // ... add or remove as needed
+  ],
+},
+```
+
+**After editing:**
+1. Save `content.js`
+2. Commit: `git add content.js && git commit -m "Update content"`
+3. Push: `git push origin main`
+4. GitHub auto-updates within 30 seconds
+5. Refresh site URL to see changes
+
+**Benefits of this approach:**
+✅ No HTML markup to worry about  
+✅ All texts in one organized place  
+✅ Similar structure to `invitados.js`  
+✅ Easy for non-technical users  
+✅ Safe to edit (can't break layout)  
+
+### Change Content (Text) — Detailed Method
+
+**If you need to edit text that's NOT in `content.js`:**
 
 **Update main dates/times:**
 - Line 311: `10 · OCTUBRE · 2026`
@@ -337,15 +416,41 @@ All buttons meet 44x44px minimum:
 
 ### Dietary Options
 
-Current options (line 493):
-```
-['Sin restricciones', 'Vegetariano', 'Vegano', 'Sin gluten', 'Sin lactosa', 'Halal', 'Otro']
+**Location:** `content.js` → `rsvp.dietOptions`
+
+```javascript
+rsvp: {
+  dietOptions: [
+    'Sin restricciones',
+    'Vegetariano',
+    'Vegano',
+    'Sin gluten',
+    'Sin lactosa',
+    'Halal',
+    'Otro',
+  ],
+},
 ```
 
-To modify:
-- Line 493: Update `DIETS` array
-- Line 525: Update dietSelect() options if needed
-- Remember to keep matching Spanish labels
+**To modify:**
+1. Open `content.js`
+2. Find `rsvp.dietOptions` array
+3. Add/remove/edit options as needed
+4. Keep them in Spanish or translate all consistently
+5. Save and push to GitHub
+
+**Example - Remove "Halal", add "Kosher":**
+```javascript
+dietOptions: [
+  'Sin restricciones',
+  'Vegetariano',
+  'Vegano',
+  'Sin gluten',
+  'Sin lactosa',
+  'Kosher',  // Changed from Halal
+  'Otro',
+],
+```
 
 ### Admin Panel
 
