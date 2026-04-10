@@ -11,10 +11,63 @@
 :root{--cream:#F5F0E8;--dark:#1A1A18;--mid:#6B6860;--gold:#C9A84C;--border:rgba(26,26,24,0.15);}
 html{scroll-behavior:smooth;}
 body{background:var(--cream);color:var(--dark);font-family:'Montserrat',sans-serif;overflow-x:hidden;}
-.page{max-width:680px;margin:0 auto;padding:0 0 100px;}
 
-/* TORONTO */
-.toronto-track{position:fixed;bottom:28px;left:0;width:100%;height:80px;pointer-events:none;overflow:hidden;z-index:100;}
+/* ===================== WELCOME SCREEN ===================== */
+#welcome-screen{
+  position:fixed;inset:0;background:var(--cream);z-index:1000;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:32px 24px;
+}
+#welcome-screen.hide{
+  animation:fadeOutUp 0.7s ease forwards;
+}
+@keyframes fadeOutUp{
+  0%{opacity:1;transform:translateY(0);}
+  100%{opacity:0;transform:translateY(-40px);pointer-events:none;}
+}
+.welcome-dog{margin-bottom:24px;}
+.welcome-toronto{animation:torontoBounce 0.6s ease-in-out infinite alternate;}
+@keyframes torontoBounce{0%{transform:translateY(0);}100%{transform:translateY(-8px);}}
+.welcome-tag{
+  display:inline-block;font-family:'Fredoka One',cursive;font-size:10px;
+  letter-spacing:3px;text-transform:uppercase;color:var(--gold);
+  border:1.5px solid var(--gold);padding:4px 14px;margin-bottom:20px;
+}
+.welcome-headline{
+  font-family:'Fredoka One',cursive;font-size:15px;letter-spacing:2px;
+  text-transform:uppercase;color:var(--mid);margin-bottom:8px;
+}
+.welcome-names{
+  font-family:'Fredoka One',cursive;font-size:52px;line-height:1;
+  color:var(--dark);margin-bottom:6px;
+}
+.welcome-names span{color:var(--gold);}
+.welcome-msg{
+  font-family:'Cormorant Garamond',serif;font-size:22px;font-style:italic;
+  color:var(--dark);line-height:1.5;margin-bottom:8px;max-width:420px;
+}
+.welcome-submsg{
+  font-size:13px;font-weight:300;color:var(--mid);margin-bottom:32px;
+  line-height:1.6;max-width:360px;
+}
+.welcome-btn{
+  background:var(--dark);border:none;color:var(--cream);
+  font-family:'Fredoka One',cursive;font-size:16px;letter-spacing:1px;
+  padding:14px 40px;cursor:pointer;position:relative;overflow:hidden;
+}
+.welcome-btn:hover{opacity:0.85;}
+.welcome-btn-sub{
+  font-size:10px;color:var(--mid);margin-top:12px;letter-spacing:2px;
+  text-transform:uppercase;
+}
+.welcome-divider{
+  width:120px;height:1.5px;background:var(--dark);margin:20px auto;
+}
+/* locked welcome */
+.welcome-locked .welcome-msg{font-size:18px;}
+
+/* ===================== TORONTO RUNNER ===================== */
+.toronto-track{position:fixed;bottom:28px;left:0;width:100%;height:80px;pointer-events:none;overflow:hidden;z-index:500;}
 .toronto-runner{position:absolute;bottom:0;animation:runAcross 9s linear infinite;}
 @keyframes runAcross{0%{left:-120px;}100%{left:calc(100% + 120px);}}
 .dog-body-wrap{animation:dogBounce 0.28s ease-in-out infinite alternate;}
@@ -32,7 +85,8 @@ body{background:var(--cream);color:var(--dark);font-family:'Montserrat',sans-ser
 .dog-ear{transform-origin:top center;animation:earFlap 0.4s ease-in-out infinite alternate;}
 @keyframes earFlap{0%{transform:rotate(-8deg);}100%{transform:rotate(8deg);}}
 
-/* HERO */
+/* ===================== MAIN PAGE ===================== */
+.page{max-width:680px;margin:0 auto;padding:0 0 100px;}
 .hero{text-align:center;padding:52px 24px 44px;border-bottom:2px solid var(--dark);}
 .hero-arch{font-family:'Fredoka One',cursive;font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--dark);margin-bottom:12px;}
 .hero-names{font-family:'Fredoka One',cursive;font-size:52px;line-height:1;color:var(--dark);margin-bottom:4px;}
@@ -43,8 +97,6 @@ body{background:var(--cream);color:var(--dark);font-family:'Montserrat',sans-ser
 .cd-num{font-family:'Fredoka One',cursive;font-size:34px;color:var(--dark);line-height:1;display:block;}
 .cd-lbl{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--mid);display:block;margin-top:2px;}
 .cd-sep{font-family:'Fredoka One',cursive;font-size:28px;color:var(--border);align-self:flex-start;margin-top:2px;}
-
-/* SECTIONS */
 .sec{padding:44px 32px;border-bottom:2px solid var(--dark);}
 .sec-title{font-family:'Fredoka One',cursive;font-size:22px;text-align:center;color:var(--dark);margin-bottom:24px;letter-spacing:1px;}
 .evgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
@@ -54,7 +106,7 @@ body{background:var(--cream);color:var(--dark);font-family:'Montserrat',sans-ser
 .venue-block,.hotel-block,.regalo-block,.dc-block{text-align:center;}
 .venue-name{font-family:'Fredoka One',cursive;font-size:22px;color:var(--dark);margin-bottom:6px;}
 .venue-addr{font-size:13px;font-weight:300;color:var(--mid);margin-bottom:18px;line-height:1.6;}
-.map-link{display:inline-block;border:2px solid var(--dark);color:var(--dark);font-family:'Fredoka One',cursive;font-size:13px;letter-spacing:1px;padding:9px 22px;text-decoration:none;cursor:pointer;}
+.map-link{display:inline-block;border:2px solid var(--dark);color:var(--dark);font-family:'Fredoka One',cursive;font-size:13px;padding:9px 22px;text-decoration:none;}
 .map-link:hover{background:var(--dark);color:var(--cream);}
 .dc-swatches{display:flex;justify-content:center;gap:12px;margin-bottom:14px;}
 .swatch{width:32px;height:32px;border-radius:50%;border:2px solid var(--dark);}
@@ -63,8 +115,6 @@ body{background:var(--cream);color:var(--dark);font-family:'Montserrat',sans-ser
 .hotel-text{font-size:13px;font-weight:300;color:var(--mid);line-height:1.8;}
 .regalo-quote{font-family:'Cormorant Garamond',serif;font-size:20px;font-style:italic;color:var(--dark);line-height:1.7;margin-bottom:12px;max-width:360px;margin-left:auto;margin-right:auto;}
 .regalo-sub{font-size:12px;font-weight:300;color:var(--mid);line-height:1.8;}
-
-/* RSVP */
 .rsvp-form{max-width:440px;margin:0 auto;}
 .form-note{font-family:'Fredoka One',cursive;font-size:20px;color:var(--dark);text-align:center;margin-bottom:20px;}
 .guest-item{display:flex;align-items:center;justify-content:space-between;padding:11px 15px;border:2px solid var(--dark);margin-bottom:7px;background:var(--cream);}
@@ -76,7 +126,7 @@ body{background:var(--cream);color:var(--dark);font-family:'Montserrat',sans-ser
 .finput,.fselect,.ftextarea{width:100%;border:2px solid var(--dark);background:var(--cream);padding:9px 13px;font-size:13px;font-family:'Montserrat',sans-serif;font-weight:300;color:var(--dark);outline:none;}
 .finput:focus,.fselect:focus,.ftextarea:focus{background:#fff;}
 .ftextarea{resize:none;min-height:66px;}
-.sub-btn{width:100%;background:var(--dark);border:none;color:var(--cream);font-family:'Fredoka One',cursive;font-size:16px;letter-spacing:1px;padding:14px;cursor:pointer;margin-top:8px;}
+.sub-btn{width:100%;background:var(--dark);border:none;color:var(--cream);font-family:'Fredoka One',cursive;font-size:16px;padding:14px;cursor:pointer;margin-top:8px;}
 .sub-btn:hover{opacity:0.85;}
 .locked-rsvp{text-align:center;padding:36px 24px;}
 .locked-title{font-family:'Fredoka One',cursive;font-size:22px;color:var(--dark);margin:16px 0 8px;}
@@ -84,18 +134,10 @@ body{background:var(--cream);color:var(--dark);font-family:'Montserrat',sans-ser
 .success-msg{display:none;text-align:center;padding:24px;border:2px solid var(--dark);background:var(--cream);}
 .success-msg p{font-family:'Fredoka One',cursive;font-size:22px;color:var(--dark);margin-bottom:4px;}
 .success-msg span{font-size:11px;color:var(--mid);letter-spacing:2px;text-transform:uppercase;}
-.demo-banner{background:rgba(201,168,76,0.12);border:2px solid var(--gold);padding:8px 14px;margin-bottom:18px;text-align:center;}
-.demo-banner p{font-family:'Fredoka One',cursive;font-size:11px;color:var(--gold);}
-
-/* FOOTER */
 .footer{text-align:center;padding:44px 24px 120px;font-family:'Fredoka One',cursive;font-size:20px;color:var(--dark);}
-
-/* FAB */
 .fab-wrap{text-align:right;padding:10px 28px 0;}
 .fab{width:8px;height:8px;background:rgba(26,26,24,0.2);border-radius:50%;cursor:pointer;opacity:0.3;border:none;display:inline-block;transition:opacity 0.2s;}
 .fab:hover{opacity:0.9;}
-
-/* ADMIN */
 .admin-panel{display:none;padding:32px;background:#EDE8DF;border-top:2px solid var(--dark);}
 .admin-panel.open{display:block;}
 .ap-title{font-family:'Fredoka One',cursive;font-size:20px;color:var(--dark);margin-bottom:22px;text-align:center;}
@@ -118,9 +160,14 @@ body{background:var(--cream);color:var(--dark);font-family:'Montserrat',sans-ser
 .bsi{display:inline-block;background:var(--dark);color:var(--cream);font-size:9px;font-weight:500;padding:2px 8px;font-family:'Fredoka One',cursive;}
 .bno{display:inline-block;background:var(--mid);color:var(--cream);font-size:9px;font-weight:500;padding:2px 8px;font-family:'Fredoka One',cursive;}
 .empty{text-align:center;padding:32px;font-family:'Fredoka One',cursive;font-size:16px;color:var(--mid);}
-
-/* MODAL */
-.modal-overlay{display:none;position:fixed;inset:0;background:rgba(26,26,24,0.65);z-index:200;align-items:center;justify-content:center;}
+.links-section{background:var(--cream);border:2px solid var(--dark);padding:22px;margin-bottom:22px;}
+.links-title{font-family:'Fredoka One',cursive;font-size:13px;color:var(--dark);margin-bottom:14px;}
+.link-item{padding:10px 12px;border:1px solid var(--border);margin-bottom:8px;background:#fff;}
+.link-grupo{font-family:'Fredoka One',cursive;font-size:13px;color:var(--dark);margin-bottom:4px;}
+.link-personas{font-size:11px;color:var(--mid);margin-bottom:6px;}
+.link-url{font-size:10px;color:var(--gold);word-break:break-all;cursor:pointer;text-decoration:underline;}
+.copy-btn{background:var(--dark);border:none;color:var(--cream);font-family:'Fredoka One',cursive;font-size:10px;padding:4px 10px;cursor:pointer;margin-top:6px;display:inline-block;}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(26,26,24,0.65);z-index:2000;align-items:center;justify-content:center;}
 .modal-overlay.open{display:flex;}
 .modal{background:var(--cream);border:2px solid var(--dark);padding:36px;max-width:300px;width:90%;text-align:center;}
 .modal-title{font-family:'Fredoka One',cursive;font-size:22px;color:var(--dark);margin-bottom:4px;}
@@ -129,24 +176,64 @@ body{background:var(--cream);color:var(--dark);font-family:'Montserrat',sans-ser
 .modal-in{width:100%;border:2px solid var(--dark);background:var(--cream);padding:10px 14px;font-size:14px;font-family:'Montserrat',sans-serif;color:var(--dark);outline:none;text-align:center;letter-spacing:6px;margin-bottom:14px;}
 .modal-btn{width:100%;background:var(--dark);border:none;color:var(--cream);font-family:'Fredoka One',cursive;font-size:15px;padding:11px;cursor:pointer;margin-bottom:8px;}
 .modal-cancel{background:none;border:none;font-size:11px;color:var(--mid);cursor:pointer;font-family:'Montserrat',sans-serif;letter-spacing:2px;}
-
 @media(max-width:480px){
-  .hero-names{font-size:40px;}
+  .hero-names,.welcome-names{font-size:40px;}
   .evgrid{grid-template-columns:1fr;}
   .stats-grid{grid-template-columns:1fr 1fr;}
   .sec{padding:36px 20px;}
+  .welcome-msg{font-size:19px;}
 }
 </style>
 </head>
 <body>
 
-<!-- TORONTO RUNNER -->
+<!-- ===================== WELCOME SCREEN ===================== -->
+<div id="welcome-screen">
+  <div class="welcome-dog">
+    <div class="welcome-toronto">
+      <svg width="120" height="80" viewBox="0 0 120 80">
+        <g transform="translate(10,10)">
+          <g class="dog-tail" style="transform-origin:72px 28px;">
+            <path d="M72 28 Q82 18 86 12" stroke="#1A1A18" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+          </g>
+          <ellipse cx="50" cy="32" rx="26" ry="14" fill="#1A1A18"/>
+          <ellipse cx="46" cy="35" rx="16" ry="9" fill="#F5F0E8"/>
+          <ellipse cx="62" cy="24" rx="10" ry="7" fill="#8B5E3C"/>
+          <ellipse cx="26" cy="28" rx="9" ry="8" fill="#1A1A18"/>
+          <ellipse cx="16" cy="22" rx="13" ry="11" fill="#F5F0E8" stroke="#1A1A18" stroke-width="2"/>
+          <ellipse cx="12" cy="19" rx="5" ry="6" fill="#8B5E3C"/>
+          <ellipse cx="20" cy="18" rx="4" ry="5" fill="#8B5E3C"/>
+          <g class="dog-ear"><path d="M6 16 Q0 22 2 30 Q6 28 8 22 Z" fill="#8B5E3C"/></g>
+          <path d="M22 14 Q28 10 26 20 Q22 18 20 14 Z" fill="#8B5E3C"/>
+          <circle cx="12" cy="20" r="2.5" fill="#1A1A18"/>
+          <circle cx="11" cy="19" r="0.8" fill="white"/>
+          <ellipse cx="7" cy="25" rx="3" ry="2" fill="#1A1A18"/>
+          <path d="M18 29 Q26 33 20 34 Q14 33 18 29Z" fill="#C9A84C"/>
+          <rect x="30" y="44" width="6" height="16" rx="3" fill="#1A1A18"/>
+          <rect x="40" y="44" width="6" height="14" rx="3" fill="#F5F0E8" stroke="#1A1A18" stroke-width="1.5"/>
+          <rect x="56" y="44" width="6" height="14" rx="3" fill="#F5F0E8" stroke="#1A1A18" stroke-width="1.5"/>
+          <rect x="66" y="44" width="6" height="16" rx="3" fill="#1A1A18"/>
+          <text x="30" y="57" text-anchor="middle" font-family="Fredoka One, cursive" font-size="7" fill="#F5F0E8">Toronto</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <span class="welcome-tag">10 · Octubre · 2026</span>
+  <p class="welcome-headline" id="welcome-headline">Te invitamos a nuestra boda</p>
+  <h1 class="welcome-names">Ale <span>&</span> Pri</h1>
+  <div class="welcome-divider"></div>
+  <p class="welcome-msg" id="welcome-msg">¡Toronto corrió muy rápido para traerte esta invitación!</p>
+  <p class="welcome-submsg" id="welcome-submsg">Alejandro y Priscila tienen el honor de invitarte a celebrar con ellos el día más especial de sus vidas.</p>
+  <button class="welcome-btn" onclick="enterPage()">Ver invitación →</button>
+  <p class="welcome-btn-sub" id="welcome-btn-sub">Sábado · Barcelona</p>
+</div>
+
+<!-- ===================== TORONTO RUNNER ===================== -->
 <div class="toronto-track">
   <div class="toronto-runner">
     <svg width="100" height="68" viewBox="0 0 100 68">
-      <g class="dog-tail">
-        <path d="M72 28 Q82 18 86 12" stroke="#1A1A18" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-      </g>
+      <g class="dog-tail"><path d="M72 28 Q82 18 86 12" stroke="#1A1A18" stroke-width="3.5" fill="none" stroke-linecap="round"/></g>
       <g class="dog-body-wrap">
         <ellipse cx="50" cy="32" rx="26" ry="14" fill="#1A1A18"/>
         <ellipse cx="46" cy="35" rx="16" ry="9" fill="#F5F0E8"/>
@@ -155,42 +242,27 @@ body{background:var(--cream);color:var(--dark);font-family:'Montserrat',sans-ser
         <ellipse cx="16" cy="22" rx="13" ry="11" fill="#F5F0E8" stroke="#1A1A18" stroke-width="2"/>
         <ellipse cx="12" cy="19" rx="5" ry="6" fill="#8B5E3C"/>
         <ellipse cx="20" cy="18" rx="4" ry="5" fill="#8B5E3C"/>
-        <g class="dog-ear">
-          <path d="M6 16 Q0 22 2 30 Q6 28 8 22 Z" fill="#8B5E3C"/>
-        </g>
+        <g class="dog-ear"><path d="M6 16 Q0 22 2 30 Q6 28 8 22 Z" fill="#8B5E3C"/></g>
         <path d="M22 14 Q28 10 26 20 Q22 18 20 14 Z" fill="#8B5E3C"/>
         <circle cx="12" cy="20" r="2.5" fill="#1A1A18"/>
         <circle cx="11" cy="19" r="0.8" fill="white"/>
         <ellipse cx="7" cy="25" rx="3" ry="2" fill="#1A1A18"/>
         <path d="M18 29 Q26 33 20 34 Q14 33 18 29Z" fill="#C9A84C"/>
-        <g class="leg-fl">
-          <rect x="30" y="44" width="6" height="16" rx="3" fill="#1A1A18"/>
-          <ellipse cx="33" cy="60" rx="5" ry="3" fill="#1A1A18"/>
-        </g>
-        <g class="leg-fr">
-          <rect x="40" y="44" width="6" height="14" rx="3" fill="#F5F0E8" stroke="#1A1A18" stroke-width="1.5"/>
-          <ellipse cx="43" cy="58" rx="5" ry="3" fill="#1A1A18"/>
-        </g>
-        <g class="leg-rl">
-          <rect x="56" y="44" width="6" height="14" rx="3" fill="#F5F0E8" stroke="#1A1A18" stroke-width="1.5"/>
-          <ellipse cx="59" cy="58" rx="5" ry="3" fill="#1A1A18"/>
-        </g>
-        <g class="leg-rr">
-          <rect x="66" y="44" width="6" height="16" rx="3" fill="#1A1A18"/>
-          <ellipse cx="69" cy="60" rx="5" ry="3" fill="#1A1A18"/>
-        </g>
+        <g class="leg-fl"><rect x="30" y="44" width="6" height="16" rx="3" fill="#1A1A18"/><ellipse cx="33" cy="60" rx="5" ry="3" fill="#1A1A18"/></g>
+        <g class="leg-fr"><rect x="40" y="44" width="6" height="14" rx="3" fill="#F5F0E8" stroke="#1A1A18" stroke-width="1.5"/><ellipse cx="43" cy="58" rx="5" ry="3" fill="#1A1A18"/></g>
+        <g class="leg-rl"><rect x="56" y="44" width="6" height="14" rx="3" fill="#F5F0E8" stroke="#1A1A18" stroke-width="1.5"/><ellipse cx="59" cy="58" rx="5" ry="3" fill="#1A1A18"/></g>
+        <g class="leg-rr"><rect x="66" y="44" width="6" height="16" rx="3" fill="#1A1A18"/><ellipse cx="69" cy="60" rx="5" ry="3" fill="#1A1A18"/></g>
         <text x="30" y="57" text-anchor="middle" font-family="Fredoka One, cursive" font-size="7" fill="#F5F0E8">Toronto</text>
       </g>
     </svg>
   </div>
 </div>
 
-<div class="page">
+<!-- ===================== MAIN PAGE ===================== -->
+<div class="page" id="main-page" style="display:none;">
 
-  <!-- HERO -->
   <div class="hero">
     <svg width="200" height="200" viewBox="0 0 200 200" style="display:block;margin:0 auto 20px;">
-      <!-- Groom -->
       <rect x="68" y="140" width="14" height="50" rx="4" fill="#1A1A18"/>
       <rect x="84" y="140" width="14" height="50" rx="4" fill="#1A1A18"/>
       <rect x="62" y="90" width="42" height="55" rx="6" fill="#1A1A18"/>
@@ -213,33 +285,27 @@ body{background:var(--cream);color:var(--dark);font-family:'Montserrat',sans-ser
       <circle cx="122" cy="119" r="2" fill="#F5F0E8"/>
       <line x1="116" y1="137" x2="112" y2="155" stroke="#1A1A18" stroke-width="2" stroke-linecap="round"/>
       <line x1="114" y1="137" x2="118" y2="155" stroke="#1A1A18" stroke-width="2" stroke-linecap="round"/>
-      <!-- Bride -->
       <path d="M118 140 Q108 165 105 190 L145 190 Q142 165 132 140 Z" fill="#1A1A18"/>
       <rect x="113" y="90" width="24" height="52" rx="5" fill="#1A1A18"/>
       <circle cx="125" cy="68" r="17" fill="#F5F0E8" stroke="#1A1A18" stroke-width="2.5"/>
       <path d="M108 68 Q110 90 112 110" stroke="#1A1A18" stroke-width="4" stroke-linecap="round" fill="none"/>
       <path d="M142 68 Q140 90 138 110" stroke="#1A1A18" stroke-width="4" stroke-linecap="round" fill="none"/>
       <path d="M112 58 Q125 50 138 58 Q140 52 125 48 Q110 52 112 58Z" fill="#F5F0E8" stroke="#1A1A18" stroke-width="1.5"/>
-      <path d="M138 58 Q148 70 145 90" stroke="#F5F0E8" stroke-width="2" fill="none" opacity="0.8"/>
       <circle cx="119" cy="68" r="2.5" fill="#1A1A18"/>
       <circle cx="131" cy="68" r="2.5" fill="#1A1A18"/>
       <path d="M120 76 Q125 81 130 76" stroke="#1A1A18" stroke-width="1.5" fill="none" stroke-linecap="round"/>
       <path d="M113 105 Q100 115 98 128" stroke="#1A1A18" stroke-width="8" stroke-linecap="round" fill="none"/>
     </svg>
-
     <p class="hero-arch">¡Nos casamos!</p>
     <h1 class="hero-names">Ale <span>&</span> Pri</h1>
     <p class="hero-fullnames">Alejandro & Priscila</p>
-
     <svg width="200" height="16" viewBox="0 0 200 16" style="display:block;margin:0 auto 20px;">
       <line x1="0" y1="8" x2="82" y2="8" stroke="#1A1A18" stroke-width="1.5"/>
       <circle cx="100" cy="8" r="5" fill="none" stroke="#1A1A18" stroke-width="1.5"/>
       <circle cx="100" cy="8" r="2" fill="#1A1A18"/>
       <line x1="118" y1="8" x2="200" y2="8" stroke="#1A1A18" stroke-width="1.5"/>
     </svg>
-
     <p style="font-family:'Fredoka One',cursive;font-size:13px;letter-spacing:2px;color:var(--mid);margin-bottom:20px;">10 · OCTUBRE · 2026</p>
-
     <div class="cd-wrap" id="cd">
       <div class="cd-item"><span class="cd-num" id="cd-d">--</span><span class="cd-lbl">días</span></div>
       <span class="cd-sep">·</span>
@@ -251,7 +317,6 @@ body{background:var(--cream);color:var(--dark);font-family:'Montserrat',sans-ser
     </div>
   </div>
 
-  <!-- EVENTO -->
   <div class="sec">
     <p class="sec-title">¡La Fiesta!</p>
     <div class="evgrid">
@@ -279,7 +344,6 @@ body{background:var(--cream);color:var(--dark);font-family:'Montserrat',sans-ser
     </div>
   </div>
 
-  <!-- VENUE -->
   <div class="sec">
     <p class="sec-title">El Lugar</p>
     <div class="venue-block">
@@ -294,7 +358,6 @@ body{background:var(--cream);color:var(--dark);font-family:'Montserrat',sans-ser
     </div>
   </div>
 
-  <!-- DRESSCODE -->
   <div class="sec">
     <p class="sec-title">Vestimenta</p>
     <div class="dc-block">
@@ -316,7 +379,6 @@ body{background:var(--cream);color:var(--dark);font-family:'Montserrat',sans-ser
     </div>
   </div>
 
-  <!-- HOTEL -->
   <div class="sec">
     <p class="sec-title">Hospedaje</p>
     <div class="hotel-block">
@@ -327,12 +389,11 @@ body{background:var(--cream);color:var(--dark);font-family:'Montserrat',sans-ser
         <rect x="30" y="28" width="10" height="10" rx="1" fill="#F5F0E8"/>
         <rect x="22" y="38" width="16" height="12" rx="1" fill="#F5F0E8"/>
       </svg>
-      <span class="hotel-badge" id="hotel-badge">Próximamente</span>
-      <p class="hotel-text" id="hotel-text">Para quienes viajan desde lejos, pronto<br>compartiremos un link con tarifa especial.</p>
+      <span class="hotel-badge">Próximamente</span>
+      <p class="hotel-text">Para quienes viajan desde lejos, pronto<br>compartiremos un link con tarifa especial.</p>
     </div>
   </div>
 
-  <!-- REGALO -->
   <div class="sec">
     <p class="sec-title">Mesa de Regalos</p>
     <div class="regalo-block">
@@ -350,13 +411,11 @@ body{background:var(--cream);color:var(--dark);font-family:'Montserrat',sans-ser
     </div>
   </div>
 
-  <!-- RSVP -->
   <div class="sec">
     <p class="sec-title">¿Vienes? ¡Dinos!</p>
     <div id="rsvp-content"></div>
   </div>
 
-  <!-- FOOTER -->
   <div class="footer">
     Con amor (y Toronto),<br>
     <span style="font-size:28px;">Ale & Pri</span>
@@ -370,7 +429,6 @@ body{background:var(--cream);color:var(--dark);font-family:'Montserrat',sans-ser
 
   <div class="fab-wrap"><button class="fab" id="fab-btn"></button></div>
 
-  <!-- ADMIN PANEL -->
   <div class="admin-panel" id="admin-panel">
     <p class="ap-title">Panel Admin · Ale & Pri</p>
     <div class="color-editor">
@@ -385,6 +443,10 @@ body{background:var(--cream);color:var(--dark);font-family:'Montserrat',sans-ser
         <button class="reset-btn" onclick="resetColors()">Restablecer</button>
       </div>
     </div>
+    <div class="links-section">
+      <p class="links-title">Links de invitación por grupo</p>
+      <div id="links-list"></div>
+    </div>
     <div class="stats-grid">
       <div class="stat-card"><span class="stat-num" id="s-yes">0</span><span class="stat-lbl">Confirmados</span></div>
       <div class="stat-card"><span class="stat-num" id="s-no">0</span><span class="stat-lbl">No asisten</span></div>
@@ -392,10 +454,8 @@ body{background:var(--cream);color:var(--dark);font-family:'Montserrat',sans-ser
     </div>
     <div id="tbl-wrap"></div>
   </div>
-
 </div>
 
-<!-- AUTH MODAL -->
 <div class="modal-overlay" id="auth-modal">
   <div class="modal">
     <p class="modal-title">Acceso privado</p>
@@ -407,18 +467,64 @@ body{background:var(--cream);color:var(--dark);font-family:'Montserrat',sans-ser
   </div>
 </div>
 
+<script src="invitados.js"></script>
 <script>
 const WD=new Date('2026-10-10T18:00:00'),PASS='2357';
-const DEMO_GROUP='Familia-García',DEMO_GUESTS=['María García','Carlos García','Sofía García'];
 const params=new URLSearchParams(window.location.search);
 const pG=params.get('grupo')||'',pP=params.get('personas')||'';
 const pList=pP?pP.split(',').map(s=>s.trim()).filter(Boolean):[];
 const isReal=pG.length>0&&pList.length>0;
-const activeGroup=isReal?pG:DEMO_GROUP,activeGuests=isReal?pList:DEMO_GUESTS;
+const activeGroup=isReal?pG:'';
+const activeGuests=isReal?pList:[];
 const gAns={};
 
+// ---- WELCOME SCREEN ----
+function setupWelcome(){
+  const ws=document.getElementById('welcome-screen');
+  if(!isReal){
+    document.getElementById('welcome-headline').textContent='¡Nos casamos!';
+    document.getElementById('welcome-msg').textContent='Toronto corrió muy rápido para traer esta invitación';
+    document.getElementById('welcome-submsg').textContent='Ale & Pri los invitan a celebrar el día más especial de sus vidas.';
+    document.getElementById('welcome-btn-sub').textContent='Sábado 10 · Octubre · Barcelona';
+    return;
+  }
+  const nombres=activeGuests.map(n=>n.split(' ')[0]);
+  let saludo='';
+  if(nombres.length===1) saludo=nombres[0];
+  else if(nombres.length===2) saludo=nombres[0]+' y '+nombres[1];
+  else saludo=nombres.slice(0,-1).join(', ')+' y '+nombres[nombres.length-1];
+
+  document.getElementById('welcome-headline').textContent='¡Hola '+saludo+'!';
+  document.getElementById('welcome-msg').innerHTML='Toronto corrió muy rápido para traerles esta invitación.<br>Ale & Pri los invitan a su boda.';
+  document.getElementById('welcome-submsg').textContent='Tienen el honor de invitarlos a celebrar el día más especial de sus vidas.';
+  document.getElementById('welcome-btn-sub').textContent='Sábado 10 · Octubre · Barcelona';
+}
+
+function enterPage(){
+  const ws=document.getElementById('welcome-screen');
+  ws.classList.add('hide');
+  setTimeout(()=>{
+    ws.style.display='none';
+    document.getElementById('main-page').style.display='block';
+    renderRSVP();tick();
+  },700);
+}
+
+// ---- RSVP ----
 function renderRSVP(){
   const c=document.getElementById('rsvp-content');
+  if(!isReal){
+    c.innerHTML=`<div class="locked-rsvp">
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" style="display:block;margin:0 auto;">
+        <rect x="7" y="16" width="22" height="17" rx="2" stroke="#1A1A18" stroke-width="2"/>
+        <path d="M12 16V12C12 7.6 14.7 4 18 4C21.3 4 24 7.6 24 12V16" stroke="#1A1A18" stroke-width="2"/>
+        <circle cx="18" cy="25" r="2" fill="#1A1A18"/>
+      </svg>
+      <p class="locked-title">Invitación personalizada</p>
+      <p class="locked-sub">Para confirmar, usa el link<br>que Ale & Pri compartieron contigo.</p>
+    </div>`;
+    return;
+  }
   const first=activeGuests[0].split(' ')[0];
   const items=activeGuests.map((n,i)=>`
     <div class="guest-item">
@@ -428,9 +534,7 @@ function renderRSVP(){
         <button class="tbtn" id="n${i}" onclick="setG(${i},'no')">No puedo</button>
       </div>
     </div>`).join('');
-  const demoBanner=!isReal?`<div class="demo-banner"><p>Vista ejemplo · ?grupo=Familia-García&personas=María+García,Carlos+García</p></div>`:'';
   c.innerHTML=`<div class="rsvp-form" id="rsvp-wrap">
-    ${demoBanner}
     <p class="form-note">¡Hola ${first}! ¿Vienes?</p>
     <div style="margin-bottom:18px;">${items}</div>
     <div style="margin-bottom:13px;"><label class="flabel">Restricciones alimentarias</label>
@@ -474,28 +578,16 @@ async function submitRSVP(){
   const diet=document.getElementById('diet-sel').value;
   const dO=document.getElementById('diet-ot')?document.getElementById('diet-ot').value:'';
   const msg=document.getElementById('msg-in').value;
-  const data={
-    grupo:activeGroup,
-    timestamp:new Date().toLocaleString('es-ES'),
-    guests:activeGuests.map((n,i)=>({name:n,attending:gAns[i]||'pendiente'})),
-    diet:diet==='otro'?dO:diet,
-    message:msg
-  };
-  // Save to localStorage (works when hosted)
-  try{
-    const ex=localStorage.getItem('rsvps');
-    const l=ex?JSON.parse(ex):[];
-    l.push(data);
-    localStorage.setItem('rsvps',JSON.stringify(l));
-  }catch(e){}
+  const data={grupo:activeGroup,timestamp:new Date().toLocaleString('es-ES'),guests:activeGuests.map((n,i)=>({name:n,attending:gAns[i]||'pendiente'})),diet:diet==='otro'?dO:diet,message:msg};
+  try{const ex=localStorage.getItem('rsvps');const l=ex?JSON.parse(ex):[];l.push(data);localStorage.setItem('rsvps',JSON.stringify(l));}catch(e){}
   document.getElementById('rsvp-wrap').style.display='none';
   document.getElementById('succ-msg').style.display='block';
-  // WhatsApp notification
   const resumen=data.guests.map(g=>g.name+': '+(g.attending==='yes'?'Sí':'No')).join(', ');
   const msgWA=encodeURIComponent('Nueva confirmación boda Ale & Pri!\n'+resumen+(data.diet?'\nDieta: '+data.diet:'')+(data.message?'\nMensaje: '+data.message:''));
-  setTimeout(()=>{ window.open('https://wa.me/34684319632?text='+msgWA,'_blank'); },800);
+  setTimeout(()=>window.open('https://wa.me/34684319632?text='+msgWA,'_blank'),800);
 }
 
+// ---- ADMIN ----
 document.getElementById('fab-btn').addEventListener('click',()=>{
   document.getElementById('auth-modal').classList.add('open');
   setTimeout(()=>document.getElementById('auth-in').focus(),50);
@@ -505,16 +597,11 @@ function checkAuth(){
   if(document.getElementById('auth-in').value===PASS){closeModal();openAdmin();}
   else{document.getElementById('auth-err').style.display='block';document.getElementById('auth-in').value='';}
 }
-function closeModal(){
-  document.getElementById('auth-modal').classList.remove('open');
-  document.getElementById('auth-err').style.display='none';
-  document.getElementById('auth-in').value='';
-}
+function closeModal(){document.getElementById('auth-modal').classList.remove('open');document.getElementById('auth-err').style.display='none';document.getElementById('auth-in').value='';}
 
 function openAdmin(){
-  const p=document.getElementById('admin-panel');
-  p.classList.add('open');
-  p.scrollIntoView({behavior:'smooth'});
+  const p=document.getElementById('admin-panel');p.classList.add('open');p.scrollIntoView({behavior:'smooth'});
+  renderLinks();
   let rv=[];
   try{const s=localStorage.getItem('rsvps');rv=s?JSON.parse(s):[];}catch(e){}
   let yes=0,no=0,tot=0;
@@ -525,31 +612,50 @@ function openAdmin(){
   const w=document.getElementById('tbl-wrap');
   if(!rv.length){w.innerHTML='<p class="empty">Aún sin confirmaciones</p>';return;}
   const rows=rv.flatMap(r=>r.guests.map(g=>`<tr>
-    <td style="width:22%">${g.name}</td>
-    <td style="width:16%">${r.grupo}</td>
+    <td style="width:22%">${g.name}</td><td style="width:16%">${r.grupo}</td>
     <td style="width:10%">${g.attending==='yes'?'<span class="bsi">Sí</span>':g.attending==='no'?'<span class="bno">No</span>':'—'}</td>
-    <td style="width:14%">${r.diet||'—'}</td>
-    <td style="width:22%">${r.message||'—'}</td>
+    <td style="width:14%">${r.diet||'—'}</td><td style="width:22%">${r.message||'—'}</td>
     <td style="width:16%;font-size:10px;color:var(--mid);">${r.timestamp}</td>
   </tr>`)).join('');
   w.innerHTML=`<div style="overflow-x:auto;"><table class="rtable"><thead><tr><th>Nombre</th><th>Grupo</th><th>Asiste</th><th>Dieta</th><th>Mensaje</th><th>Fecha</th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }
 
+function renderLinks(){
+  if(typeof INVITADOS==='undefined') return;
+  const base=window.location.origin+window.location.pathname;
+  const container=document.getElementById('links-list');
+  container.innerHTML=INVITADOS.map((inv,i)=>{
+    const url=base+'?grupo='+encodeURIComponent(inv.grupo)+'&personas='+encodeURIComponent(inv.personas.join(','));
+    return `<div class="link-item">
+      <p class="link-grupo">${inv.personas.join(' & ')}</p>
+      <p class="link-personas">${inv.mesa} · ${inv.personas.length} persona${inv.personas.length>1?'s':''}</p>
+      <p class="link-url" onclick="copyLink('link-${i}')" id="link-${i}" data-url="${url}">${url}</p>
+      <button class="copy-btn" onclick="copyLink('link-${i}')">Copiar link</button>
+    </div>`;
+  }).join('');
+}
+
+function copyLink(id){
+  const el=document.getElementById(id);
+  const url=el.getAttribute('data-url');
+  navigator.clipboard.writeText(url).then(()=>{
+    el.textContent='¡Copiado!';
+    setTimeout(()=>el.textContent=el.getAttribute('data-url'),2000);
+  });
+}
+
+// ---- COLORS ----
 function hexRgba(h,a){const r=parseInt(h.slice(1,3),16),g=parseInt(h.slice(3,5),16),b=parseInt(h.slice(5,7),16);return `rgba(${r},${g},${b},${a})`;}
 function updatePreview(){
   const pa=document.getElementById('cpa').value,dk=document.getElementById('cdk').value,p=document.getElementById('cp').value;
   document.getElementById('prev-bar').style.background=`linear-gradient(to right,${pa},${p},${dk})`;
-  document.getElementById('cpa-v').textContent=pa;
-  document.getElementById('cdk-v').textContent=dk;
-  document.getElementById('cp-v').textContent=p;
-  document.getElementById('cm-v').textContent=document.getElementById('cm').value;
+  document.getElementById('cpa-v').textContent=pa;document.getElementById('cdk-v').textContent=dk;
+  document.getElementById('cp-v').textContent=p;document.getElementById('cm-v').textContent=document.getElementById('cm').value;
 }
 function applyColors(){
-  const pa=document.getElementById('cpa').value,dk=document.getElementById('cdk').value,
-        p=document.getElementById('cp').value,m=document.getElementById('cm').value;
+  const pa=document.getElementById('cpa').value,dk=document.getElementById('cdk').value,p=document.getElementById('cp').value,m=document.getElementById('cm').value;
   const r=document.documentElement;
-  r.style.setProperty('--cream',pa);r.style.setProperty('--dark',dk);
-  r.style.setProperty('--gold',p);r.style.setProperty('--mid',m);
+  r.style.setProperty('--cream',pa);r.style.setProperty('--dark',dk);r.style.setProperty('--gold',p);r.style.setProperty('--mid',m);
   r.style.setProperty('--border',hexRgba(dk,0.15));
   updatePreview();
   try{localStorage.setItem('wc',JSON.stringify({pa,dk,p,m}));}catch(e){}
@@ -560,18 +666,11 @@ function resetColors(){
   applyColors();
 }
 ['cpa','cdk','cp','cm'].forEach(id=>document.getElementById(id).addEventListener('input',updatePreview));
-
 function loadColors(){
-  try{
-    const s=localStorage.getItem('wc');
-    if(s){const{pa,dk,p,m}=JSON.parse(s);
-      document.getElementById('cpa').value=pa;document.getElementById('cdk').value=dk;
-      document.getElementById('cp').value=p;document.getElementById('cm').value=m;
-      applyColors();
-    }
-  }catch(e){}
+  try{const s=localStorage.getItem('wc');if(s){const{pa,dk,p,m}=JSON.parse(s);document.getElementById('cpa').value=pa;document.getElementById('cdk').value=dk;document.getElementById('cp').value=p;document.getElementById('cm').value=m;applyColors();}}catch(e){}
 }
 
+// ---- COUNTDOWN ----
 function tick(){
   const diff=WD-new Date();
   if(diff<=0){document.getElementById('cd').innerHTML='<p style="font-family:Fredoka One,cursive;font-size:22px;color:var(--dark);">¡Hoy es el gran día!</p>';return;}
@@ -581,7 +680,9 @@ function tick(){
   document.getElementById('cd-s').textContent=String(Math.floor((diff%60000)/1000)).padStart(2,'0');
 }
 
-renderRSVP();loadColors();updatePreview();tick();setInterval(tick,1000);
+setupWelcome();
+loadColors();
+updatePreview();
 </script>
 </body>
 </html>
