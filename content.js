@@ -9,14 +9,14 @@ const PAGE_CONTENT = {
     tag: '10 · Octubre · 2026',
     headline: 'Te invitamos a nuestra boda',
     names: 'Ale & Pri',
-    message: 'Toronto corrió muy rápido para traerte esta invitación',
-    submessage: 'Ale & Pri tienen el honor de invitarte a celebrar el día más especial de sus vidas.',
+    message: 'Toronto corrió y corrió muy rápido para traerte esta invitación',
+    submessage: 'Toronto tiene el honor de invitarte a celebrar el día más especial de sus vidas.',
     locationSubtitle: 'Sábado · Qgat Barcelona',
   },
 
   // Hero section
   hero: {
-    arch: '¡Nos casamos!',
+    arch: 'Se casan!',
     names: 'Ale & Pri',
     fullNames: 'Los Papás de Toronto Josè',
     date: '10 · OCTUBRE · 2026',
@@ -30,7 +30,7 @@ const PAGE_CONTENT = {
 
   // Event details
   event: {
-    title: '¡La Fiesta!',
+    title: 'A lo que vinimos, ¿Cuándo es La Fiesta?',
     date: {
       label: 'Fecha',
       value: 'Sábado<br>10 · Oct · 2026',
@@ -43,7 +43,7 @@ const PAGE_CONTENT = {
 
   // Venue
   venue: {
-    title: 'El Lugar',
+    title: 'Ok, pero ¿dónde?',
     name: 'Qgat Restaurant, Events & Hotel',
     address: 'Carretera de Cerdanyola, Bellaterra<br>Barcelona, España',
     mapButtonText: 'Ver en mapa',
@@ -63,7 +63,7 @@ const PAGE_CONTENT = {
     intro: 'El venue tiene habitaciones disponibles.<br>Usa el código de descuento al reservar:',
     codeLabel: 'Código de descuento',
     code: 'BODAQGAT2026',
-    instructions: 'Reserva directo en el hotel mencionando<br>la boda de Alejandro y Priscila.',
+    instructions: 'Reserva directo en la pagina web del hotel<br> El descuento está muy bien y es válido para cualquier tipo de habitación. <br> Los precios no son fijos, así que te recomendamos reservar lo antes posible para asegurar tu lugar.',
   },
 
   // Gift
@@ -108,7 +108,7 @@ const PAGE_CONTENT = {
 
   // Footer
   footer: {
-    opening: 'Con amor (y Toronto),',
+    opening: 'Con amor y besos Toronto,',
     signature: 'Ale & Pri',
   },
 
