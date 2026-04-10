@@ -16,7 +16,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Cormorant+Garamond:ital,wght@1,300&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-:root{--cream:#F5F0E8;--dark:#1A1A18;--mid:#6B6860;--gold:#C9A84C;--border:rgba(26,26,24,0.15);}
+:root{--cream:#F0F8FF;--dark:#1A3A52;--mid:#5B7FA6;--gold:#0078D4;--border:rgba(26,58,82,0.15);}
 html{scroll-behavior:smooth;}
 body{background:var(--cream);color:var(--dark);font-family:'Montserrat',sans-serif;overflow-x:hidden;}
 
@@ -218,7 +218,6 @@ body{background:var(--cream);color:var(--dark);font-family:'Montserrat',sans-ser
         <rect x="40" y="44" width="6" height="14" rx="3" fill="#F5F0E8" stroke="#1A1A18" stroke-width="1.5"/>
         <rect x="56" y="44" width="6" height="14" rx="3" fill="#F5F0E8" stroke="#1A1A18" stroke-width="1.5"/>
         <rect x="66" y="44" width="6" height="16" rx="3" fill="#1A1A18"/>
-        <text x="35" y="57" text-anchor="middle" font-family="Fredoka One,cursive" font-size="7" fill="#F5F0E8">Toronto</text>
       </g>
     </svg>
   </div>
@@ -255,7 +254,6 @@ body{background:var(--cream);color:var(--dark);font-family:'Montserrat',sans-ser
         <g class="leg-fr"><rect x="40" y="44" width="6" height="14" rx="3" fill="#F5F0E8" stroke="#1A1A18" stroke-width="1.5"/><ellipse cx="43" cy="58" rx="5" ry="3" fill="#1A1A18"/></g>
         <g class="leg-rl"><rect x="56" y="44" width="6" height="14" rx="3" fill="#F5F0E8" stroke="#1A1A18" stroke-width="1.5"/><ellipse cx="59" cy="58" rx="5" ry="3" fill="#1A1A18"/></g>
         <g class="leg-rr"><rect x="66" y="44" width="6" height="16" rx="3" fill="#1A1A18"/><ellipse cx="69" cy="60" rx="5" ry="3" fill="#1A1A18"/></g>
-        <text x="30" y="57" text-anchor="middle" font-family="Fredoka One,cursive" font-size="7" fill="#F5F0E8">Toronto</text>
       </g>
     </svg>
   </div>
@@ -372,11 +370,6 @@ body{background:var(--cream);color:var(--dark);font-family:'Montserrat',sans-ser
         <circle cx="51" cy="8" r="9" fill="#F5F0E8" stroke="#1A1A18" stroke-width="2"/>
         <path d="M46 6 Q51 2 56 6" stroke="#1A1A18" stroke-width="1.5" fill="none"/>
       </svg>
-      <div class="dc-swatches">
-        <div class="swatch" style="background:#FDFCF8;"></div>
-        <div class="swatch" style="background:#C9A84C;"></div>
-        <div class="swatch" style="background:#1A1A18;"></div>
-      </div>
       <p class="dc-text" id="dress-code-text">Etiqueta formal. Caballeros: traje oscuro o esmoquin.<br>Damas: vestido largo o cocktail elegante.<br>
       <span style="font-family:'Fredoka One',cursive;font-size:13px;color:var(--dark);" id="dress-code-emphasis">Sin blanco, por favor</span></p>
     </div>
@@ -441,10 +434,10 @@ body{background:var(--cream);color:var(--dark);font-family:'Montserrat',sans-ser
     <div class="admin-section">
       <p class="admin-section-title">Personalizar colores</p>
       <div class="preview-bar" id="prev-bar"></div>
-      <div class="color-row"><label>Fondo crema</label><input type="color" id="cpa" value="#F5F0E8"><span class="hex" id="cpa-v">#F5F0E8</span></div>
-      <div class="color-row"><label>Color principal</label><input type="color" id="cdk" value="#1A1A18"><span class="hex" id="cdk-v">#1A1A18</span></div>
-      <div class="color-row"><label>Acento dorado</label><input type="color" id="cp" value="#C9A84C"><span class="hex" id="cp-v">#C9A84C</span></div>
-      <div class="color-row"><label>Texto secundario</label><input type="color" id="cm" value="#6B6860"><span class="hex" id="cm-v">#6B6860</span></div>
+      <div class="color-row"><label>Fondo crema</label><input type="color" id="cpa" value="#F0F8FF"><span class="hex" id="cpa-v">#F0F8FF</span></div>
+      <div class="color-row"><label>Color principal</label><input type="color" id="cdk" value="#1A3A52"><span class="hex" id="cdk-v">#1A3A52</span></div>
+      <div class="color-row"><label>Acento dorado</label><input type="color" id="cp" value="#0078D4"><span class="hex" id="cp-v">#0078D4</span></div>
+      <div class="color-row"><label>Texto secundario</label><input type="color" id="cm" value="#5B7FA6"><span class="hex" id="cm-v">#5B7FA6</span></div>
       <div style="margin-top:8px;">
         <button class="apply-btn" onclick="applyColors()">Aplicar</button>
         <button class="reset-btn" onclick="resetColors()">Restablecer</button>
@@ -849,8 +842,8 @@ function applyColors(){
   try{localStorage.setItem('wc',JSON.stringify({pa,dk,p,m}));}catch(e){}
 }
 function resetColors(){
-  document.getElementById('cpa').value='#F5F0E8';document.getElementById('cdk').value='#1A1A18';
-  document.getElementById('cp').value='#C9A84C';document.getElementById('cm').value='#6B6860';
+  document.getElementById('cpa').value='#F0F8FF';document.getElementById('cdk').value='#1A3A52';
+  document.getElementById('cp').value='#0078D4';document.getElementById('cm').value='#5B7FA6';
   applyColors();
 }
 ['cpa','cdk','cp','cm'].forEach(id=>document.getElementById(id).addEventListener('input',updatePreview));

@@ -118,10 +118,10 @@ const PAGE_CONTENT = {
     colors: {
       sectionTitle: 'Personalizar colores',
       labels: {
-        cream: 'Fondo crema',
-        dark: 'Color principal',
-        gold: 'Acento dorado',
-        mid: 'Texto secundario',
+        cream: 'Fondo (Azul claro)',
+        dark: 'Principal (Azul oscuro)',
+        gold: 'Acento (Azul cielo)',
+        mid: 'Secundario (Azul gris)',
       },
       applyBtn: 'Aplicar',
       resetBtn: 'Restablecer',
