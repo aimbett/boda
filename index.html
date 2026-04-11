@@ -193,10 +193,6 @@ body{background:var(--cream);color:var(--dark);font-family:'Montserrat',sans-ser
 .modal-btn{width:100%;background:var(--dark);border:none;color:var(--cream);font-family:'Fredoka One',cursive;font-size:15px;padding:11px;cursor:pointer;margin-bottom:8px;}
 .modal-cancel{background:none;border:none;font-size:11px;color:var(--mid);cursor:pointer;font-family:'Montserrat',sans-serif;letter-spacing:2px;}
 
-/* NAME VERIFICATION MODAL */
-#name-verify-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:2000;align-items:center;justify-content:center;padding:20px;}
-#name-verify-modal.show{display:flex;}
-
 @media(max-width:480px){
   .hero-names,.welcome-names{font-size:38px;}
   .evgrid{grid-template-columns:1fr;}
@@ -212,17 +208,6 @@ body{background:var(--cream);color:var(--dark);font-family:'Montserrat',sans-ser
 
 <div class="fab-fixed">
   <button class="fab" id="fab-btn" title="Admin"></button>
-</div>
-
-<!-- NAME VERIFICATION MODAL -->
-<div id="name-verify-modal">
-  <div style="background:var(--cream);padding:32px;border-radius:12px;max-width:400px;width:100%;text-align:center;box-shadow:0 4px 12px rgba(0,0,0,0.2);">
-    <p style="font-family:'Fredoka One',cursive;font-size:22px;color:var(--dark);margin-bottom:12px;">Confirma tu nombre</p>
-    <p style="color:var(--mid);margin-bottom:24px;font-size:14px;line-height:1.5;">Por favor ingresa tu nombre (completo, primer nombre, o apellido) para continuar.</p>
-    <input type="text" id="name-input" placeholder="Tu nombre" style="width:100%;padding:12px;border:2px solid var(--dark);margin-bottom:16px;font-family:'Montserrat',sans-serif;font-size:14px;" autofocus>
-    <div id="name-error" style="color:#d32f2f;font-size:12px;margin-bottom:12px;display:none;"></div>
-    <button onclick="verifyGuestName()" style="background:var(--dark);color:var(--cream);border:none;padding:12px 24px;font-family:'Fredoka One',cursive;font-size:14px;cursor:pointer;width:100%;border-radius:4px;">Continuar</button>
-  </div>
 </div>
 
 <!-- WELCOME -->
@@ -649,54 +634,11 @@ const activeGroup = isReal ? pG : '';
 const activeGuests = isReal ? pList : [];
 const gAns = {}, gDiet = {}, gDietOther = {};
 
-// NAME VERIFICATION
-let nameVerified = false;
-
-function verifyGuestName() {
-  const inputName = document.getElementById('name-input').value.trim();
-  const errorDiv = document.getElementById('name-error');
-
-  if (!inputName) {
-    errorDiv.textContent = 'Por favor ingresa tu nombre';
-    errorDiv.style.display = 'block';
-    return;
-  }
-
-  // Flexible matching: check if entered name matches ANY part of ANY persona
-  const inputLower = inputName.toLowerCase();
-  const matchesName = activeGuests.some(persona => {
-    const personaLower = persona.toLowerCase();
-    return personaLower.includes(inputLower) || inputLower.includes(personaLower);
-  });
-
-  if (!matchesName) {
-    errorDiv.textContent = 'No encontramos ese nombre. Verifica e intenta de nuevo.';
-    errorDiv.style.display = 'block';
-    return;
-  }
-
-  // Success! Hide modal and proceed
-  errorDiv.style.display = 'none';
-  document.getElementById('name-verify-modal').classList.remove('show');
-  nameVerified = true;
-  enterPage();
-}
-
-// Allow Enter key to submit
-document.addEventListener('DOMContentLoaded', function() {
-  const nameInput = document.getElementById('name-input');
-  if (nameInput) {
-    nameInput.addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') verifyGuestName();
-    });
-  }
-});
-
 // WELCOME
 function setupWelcome(){
   if(!isReal) return;
-  const names = activeGuests.map(n=>n.split(' ')[0]);
-  const saludo = names.length===1 ? names[0] : names.length===2 ? names[0]+' y '+names[1] : names.slice(0,-1).join(', ')+' y '+names[names.length-1];
+  // Use full names, not just first names
+  const saludo = activeGuests.length===1 ? activeGuests[0] : activeGuests.length===2 ? activeGuests[0]+' y '+activeGuests[1] : activeGuests.slice(0,-1).join(', ')+' y '+activeGuests[activeGuests.length-1];
   document.getElementById('welcome-headline').textContent = '¡Hola '+saludo+'!';
   document.getElementById('welcome-msg').innerHTML = 'Toronto corrió muy rápido para traerles esta invitación.<br>Ale & Pri los invitan a su boda.';
   document.getElementById('welcome-submsg').textContent = 'Tienen el honor de invitarlos a celebrar el día más especial de sus vidas.';
@@ -785,9 +727,6 @@ function populateContent(){
 }
 
 function enterPage(){
-  // Gate: only proceed if verified (or not a personalized guest)
-  if (isReal && !nameVerified) return;
-
   const ws = document.getElementById('welcome-screen');
   ws.classList.add('hide');
   setTimeout(()=>{
@@ -1065,12 +1004,6 @@ function tick(){
 }
 
 populateContent();setupWelcome();loadColors();updatePreview();
-
-// Show name verification modal for personalized guests
-if (isReal && !nameVerified) {
-  document.getElementById('name-verify-modal').classList.add('show');
-  document.getElementById('name-input').focus();
-}
 </script>
 </body>
 </html>
