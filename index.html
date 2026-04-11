@@ -633,6 +633,8 @@ const isReal = pG.length > 0 && pList.length > 0;
 const activeGroup = isReal ? pG : '';
 const activeGuests = isReal ? pList : [];
 const gAns = {}, gDiet = {}, gDietOther = {};
+const gNames = {}; // Store modified names (especially +1)
+const hasPlusOne = activeGuests.some(g => g.includes('+1'));
 
 // WELCOME
 function setupWelcome(){
@@ -763,6 +765,32 @@ function dietSelect(i){
   `;
 }
 
+function dietSelectPlusOne(){
+  // Initialize gDiet['plus-one'] as empty array if not exists
+  if(!gDiet['plus-one']) gDiet['plus-one']=[];
+
+  const checkboxes = DIETS.map(d=>`
+    <label style="display:block;margin:6px 0;font-size:13px;cursor:pointer;font-weight:300;">
+      <input type="checkbox" value="${d}" style="margin-right:6px;cursor:pointer;" onchange="
+        if(this.checked){
+          if(!gDiet['plus-one'].includes('${d}')) gDiet['plus-one'].push('${d}');
+        } else {
+          gDiet['plus-one']=gDiet['plus-one'].filter(x=>x!=='${d}');
+        }
+        document.getElementById('diet-other-plus-one').style.display=gDiet['plus-one'].includes('Otro')?'block':'none';
+      ">
+      ${d}
+    </label>
+  `).join('');
+
+  return `
+    <div style="margin:6px 0;">
+      ${checkboxes}
+      <input type="text" class="finput" id="diet-other-plus-one" placeholder="Especifica..." style="display:none;margin-top:8px;" oninput="gDietOther['plus-one']=this.value">
+    </div>
+  `;
+}
+
 function renderRSVP(){
   const c = document.getElementById('rsvp-content');
   if(!isReal){
@@ -792,9 +820,25 @@ function renderRSVP(){
         ${dietSelect(i)}
       </div>
     </div>`).join('');
+
+  // Add +1 section if group has a +1 (only shows when +1 person selects 'yes')
+  let plusOneSection = '';
+  if(hasPlusOne) {
+    const plusOneIdx = activeGuests.findIndex(g => g.includes('+1'));
+    plusOneSection = `
+    <div class="guest-block" id="plus-one-block" style="display:none;border:2px dashed var(--dark);padding:20px;margin:16px 0;border-radius:8px;">
+      <p style="font-family:'Fredoka One',cursive;font-size:16px;color:var(--dark);margin-bottom:16px;">Detalles de tu acompañante</p>
+      <label class="flabel">Nombre del acompañante</label>
+      <input type="text" class="finput" id="plus-one-name" placeholder="Nombre completo" style="margin-bottom:16px;">
+      <label class="flabel">Restricción alimentaria</label>
+      <div id="plus-one-diet"></div>
+    </div>`;
+  }
+
   c.innerHTML=`<div class="rsvp-form" id="rsvp-wrap">
     <p class="form-note">¡Hola ${first}! ¿Vienes?</p>
     ${blocks}
+    ${plusOneSection}
     <div class="msg-wrap">
       <label class="flabel" style="font-size:12px;color:var(--dark);margin-bottom:6px;display:block;">Mensaje para los novios (opcional)</label>
       <textarea class="ftextarea" id="msg-in" placeholder="Un mensaje de cariño..."></textarea>
@@ -815,6 +859,25 @@ function setG(i,v){
   const dietDiv=document.getElementById('gdiet-'+i);
   if(v==='yes') dietDiv.classList.add('show');
   else dietDiv.classList.remove('show');
+
+  // Show/hide +1 section if this is the +1 person
+  if(hasPlusOne && activeGuests[i].includes('+1')){
+    const plusOneBlock = document.getElementById('plus-one-block');
+    if(v==='yes'){
+      plusOneBlock.style.display='block';
+      // Populate +1 diet options if not already done
+      if(!document.getElementById('plus-one-diet').innerHTML){
+        document.getElementById('plus-one-diet').innerHTML = dietSelectPlusOne();
+      }
+    } else {
+      plusOneBlock.style.display='none';
+      // Clear +1 data when no is selected
+      document.getElementById('plus-one-name').value = '';
+      gNames['plus-one'] = '';
+      gDiet['plus-one'] = [];
+      gDietOther['plus-one'] = '';
+    }
+  }
 }
 
 async function submitRSVP(){
@@ -831,8 +894,36 @@ async function submitRSVP(){
     }
     // Join multiple restrictions into comma-separated string
     const diet = diets.length > 0 ? diets.join(', ') : 'Sin restricciones';
-    return {name:n, attending:gAns[i]||'pendiente', diet};
+
+    // If this is the +1 person and they said yes, use their provided name
+    let displayName = n;
+    if(n.includes('+1') && gAns[i]==='yes'){
+      const plusOneName = document.getElementById('plus-one-name').value.trim();
+      if(plusOneName) displayName = plusOneName;
+    }
+
+    return {name:displayName, attending:gAns[i]||'pendiente', diet};
   });
+
+  // Add +1 info if they said yes (handle separately for data structure)
+  if(hasPlusOne){
+    const plusOneIdx = activeGuests.findIndex(g => g.includes('+1'));
+    if(gAns[plusOneIdx]==='yes'){
+      const plusOneName = document.getElementById('plus-one-name').value.trim();
+      let plusOneDiets = gDiet['plus-one']||[];
+      if(plusOneDiets.includes('Otro')){
+        const customDiet = gDietOther['plus-one']||'Otro';
+        plusOneDiets = plusOneDiets.map(d=>d==='Otro'?customDiet:d);
+      }
+      const plusOneDiet = plusOneDiets.length > 0 ? plusOneDiets.join(', ') : 'Sin restricciones';
+      // Update the +1 guest entry with the actual name
+      if(guests[plusOneIdx] && plusOneName){
+        guests[plusOneIdx].name = plusOneName;
+        guests[plusOneIdx].diet = plusOneDiet;
+      }
+    }
+  }
+
   const data={
     id:Date.now(), secret:SECRET, grupo:activeGroup,
     timestamp:new Date().toLocaleString('es-ES'),
