@@ -621,11 +621,14 @@ function setupWelcome(){
 function populateContent(){
   // Welcome screen
   if(document.getElementById('welcome-tag')) document.getElementById('welcome-tag').textContent = PAGE_CONTENT.welcome.tag;
+  if(document.getElementById('welcome-headline')) document.getElementById('welcome-headline').textContent = PAGE_CONTENT.welcome.headline;
   if(document.getElementById('welcome-names')) {
     const name = PAGE_CONTENT.welcome.names;
     const parts = name.split(' & ');
     document.getElementById('welcome-names').innerHTML = parts[0] + ' <span>&</span> ' + (parts[1] || '');
   }
+  if(document.getElementById('welcome-msg')) document.getElementById('welcome-msg').textContent = PAGE_CONTENT.welcome.message;
+  if(document.getElementById('welcome-submsg')) document.getElementById('welcome-submsg').textContent = PAGE_CONTENT.welcome.submessage;
   if(document.getElementById('welcome-btn-sub')) document.getElementById('welcome-btn-sub').textContent = PAGE_CONTENT.welcome.locationSubtitle;
 
   // Hero section
