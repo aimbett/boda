@@ -7,11 +7,11 @@ const PAGE_CONTENT = {
   // Welcome screen
   welcome: {
     tag: '10 · Octubre · 2026',
-    headline: 'Te invitamos a nuestra boda',
+    headline: 'Te invito a la boda de',
     names: 'Ale & Pri',
     message: 'Toronto corrió y corrió muy rápido para traerte esta invitación',
     submessage: 'Toronto tiene el honor de invitarte a celebrar el día más especial de sus vidas.',
-    locationSubtitle: 'Sábado · Qgat Sant Cugat-Barcelona',
+    locationSubtitle: 'Sábado 10 Octubre · Qgat · Sant Cugat-Barcelona',
   },
 
   // Hero section
@@ -53,7 +53,7 @@ const PAGE_CONTENT = {
   // Dress code
   dressCode: {
     title: 'Vestimenta',
-    text: 'Etiqueta formal. Caballeros: traje oscuro corbata.<br>Damas: vestido largo o cocktail elegante sin estampados.',
+    text: 'Etiqueta formal. Hombres: traje oscuro corbata.<br>Mujeres: vestido largo o cocktail elegante sin estampados.',
     emphasis: 'Sin blanco, por favor',
   },
 
@@ -101,7 +101,6 @@ const PAGE_CONTENT = {
       'Vegano',
       'Sin gluten',
       'Sin lactosa',
-      'Halal',
       'Otro',
     ],
   },
