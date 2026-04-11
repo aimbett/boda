@@ -43,9 +43,9 @@ const PAGE_CONTENT = {
 
   // Venue
   venue: {
-    title: 'Ok, pero ¿dónde?',
+    title: '¿Dónde?',
     name: 'Qgat Restaurant, Events & Hotel',
-    address: 'Carretera de Cerdanyola, Bellaterra<br>Barcelona, España',
+    address: 'Av. de la Via Augusta, 51, 08174 <br> Sant Cugat del Vallès, Barcelona',
     mapButtonText: 'Ver en mapa',
     mapLink: 'https://maps.app.goo.gl/qsc3siNPAXJwGCEy6',
   },
