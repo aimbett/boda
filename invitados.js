@@ -6,18 +6,18 @@ const INVITADOS = [
 
   // --- PAREJAS ---
   { grupo: "Sam-Ele",          personas: ["Sam", "Ele"],        },
-  { grupo: "Robert",        personas: ["Robert", "+1"],    },
+  { grupo: "Robert",        personas: ["Robert", "Andres"],    },
   { grupo: "Mau-Fabio",          personas: ["Mau", "Fabio"],        },
   { grupo: "Anto-Jhon",          personas: ["Tia Anto", "Tio Jhon"],        },
-  { grupo: "Dani-Andrea",          personas: ["Dani", "Andrea"],           },
+  { grupo: "Dani-Andrea",          personas: ["Andrea", "Dani"],           },
   { grupo: "Joha-novio",          personas: ["Joha", "Gustavo"],           },
   { grupo: "Fefa-Diego",          personas: ["Fefa", "Diego"],           },
-  { grupo: "Jose-Rios",     personas: ["José Ríos", "Daniela"],  },
-  { grupo: "Gaby",          personas: ["Gaby", "Novio Gaby"],        },
+  { grupo: "Jose-Rios",     personas: ["José", "Daniela"],  },
+  { grupo: "Gaby",          personas: ["Gaby", "Thomas"],        },
   { grupo: "Eze-Jean",          personas: ["Tio Ezequiel", "Tia Jeanette"],           },
   
   
-  { grupo: "Mama-Papa",     personas: ["Tia Amparo", "Tio Napoleón"],              },
+  { grupo: "Mama-Papa",     personas: ["Amparo", "Napoleón"],              },
   { grupo: "Pipe-Cami",          personas: ["Pipe", "Cami"],           },
   { grupo: "Luli-Hugo",          personas: ["Luli", "Hugo"],       },
   { grupo: "Dani-Sergio",          personas: ["Dani", "Sergio"],       },
@@ -36,6 +36,7 @@ const INVITADOS = [
   { grupo: "Sandel-Nani",        personas: ["Sandel", "Nani"],         },
   
   { grupo: "Sara-Pablo",          personas: ["Sara", "Pablo"],           },
+  { grupo: "Joel-Joel",          personas: ["Joel", "+1"],           },
 
 
   // --- INDIVIDUALES --
@@ -45,18 +46,17 @@ const INVITADOS = [
   { grupo: "Nacho",         personas: ["Tio Nacho"],          },
 
   { grupo: "Atun",          personas: ["Atún"],           },
-  { grupo: "Ezequiel",      personas: ["Ezequiel"],       },
+
   
   { grupo: "Sabri",         personas: ["Sabri"],          },
   { grupo: "Samy",          personas: ["Samy"],           },
+  { grupo: "Oskar",          personas: ["Oskar Reina"],           },
 
   { grupo: "Alfonso",       personas: ["Alfonso"],        },
   { grupo: "Leo",           personas: ["Leo"],            },
   { grupo: "Loredana",      personas: ["Loredana"],       },
-  
+  { grupo: "Cokiii",        personas: ["Francelis"],         },
 
-  { grupo: "Cokiii",        personas: ["Cokiii"],         },
-  { grupo: "Joel",          personas: ["Joel"],           },
   { grupo: "Guille",        personas: ["Guille"],         },
 
   { grupo: "Mateo",         personas: ["Mateo"],          },
