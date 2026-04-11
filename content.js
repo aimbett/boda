@@ -10,18 +10,18 @@ const PAGE_CONTENT = {
     headline: 'Te invito a la boda de',
     headlinePersonalized: 'Los invito a la boda de',
     names: 'Ale & Pri',
-    message: 'Toronto corrió y corrió muy rápido para traerte esta invitación',
-    messagePersonalized: 'Toronto corrió y corrió muy rápido para traerles esta invitación',
-    submessage: 'Toronto tiene el honor de invitarte a celebrar el día más especial de sus vidas. <br> Después de que yo nací',
-    submessagePersonalized: 'Toronto tiene el honor de invitarlos a celebrar el día más especial de sus vidas. <br> Después de que yo nací',
-    locationSubtitle: 'Sábado 10 Octubre · Qgat · Sant Cugat-Barcelona',
+    message: 'Corrí muy rápido para traerte esta invitación',
+    messagePersonalized: 'Corrí muy rápido para traerles esta invitación',
+    submessage: 'Toronto tiene el honor de invitarte a celebrar el día más especial de sus vidas. <br> Después de que él nació',
+    submessagePersonalized: 'Toronto tiene el honor de invitarlos a celebrar el día más especial de sus vidas. <br> Después de que él nació',
+    locationSubtitle: 'Sábado 10 Octubre · Qgat Hotel · Sant Cugat-Barcelona',
   },
 
   // Hero section
   hero: {
     arch: 'Se casan!',
     names: 'Ale & Pri',
-    fullNames: 'Los Papás de Toronto Josè',
+    fullNames: 'Los Papás de Toronto José',
     date: '10 · OCTUBRE · 2026',
     countdownLabels: {
       days: 'días',
