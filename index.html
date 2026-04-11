@@ -599,8 +599,8 @@ function populateContent(){
     const parts = name.split(' & ');
     document.getElementById('welcome-names').innerHTML = parts[0] + ' <span>&</span> ' + (parts[1] || '');
   }
-  if(document.getElementById('welcome-msg')) document.getElementById('welcome-msg').textContent = PAGE_CONTENT.welcome.message;
-  if(document.getElementById('welcome-submsg')) document.getElementById('welcome-submsg').textContent = PAGE_CONTENT.welcome.submessage;
+  if(document.getElementById('welcome-msg')) document.getElementById('welcome-msg').innerHTML = PAGE_CONTENT.welcome.message;
+  if(document.getElementById('welcome-submsg')) document.getElementById('welcome-submsg').innerHTML = PAGE_CONTENT.welcome.submessage;
   if(document.getElementById('welcome-btn-sub')) document.getElementById('welcome-btn-sub').textContent = PAGE_CONTENT.welcome.locationSubtitle;
 
   // Hero section
