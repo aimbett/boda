@@ -95,6 +95,13 @@ const PAGE_CONTENT = {
       title: '¡Gracias! Los esperamos',
       subtitle: 'Confirmación recibida · Ale & Pri',
     },
+    plusOne: {
+      headerMessage: 'Esta invitación es para {name} + Acompañante',
+      sectionTitle: 'Detalles del acompañante',
+      companionNameLabel: 'Nombre del acompañante',
+      companionPlaceholder: 'Nombre completo',
+      companionDietLabel: 'Restricción alimentaria',
+    },
     dietOptions: [
       'Sin restricciones',
       'Vegetariano',

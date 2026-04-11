@@ -777,12 +777,17 @@ function renderRSVP(){
     return;
   }
   const first = activeGuests[0].split(' ')[0];
-  const blocks = activeGuests.map((n,i)=>`
+  const blocks = activeGuests.map((n,i)=>{
+    const isPlusOne = n.includes('+1');
+    const displayName = n.replace('+1', '').trim();
+    const plusOneHeader = isPlusOne ? `<p style="font-family:'Fredoka One',cursive;font-size:13px;color:var(--mid);margin-bottom:12px;letter-spacing:0.5px;">${PAGE_CONTENT.rsvp.plusOne.headerMessage.replace('{name}', displayName)}</p>` : '';
+    return `
     <div class="guest-block">
+      ${plusOneHeader}
       <div class="guest-header">
         <div style="flex:1;">
           <label class="flabel">Nombre</label>
-          <input type="text" class="finput" id="gname-${i}" placeholder="Nombre completo" value="${n}" oninput="gNames[${i}]=this.value" style="margin-bottom:12px;">
+          <input type="text" class="finput" id="gname-${i}" placeholder="Nombre completo" value="${displayName}" oninput="gNames[${i}]=this.value" style="margin-bottom:12px;">
         </div>
         <div class="guest-btns">
           <button class="tbtn" id="y${i}" onclick="setG(${i},'yes')">Sí, voy!</button>
@@ -793,18 +798,21 @@ function renderRSVP(){
         <label class="flabel">Restricción alimentaria</label>
         ${dietSelect(i)}
       </div>
-    </div>`).join('');
+    </div>`;
+  }).join('');
 
   // Add +1 section if group has a +1 (only shows when +1 person selects 'yes')
   let plusOneSection = '';
   if(hasPlusOne) {
     const plusOneIdx = activeGuests.findIndex(g => g.includes('+1'));
+    const plusOneGuestName = activeGuests[plusOneIdx].replace('+1', '').trim();
     plusOneSection = `
     <div class="guest-block" id="plus-one-block" style="display:none;border:2px dashed var(--dark);padding:20px;margin:16px 0;border-radius:8px;">
-      <p style="font-family:'Fredoka One',cursive;font-size:16px;color:var(--dark);margin-bottom:16px;">Detalles de tu acompañante</p>
-      <label class="flabel">Nombre del acompañante</label>
-      <input type="text" class="finput" id="plus-one-name" placeholder="Nombre completo" style="margin-bottom:16px;">
-      <label class="flabel">Restricción alimentaria</label>
+      <p style="font-family:'Fredoka One',cursive;font-size:14px;color:var(--dark);margin-bottom:12px;letter-spacing:0.5px;">${PAGE_CONTENT.rsvp.plusOne.headerMessage.replace('{name}', plusOneGuestName)}</p>
+      <p style="font-family:'Fredoka One',cursive;font-size:14px;color:var(--dark);margin-bottom:16px;">${PAGE_CONTENT.rsvp.plusOne.sectionTitle}</p>
+      <label class="flabel">${PAGE_CONTENT.rsvp.plusOne.companionNameLabel}</label>
+      <input type="text" class="finput" id="plus-one-name" placeholder="${PAGE_CONTENT.rsvp.plusOne.companionPlaceholder}" style="margin-bottom:16px;">
+      <label class="flabel">${PAGE_CONTENT.rsvp.plusOne.companionDietLabel}</label>
       <div id="plus-one-diet"></div>
     </div>`;
   }
