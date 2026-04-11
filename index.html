@@ -579,9 +579,9 @@ function setupWelcome(){
   if(!isReal) return;
   // Use full names, not just first names
   const saludo = activeGuests.length===1 ? activeGuests[0] : activeGuests.length===2 ? activeGuests[0]+' y '+activeGuests[1] : activeGuests.slice(0,-1).join(', ')+' y '+activeGuests[activeGuests.length-1];
-  document.getElementById('welcome-headline').textContent = '¡Hola '+saludo+'!';
-  document.getElementById('welcome-msg').innerHTML = 'Toronto corrió muy rápido para traerles esta invitación.<br>Ale & Pri los invitan a su boda.';
-  document.getElementById('welcome-submsg').textContent = 'Tienen el honor de invitarlos a celebrar el día más especial de sus vidas.';
+  document.getElementById('welcome-headline').textContent = PAGE_CONTENT.welcome.headlinePersonalized;
+  document.getElementById('welcome-msg').innerHTML = PAGE_CONTENT.welcome.messagePersonalized+'<br>Ale & Pri los invitan a su boda.';
+  document.getElementById('welcome-submsg').textContent = PAGE_CONTENT.welcome.submessagePersonalized;
 }
 
 // POPULATE CONTENT FROM PAGE_CONTENT

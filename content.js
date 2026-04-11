@@ -8,9 +8,12 @@ const PAGE_CONTENT = {
   welcome: {
     tag: '10 · Octubre · 2026',
     headline: 'Te invito a la boda de',
+    headlinePersonalized: 'Los invito a la boda de',
     names: 'Ale & Pri',
     message: 'Toronto corrió y corrió muy rápido para traerte esta invitación',
-    submessage: 'Toronto tiene el honor de invitarte a celebrar el día más especial de sus vidas.',
+    messagePersonalized: 'Toronto corrió y corrió muy rápido para traerles esta invitación',
+    submessage: 'Toronto tiene el honor de invitarte a celebrar el día más especial de sus vidas. <br> Después de que yo nací',
+    submessagePersonalized: 'Toronto tiene el honor de invitarlos a celebrar el día más especial de sus vidas. <br> Después de que yo nací',
     locationSubtitle: 'Sábado 10 Octubre · Qgat · Sant Cugat-Barcelona',
   },
 
