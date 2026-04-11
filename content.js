@@ -56,7 +56,7 @@ const PAGE_CONTENT = {
   // Dress code
   dressCode: {
     title: 'Vestimenta',
-    text: 'Etiqueta formal. Hombres: traje oscuro corbata.<br>Mujeres: vestido largo o cocktail elegante sin estampados.',
+    text: '<strong>Etiqueta formal</strong><br>Hombres: traje oscuro corbata.<br>Mujeres: vestido largo o cocktail elegante sin estampados.',
     emphasis: 'Sin blanco, por favor',
   },
 
