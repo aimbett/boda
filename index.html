@@ -579,9 +579,12 @@ function setupWelcome(){
   if(!isReal) return;
   // Use full names, not just first names
   const saludo = activeGuests.length===1 ? activeGuests[0] : activeGuests.length===2 ? activeGuests[0]+' y '+activeGuests[1] : activeGuests.slice(0,-1).join(', ')+' y '+activeGuests[activeGuests.length-1];
-  document.getElementById('welcome-headline').textContent = PAGE_CONTENT.welcome.headlinePersonalized;
-  document.getElementById('welcome-msg').innerHTML = PAGE_CONTENT.welcome.messagePersonalized+'<br>Ale & Pri los invitan a su boda.';
-  document.getElementById('welcome-submsg').textContent = PAGE_CONTENT.welcome.submessagePersonalized;
+  const isSingle = activeGuests.length === 1;
+  // Personalized greeting with guest names
+  document.getElementById('welcome-headline').textContent = '¡Hola '+saludo+'!';
+  // Use singular or plural messages based on actual guest count
+  document.getElementById('welcome-msg').innerHTML = isSingle ? PAGE_CONTENT.welcome.message : PAGE_CONTENT.welcome.messagePersonalized;
+  document.getElementById('welcome-submsg').innerHTML = isSingle ? PAGE_CONTENT.welcome.submessage : PAGE_CONTENT.welcome.submessagePersonalized;
 }
 
 // POPULATE CONTENT FROM PAGE_CONTENT
