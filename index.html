@@ -193,6 +193,10 @@ body{background:var(--cream);color:var(--dark);font-family:'Montserrat',sans-ser
 .modal-btn{width:100%;background:var(--dark);border:none;color:var(--cream);font-family:'Fredoka One',cursive;font-size:15px;padding:11px;cursor:pointer;margin-bottom:8px;}
 .modal-cancel{background:none;border:none;font-size:11px;color:var(--mid);cursor:pointer;font-family:'Montserrat',sans-serif;letter-spacing:2px;}
 
+/* NAME VERIFICATION MODAL */
+#name-verify-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:2000;align-items:center;justify-content:center;padding:20px;}
+#name-verify-modal.show{display:flex;}
+
 @media(max-width:480px){
   .hero-names,.welcome-names{font-size:38px;}
   .evgrid{grid-template-columns:1fr;}
@@ -211,7 +215,7 @@ body{background:var(--cream);color:var(--dark);font-family:'Montserrat',sans-ser
 </div>
 
 <!-- NAME VERIFICATION MODAL -->
-<div id="name-verify-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:2000;display:flex;align-items:center;justify-content:center;padding:20px;">
+<div id="name-verify-modal">
   <div style="background:var(--cream);padding:32px;border-radius:12px;max-width:400px;width:100%;text-align:center;box-shadow:0 4px 12px rgba(0,0,0,0.2);">
     <p style="font-family:'Fredoka One',cursive;font-size:22px;color:var(--dark);margin-bottom:12px;">Confirma tu nombre</p>
     <p style="color:var(--mid);margin-bottom:24px;font-size:14px;line-height:1.5;">Por favor ingresa tu nombre (completo, primer nombre, o apellido) para continuar.</p>
@@ -673,7 +677,7 @@ function verifyGuestName() {
 
   // Success! Hide modal and proceed
   errorDiv.style.display = 'none';
-  document.getElementById('name-verify-modal').style.display = 'none';
+  document.getElementById('name-verify-modal').classList.remove('show');
   nameVerified = true;
   enterPage();
 }
@@ -1064,7 +1068,7 @@ populateContent();setupWelcome();loadColors();updatePreview();
 
 // Show name verification modal for personalized guests
 if (isReal && !nameVerified) {
-  document.getElementById('name-verify-modal').style.display = 'flex';
+  document.getElementById('name-verify-modal').classList.add('show');
   document.getElementById('name-input').focus();
 }
 </script>
