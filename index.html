@@ -510,35 +510,35 @@ body{background:var(--cream);color:var(--dark);font-family:'Montserrat',sans-ser
     <p class="ap-title">Panel Admin · Ale & Pri</p>
 
     <div class="admin-section">
-      <p class="admin-section-title">Personalizar colores</p>
+      <p class="admin-section-title" id="admin-colors-title">Personalizar colores</p>
       <div class="preview-bar" id="prev-bar"></div>
-      <div class="color-row"><label>Fondo crema</label><input type="color" id="cpa" value="#F0F8FF"><span class="hex" id="cpa-v">#F0F8FF</span></div>
-      <div class="color-row"><label>Color principal</label><input type="color" id="cdk" value="#1A3A52"><span class="hex" id="cdk-v">#1A3A52</span></div>
-      <div class="color-row"><label>Acento dorado</label><input type="color" id="cp" value="#0078D4"><span class="hex" id="cp-v">#0078D4</span></div>
-      <div class="color-row"><label>Texto secundario</label><input type="color" id="cm" value="#5B7FA6"><span class="hex" id="cm-v">#5B7FA6</span></div>
+      <div class="color-row"><label id="admin-label-cream">Fondo crema</label><input type="color" id="cpa" value="#F0F8FF"><span class="hex" id="cpa-v">#F0F8FF</span></div>
+      <div class="color-row"><label id="admin-label-dark">Color principal</label><input type="color" id="cdk" value="#1A3A52"><span class="hex" id="cdk-v">#1A3A52</span></div>
+      <div class="color-row"><label id="admin-label-gold">Acento dorado</label><input type="color" id="cp" value="#0078D4"><span class="hex" id="cp-v">#0078D4</span></div>
+      <div class="color-row"><label id="admin-label-mid">Texto secundario</label><input type="color" id="cm" value="#5B7FA6"><span class="hex" id="cm-v">#5B7FA6</span></div>
       <div style="margin-top:8px;">
-        <button class="apply-btn" onclick="applyColors()">Aplicar</button>
-        <button class="reset-btn" onclick="resetColors()">Restablecer</button>
+        <button class="apply-btn" id="admin-apply-btn" onclick="applyColors()">Aplicar</button>
+        <button class="reset-btn" id="admin-reset-btn" onclick="resetColors()">Restablecer</button>
       </div>
     </div>
 
     <div class="admin-section">
-      <p class="admin-section-title">Links por grupo</p>
+      <p class="admin-section-title" id="admin-links-title">Links por grupo</p>
       <div id="links-list"></div>
     </div>
 
     <div class="stats-grid">
-      <div class="stat-card"><span class="stat-num" id="s-yes">—</span><span class="stat-lbl">Confirmados</span></div>
-      <div class="stat-card"><span class="stat-num" id="s-no">—</span><span class="stat-lbl">No asisten</span></div>
-      <div class="stat-card"><span class="stat-num" id="s-tot">—</span><span class="stat-lbl">Respuestas</span></div>
+      <div class="stat-card"><span class="stat-num" id="s-yes">—</span><span class="stat-lbl" id="admin-stat-confirmed">Confirmados</span></div>
+      <div class="stat-card"><span class="stat-num" id="s-no">—</span><span class="stat-lbl" id="admin-stat-declined">No asisten</span></div>
+      <div class="stat-card"><span class="stat-num" id="s-tot">—</span><span class="stat-lbl" id="admin-stat-total">Respuestas</span></div>
     </div>
 
     <div class="admin-section">
       <p class="admin-section-title">
-        Confirmaciones
-        <button class="refresh-btn" onclick="loadRSVPs()">Actualizar</button>
+        <span id="admin-confirmations-title">Confirmaciones</span>
+        <button class="refresh-btn" id="admin-refresh-btn" onclick="loadRSVPs()">Actualizar</button>
       </p>
-      <div id="rsvp-list"><p class="loading">Cargando...</p></div>
+      <div id="rsvp-list"><p class="loading" id="admin-loading">Cargando...</p></div>
     </div>
   </div>
 </div>
@@ -653,6 +653,22 @@ function populateContent(){
   if(document.getElementById('footer-opening')) document.getElementById('footer-opening').textContent = PAGE_CONTENT.footer.opening;
   if(document.getElementById('footer-signature')) document.getElementById('footer-signature').textContent = PAGE_CONTENT.footer.signature;
 
+  // Admin panel
+  if(document.getElementById('admin-colors-title')) document.getElementById('admin-colors-title').textContent = PAGE_CONTENT.admin.colors.sectionTitle;
+  if(document.getElementById('admin-label-cream')) document.getElementById('admin-label-cream').textContent = PAGE_CONTENT.admin.colors.labels.cream;
+  if(document.getElementById('admin-label-dark')) document.getElementById('admin-label-dark').textContent = PAGE_CONTENT.admin.colors.labels.dark;
+  if(document.getElementById('admin-label-gold')) document.getElementById('admin-label-gold').textContent = PAGE_CONTENT.admin.colors.labels.gold;
+  if(document.getElementById('admin-label-mid')) document.getElementById('admin-label-mid').textContent = PAGE_CONTENT.admin.colors.labels.mid;
+  if(document.getElementById('admin-apply-btn')) document.getElementById('admin-apply-btn').textContent = PAGE_CONTENT.admin.colors.applyBtn;
+  if(document.getElementById('admin-reset-btn')) document.getElementById('admin-reset-btn').textContent = PAGE_CONTENT.admin.colors.resetBtn;
+  if(document.getElementById('admin-links-title')) document.getElementById('admin-links-title').textContent = PAGE_CONTENT.admin.links.sectionTitle;
+  if(document.getElementById('admin-stat-confirmed')) document.getElementById('admin-stat-confirmed').textContent = PAGE_CONTENT.admin.stats.confirmed;
+  if(document.getElementById('admin-stat-declined')) document.getElementById('admin-stat-declined').textContent = PAGE_CONTENT.admin.stats.declined;
+  if(document.getElementById('admin-stat-total')) document.getElementById('admin-stat-total').textContent = PAGE_CONTENT.admin.stats.total;
+  if(document.getElementById('admin-confirmations-title')) document.getElementById('admin-confirmations-title').textContent = PAGE_CONTENT.admin.confirmations.sectionTitle;
+  if(document.getElementById('admin-refresh-btn')) document.getElementById('admin-refresh-btn').textContent = PAGE_CONTENT.admin.confirmations.refreshBtn;
+  if(document.getElementById('admin-loading')) document.getElementById('admin-loading').textContent = PAGE_CONTENT.admin.confirmations.loading2;
+
   // Auth modal
   if(document.getElementById('auth-modal')) {
     const titleEl = document.querySelector('#auth-modal .modal-title');
@@ -701,7 +717,7 @@ function dietSelect(i){
   return `
     <div style="margin:6px 0;">
       ${checkboxes}
-      <input type="text" class="finput" id="diet-other-${i}" placeholder="Especifica..." style="display:none;margin-top:8px;" oninput="gDietOther[${i}]=this.value">
+      <input type="text" class="finput" id="diet-other-${i}" placeholder="${PAGE_CONTENT.rsvp.form.dietCustomPlaceholder}" style="display:none;margin-top:8px;" oninput="gDietOther[${i}]=this.value">
     </div>
   `;
 }
@@ -727,7 +743,7 @@ function dietSelectPlusOne(){
   return `
     <div style="margin:6px 0;">
       ${checkboxes}
-      <input type="text" class="finput" id="diet-other-plus-one" placeholder="Especifica..." style="display:none;margin-top:8px;" oninput="gDietOther['plus-one']=this.value">
+      <input type="text" class="finput" id="diet-other-plus-one" placeholder="${PAGE_CONTENT.rsvp.form.dietCustomPlaceholder}" style="display:none;margin-top:8px;" oninput="gDietOther['plus-one']=this.value">
     </div>
   `;
 }
@@ -741,8 +757,8 @@ function renderRSVP(){
         <path d="M12 16V12C12 7.6 14.7 4 18 4C21.3 4 24 7.6 24 12V16" stroke="#1A1A18" stroke-width="2"/>
         <circle cx="18" cy="25" r="2" fill="#1A1A18"/>
       </svg>
-      <p class="locked-title">Invitación personalizada</p>
-      <p class="locked-sub">Para confirmar, usa el link<br>que Ale & Pri compartieron contigo.</p>
+      <p class="locked-title">${PAGE_CONTENT.rsvp.locked.title}</p>
+      <p class="locked-sub">${PAGE_CONTENT.rsvp.locked.message}</p>
     </div>`;
     return;
   }
@@ -757,16 +773,16 @@ function renderRSVP(){
       ${plusOneHeader}
       <div class="guest-header">
         <div style="flex:1;">
-          <label class="flabel">Nombre</label>
-          <input type="text" class="finput" id="gname-${i}" placeholder="Nombre completo" value="${displayName}" oninput="gNames[${i}]=this.value" style="margin-bottom:12px;">
+          <label class="flabel">${PAGE_CONTENT.rsvp.form.nameLabel}</label>
+          <input type="text" class="finput" id="gname-${i}" placeholder="${PAGE_CONTENT.rsvp.form.namePlaceholder}" value="${displayName}" oninput="gNames[${i}]=this.value" style="margin-bottom:12px;">
         </div>
         <div class="guest-btns">
-          <button class="tbtn" id="y${i}" onclick="setG(${i},'yes')">Sí, voy!</button>
-          <button class="tbtn" id="n${i}" onclick="setG(${i},'no')">No puedo</button>
+          <button class="tbtn" id="y${i}" onclick="setG(${i},'yes')">${PAGE_CONTENT.rsvp.form.yesButton}</button>
+          <button class="tbtn" id="n${i}" onclick="setG(${i},'no')">${PAGE_CONTENT.rsvp.form.noButton}</button>
         </div>
       </div>
       <div class="guest-diet" id="gdiet-${i}">
-        <label class="flabel">Restricción alimentaria</label>
+        <label class="flabel">${PAGE_CONTENT.rsvp.form.dietLabel}</label>
         ${dietSelect(i)}
       </div>
     </div>`;
@@ -789,19 +805,19 @@ function renderRSVP(){
   }
 
   c.innerHTML=`<div class="rsvp-form" id="rsvp-wrap">
-    <p class="form-note">Por favor confirma tus datos y ¿vienes?</p>
+    <p class="form-note">${PAGE_CONTENT.rsvp.form.formNote}</p>
     ${blocks}
     ${plusOneSection}
     <div class="msg-wrap">
-      <label class="flabel" style="font-size:12px;color:var(--dark);margin-bottom:6px;display:block;">Mensaje para los novios (opcional)</label>
-      <textarea class="ftextarea" id="msg-in" placeholder="Un mensaje de cariño..."></textarea>
+      <label class="flabel" style="font-size:12px;color:var(--dark);margin-bottom:6px;display:block;">${PAGE_CONTENT.rsvp.form.messageLabel}</label>
+      <textarea class="ftextarea" id="msg-in" placeholder="${PAGE_CONTENT.rsvp.form.messagePlaceholder}"></textarea>
     </div>
-    <button class="sub-btn" id="confirm-btn" onclick="submitRSVP()">¡Confirmar asistencia!</button>
-    <p style="font-size:11px;color:var(--mid);text-align:center;margin-top:10px;">Confirma a la brevedad posible, por favor</p>
+    <button class="sub-btn" id="confirm-btn" onclick="submitRSVP()">${PAGE_CONTENT.rsvp.form.submitButton}</button>
+    <p style="font-size:11px;color:var(--mid);text-align:center;margin-top:10px;">${PAGE_CONTENT.rsvp.form.submitHint}</p>
   </div>
   <div class="success-msg" id="succ-msg">
-    <p>¡Gracias! Los esperamos</p>
-    <span>Confirmación recibida · Ale & Pri</span>
+    <p>${PAGE_CONTENT.rsvp.success.title}</p>
+    <span>${PAGE_CONTENT.rsvp.success.subtitle}</span>
   </div>`;
 }
 
@@ -836,7 +852,7 @@ function setG(i,v){
 async function submitRSVP(){
   const msg = document.getElementById('msg-in').value;
   const btn = document.getElementById('confirm-btn');
-  btn.textContent='Enviando...'; btn.disabled=true;
+  btn.textContent=PAGE_CONTENT.rsvp.form.submitButtonLoading; btn.disabled=true;
   const guests = activeGuests.map((n,i)=>{
     // Handle multiple dietary restrictions (array)
     let diets = gDiet[i]||[];
@@ -931,13 +947,13 @@ function openAdmin(){
 // LOAD RSVPs FROM SHEET
 async function loadRSVPs(){
   const w=document.getElementById('rsvp-list');
-  w.innerHTML='<p class="loading">Cargando respuestas...</p>';
+  w.innerHTML='<p class="loading">'+PAGE_CONTENT.admin.confirmations.loading+'</p>';
   try{
     const res = await fetch(`${SHEET_URL}?action=get&secret=${SECRET}`);
     const json = await res.json();
     renderRSVPCards(json.rows||[]);
   }catch(e){
-    w.innerHTML='<p class="empty">Error al conectar con el Sheet.<br>Verifica tu conexión o abre el Sheet directo.</p>';
+    w.innerHTML='<p class="empty">'+PAGE_CONTENT.states.error+'</p>';
     document.getElementById('s-yes').textContent='—';
     document.getElementById('s-no').textContent='—';
     document.getElementById('s-tot').textContent='—';
@@ -959,7 +975,7 @@ function renderRSVPCards(rows){
   document.getElementById('s-no').textContent=no;
   document.getElementById('s-tot').textContent=rows.length;
   const w=document.getElementById('rsvp-list');
-  if(!grouped.length){w.innerHTML='<p class="empty">Aún sin confirmaciones</p>';return;}
+  if(!grouped.length){w.innerHTML='<p class="empty">'+PAGE_CONTENT.admin.confirmations.empty+'</p>';return;}
   w.innerHTML='<div class="rsvp-cards">'+grouped.map((g,i)=>`
     <div class="rsvp-card">
       <div class="rsvp-card-info">
@@ -973,12 +989,12 @@ function renderRSVPCards(rows){
         ${g.message?`<p class="rsvp-card-msg">"${g.message}"</p>`:''}
         <p class="rsvp-card-meta">${g.timestamp}</p>
       </div>
-      <button class="delete-btn" onclick="deleteRSVP(${i},${JSON.stringify(g.id)})">Eliminar</button>
+      <button class="delete-btn" onclick="deleteRSVP(${i},${JSON.stringify(g.id)})">${PAGE_CONTENT.admin.confirmations.deleteBtn}</button>
     </div>`).join('')+'</div>';
 }
 
 async function deleteRSVP(idx,id){
-  if(!confirm('¿Eliminar esta confirmación?')) return;
+  if(!confirm(PAGE_CONTENT.admin.confirmations.deleteConfirm)) return;
   try{
     await fetch(SHEET_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({action:'delete',rowIndex:idx,id,secret:SECRET})});
