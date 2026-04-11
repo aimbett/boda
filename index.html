@@ -605,7 +605,7 @@ const activeGroup = isReal ? pG : '';
 const activeGuests = isReal ? pList : [];
 const gAns = {}, gDiet = {}, gDietOther = {};
 const gNames = {}; // Store modified names (especially +1)
-const hasPlusOne = activeGuests.some(g => g.includes('+1'));
+const hasPlusOne = activeGuests.some(g => g === '+1' || g.endsWith('+1'));
 
 // WELCOME
 function setupWelcome(){
@@ -778,9 +778,10 @@ function renderRSVP(){
   }
   const first = activeGuests[0].split(' ')[0];
   const blocks = activeGuests.map((n,i)=>{
-    const isPlusOne = n.includes('+1');
-    const displayName = n.replace('+1', '').trim();
-    const plusOneHeader = isPlusOne ? `<p style="font-family:'Fredoka One',cursive;font-size:13px;color:var(--mid);margin-bottom:12px;letter-spacing:0.5px;">${PAGE_CONTENT.rsvp.plusOne.headerMessage.replace('{name}', displayName)}</p>` : '';
+    const isPlusOne = n === '+1' || n.endsWith('+1');
+    const displayName = (n === '+1') ? '' : (n.endsWith('+1') ? n.slice(0, -2).trim() : n);
+    const primaryGuestName = isPlusOne ? activeGuests[0] : n;
+    const plusOneHeader = isPlusOne ? `<p style="font-family:'Fredoka One',cursive;font-size:13px;color:var(--mid);margin-bottom:12px;letter-spacing:0.5px;">${PAGE_CONTENT.rsvp.plusOne.headerMessage.replace('{name}', primaryGuestName)}</p>` : '';
     return `
     <div class="guest-block">
       ${plusOneHeader}
@@ -804,11 +805,11 @@ function renderRSVP(){
   // Add +1 section if group has a +1 (only shows when +1 person selects 'yes')
   let plusOneSection = '';
   if(hasPlusOne) {
-    const plusOneIdx = activeGuests.findIndex(g => g.includes('+1'));
-    const plusOneGuestName = activeGuests[plusOneIdx].replace('+1', '').trim();
+    const plusOneIdx = activeGuests.findIndex(g => g === '+1' || g.endsWith('+1'));
+    const primaryGuest = activeGuests[0];
     plusOneSection = `
     <div class="guest-block" id="plus-one-block" style="display:none;border:2px dashed var(--dark);padding:20px;margin:16px 0;border-radius:8px;">
-      <p style="font-family:'Fredoka One',cursive;font-size:14px;color:var(--dark);margin-bottom:12px;letter-spacing:0.5px;">${PAGE_CONTENT.rsvp.plusOne.headerMessage.replace('{name}', plusOneGuestName)}</p>
+      <p style="font-family:'Fredoka One',cursive;font-size:14px;color:var(--dark);margin-bottom:12px;letter-spacing:0.5px;">${PAGE_CONTENT.rsvp.plusOne.headerMessage.replace('{name}', primaryGuest)}</p>
       <p style="font-family:'Fredoka One',cursive;font-size:14px;color:var(--dark);margin-bottom:16px;">${PAGE_CONTENT.rsvp.plusOne.sectionTitle}</p>
       <label class="flabel">${PAGE_CONTENT.rsvp.plusOne.companionNameLabel}</label>
       <input type="text" class="finput" id="plus-one-name" placeholder="${PAGE_CONTENT.rsvp.plusOne.companionPlaceholder}" style="margin-bottom:16px;">
@@ -843,7 +844,7 @@ function setG(i,v){
   else dietDiv.classList.remove('show');
 
   // Show/hide +1 section if this is the +1 person
-  if(hasPlusOne && activeGuests[i].includes('+1')){
+  if(hasPlusOne && (activeGuests[i] === '+1' || activeGuests[i].endsWith('+1'))){
     const plusOneBlock = document.getElementById('plus-one-block');
     if(v==='yes'){
       plusOneBlock.style.display='block';
@@ -879,7 +880,7 @@ async function submitRSVP(){
 
     // Use the name they provided in the input field (or original if not changed)
     let displayName = gNames[i] || n;
-    if(n.includes('+1') && gAns[i]==='yes'){
+    if((n === '+1' || n.endsWith('+1')) && gAns[i]==='yes'){
       const plusOneName = document.getElementById('plus-one-name').value.trim();
       if(plusOneName) displayName = plusOneName;
     }
@@ -889,7 +890,7 @@ async function submitRSVP(){
 
   // Add +1 info if they said yes (handle separately for data structure)
   if(hasPlusOne){
-    const plusOneIdx = activeGuests.findIndex(g => g.includes('+1'));
+    const plusOneIdx = activeGuests.findIndex(g => g === '+1' || g.endsWith('+1'));
     if(gAns[plusOneIdx]==='yes'){
       const plusOneName = document.getElementById('plus-one-name').value.trim();
       let plusOneDiets = gDiet['plus-one']||[];
