@@ -580,8 +580,9 @@ function setupWelcome(){
   // Use full names, not just first names
   const saludo = activeGuests.length===1 ? activeGuests[0] : activeGuests.length===2 ? activeGuests[0]+' y '+activeGuests[1] : activeGuests.slice(0,-1).join(', ')+' y '+activeGuests[activeGuests.length-1];
   const isSingle = activeGuests.length === 1;
-  // Personalized greeting with guest names
-  document.getElementById('welcome-headline').textContent = '¡Hola '+saludo+'!';
+  // Personalized greeting with guest names and headline
+  const headline = isSingle ? PAGE_CONTENT.welcome.headline : PAGE_CONTENT.welcome.headlinePersonalized;
+  document.getElementById('welcome-headline').innerHTML = '¡Hola '+saludo+'!<br>'+headline;
   // Use singular or plural messages based on actual guest count
   document.getElementById('welcome-msg').innerHTML = isSingle ? PAGE_CONTENT.welcome.message : PAGE_CONTENT.welcome.messagePersonalized;
   document.getElementById('welcome-submsg').innerHTML = isSingle ? PAGE_CONTENT.welcome.submessage : PAGE_CONTENT.welcome.submessagePersonalized;
