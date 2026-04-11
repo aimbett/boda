@@ -577,8 +577,9 @@ const hasPlusOne = activeGuests.some(g => g === '+1' || g.endsWith('+1'));
 // WELCOME
 function setupWelcome(){
   if(!isReal) return;
-  // Use full names, not just first names
-  const saludo = activeGuests.length===1 ? activeGuests[0] : activeGuests.length===2 ? activeGuests[0]+' y '+activeGuests[1] : activeGuests.slice(0,-1).join(', ')+' y '+activeGuests[activeGuests.length-1];
+  // Use full names, not just first names; replace "+1" with "acompañante"
+  const displayNames = activeGuests.map(n => n === '+1' || n.endsWith('+1') ? 'acompañante' : n);
+  const saludo = displayNames.length===1 ? displayNames[0] : displayNames.length===2 ? displayNames[0]+' y '+displayNames[1] : displayNames.slice(0,-1).join(', ')+' y '+displayNames[displayNames.length-1];
   const isSingle = activeGuests.length === 1;
   // Personalized greeting with guest names and headline
   const headline = isSingle ? PAGE_CONTENT.welcome.headline : PAGE_CONTENT.welcome.headlinePersonalized;
