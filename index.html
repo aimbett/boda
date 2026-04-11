@@ -113,7 +113,7 @@ body{background:var(--cream);color:var(--dark);font-family:'Montserrat',sans-ser
 .rsvp-form{max-width:460px;margin:0 auto;}
 .form-note{font-family:'Fredoka One',cursive;font-size:20px;color:var(--dark);text-align:center;margin-bottom:20px;}
 .guest-block{border:2px solid var(--dark);margin-bottom:10px;background:var(--cream);}
-.guest-header{display:flex;align-items:center;justify-content:space-between;padding:11px 15px;border-bottom:1px solid var(--border);}
+.guest-header{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;padding:11px 15px;border-bottom:1px solid var(--border);flex-wrap:wrap;}
 .guest-name{font-size:14px;font-weight:500;color:var(--dark);}
 .guest-btns{display:flex;gap:8px;}
 .tbtn{padding:5px 14px;border:1.5px solid var(--dark);background:none;cursor:pointer;font-family:'Fredoka One',cursive;font-size:13px;color:var(--dark);transition:all 0.15s;}
@@ -780,7 +780,10 @@ function renderRSVP(){
   const blocks = activeGuests.map((n,i)=>`
     <div class="guest-block">
       <div class="guest-header">
-        <span class="guest-name">${n}</span>
+        <div style="flex:1;">
+          <label class="flabel">Nombre</label>
+          <input type="text" class="finput" id="gname-${i}" placeholder="Nombre completo" value="${n}" oninput="gNames[${i}]=this.value" style="margin-bottom:12px;">
+        </div>
         <div class="guest-btns">
           <button class="tbtn" id="y${i}" onclick="setG(${i},'yes')">Sí, voy!</button>
           <button class="tbtn" id="n${i}" onclick="setG(${i},'no')">No puedo</button>
@@ -807,7 +810,7 @@ function renderRSVP(){
   }
 
   c.innerHTML=`<div class="rsvp-form" id="rsvp-wrap">
-    <p class="form-note">¡Hola ${first}! ¿Vienes?</p>
+    <p class="form-note">Por favor confirma tus datos y ¿vienes?</p>
     ${blocks}
     ${plusOneSection}
     <div class="msg-wrap">
@@ -866,8 +869,8 @@ async function submitRSVP(){
     // Join multiple restrictions into comma-separated string
     const diet = diets.length > 0 ? diets.join(', ') : 'Sin restricciones';
 
-    // If this is the +1 person and they said yes, use their provided name
-    let displayName = n;
+    // Use the name they provided in the input field (or original if not changed)
+    let displayName = gNames[i] || n;
     if(n.includes('+1') && gAns[i]==='yes'){
       const plusOneName = document.getElementById('plus-one-name').value.trim();
       if(plusOneName) displayName = plusOneName;
