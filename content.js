@@ -11,7 +11,7 @@ const PAGE_CONTENT = {
     names: 'Ale & Pri',
     message: 'Toronto corrió y corrió muy rápido para traerte esta invitación',
     submessage: 'Toronto tiene el honor de invitarte a celebrar el día más especial de sus vidas.',
-    locationSubtitle: 'Sábado · Qgat Barcelona',
+    locationSubtitle: 'Sábado · Qgat Sant Cugat-Barcelona',
   },
 
   // Hero section

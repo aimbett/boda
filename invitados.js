@@ -5,65 +5,73 @@
 const INVITADOS = [
 
   // --- PAREJAS ---
-  { grupo: "Mama-Papa",     personas: ["Mamá", "Papá"],             mesa: "" },
-  { grupo: "Robert",        personas: ["Robert", "Novio Robert"],   mesa: "" },
-  { grupo: "Jose-Rios",     personas: ["José Ríos", "Esposa José"], mesa: "" },
-  { grupo: "Luli",          personas: ["Luli", "Esposo Luli"],      mesa: "" },
-  { grupo: "Gaby",          personas: ["Gaby", "Novio Gaby"],       mesa: "" },
+  { grupo: "Sam-Ele",          personas: ["Sam", "Ele"],        },
+  { grupo: "Robert",        personas: ["Robert", "+1"],    },
+  { grupo: "Mau-Fabio",          personas: ["Mau", "Fabio"],        },
+  { grupo: "Anto-Jhon",          personas: ["Tia Anto", "Tio Jhon"],        },
+  { grupo: "Dani-Andrea",          personas: ["Dani", "Andrea"],           },
+  { grupo: "Joha-novio",          personas: ["Joha", "Gustavo"],           },
+  { grupo: "Fefa-Diego",          personas: ["Fefa", "Diego"],           },
+  { grupo: "Jose-Rios",     personas: ["José Ríos", "Daniela"],  },
+  { grupo: "Gaby",          personas: ["Gaby", "Novio Gaby"],        },
+  { grupo: "Eze-Jean",          personas: ["Tio Ezequiel", "Tia Jeanette"],           },
+  
+  
+  { grupo: "Mama-Papa",     personas: ["Tia Amparo", "Tio Napoleón"],              },
+  { grupo: "Pipe-Cami",          personas: ["Pipe", "Cami"],           },
+  { grupo: "Luli-Hugo",          personas: ["Luli", "Hugo"],       },
+  { grupo: "Dani-Sergio",          personas: ["Dani", "Sergio"],       },
+  { grupo: "Pau-Cami",          personas: ["Pau", "Cami"],       },
+  { grupo: "Tita-Enano",          personas: ["Tita", "Enano"],           },
+  
+  { grupo: "Muñe-Marlon",          personas: ["Muñe", "Marlon"],           },
+  { grupo: "Carli-Gaby",          personas: ["Carli", "Gaby"],           },
+  { grupo: "Gracie-Diego",          personas: ["Gracie Diaz", "Diego Torres"],           },
+  { grupo: "Male-Juanse",          personas: ["Male Rivera", "Juanse Avendaño"],           },
+  { grupo: "Vale-Pablo",          personas: ["Vale Ortiz", "Pablo Ruiz"],           },
+  { grupo: "Manu-Lore",          personas: ["Manu", "Lore"],           },
+  { grupo: "Lau-Jose",          personas: ["Lau", "Jose"],           },
+  { grupo: "Carito-Jose",          personas: ["Carito", "Jose"],           },
+  { grupo: "Chiara-Enric",          personas: ["Chiara", "Enric"],           },
+  { grupo: "Sandel-Nani",        personas: ["Sandel", "Nani"],         },
+  
+  { grupo: "Sara-Pablo",          personas: ["Sara", "Pablo"],           },
 
-  // --- INDIVIDUALES ---
-  { grupo: "Sam",           personas: ["Sam"],           mesa: "" },
-  { grupo: "Ele",           personas: ["Ele"],           mesa: "" },
-  { grupo: "Mauro",         personas: ["Mauro"],         mesa: "" },
-  { grupo: "Fabio",         personas: ["Fabio"],         mesa: "" },
-  { grupo: "Anto",          personas: ["Anto"],          mesa: "" },
-  { grupo: "Jhon",          personas: ["Jhon"],          mesa: "" },
-  { grupo: "Jhon-Ortiz",    personas: ["Jhon Ortiz"],    mesa: "" },
-  { grupo: "Bella",         personas: ["Bella"],         mesa: "" },
-  { grupo: "Nacha",         personas: ["Nacha"],         mesa: "" },
-  { grupo: "Dani",          personas: ["Dani"],          mesa: "" },
-  { grupo: "Andrea",        personas: ["Andrea"],        mesa: "" },
-  { grupo: "Fefa",          personas: ["Fefa"],          mesa: "" },
-  { grupo: "Diego",         personas: ["Diego"],         mesa: "" },
-  { grupo: "Atun",          personas: ["Atún"],          mesa: "" },
-  { grupo: "Ezequiel",      personas: ["Ezequiel"],      mesa: "" },
-  { grupo: "Tia-Jean",      personas: ["Tía Jean"],      mesa: "" },
-  { grupo: "Sabri",         personas: ["Sabri"],         mesa: "" },
-  { grupo: "Sany",          personas: ["Sany"],          mesa: "" },
-  { grupo: "Alfonso",       personas: ["Alfonso"],       mesa: "" },
-  { grupo: "Leo",           personas: ["Leo"],           mesa: "" },
-  { grupo: "Loredana",      personas: ["Loredana"],      mesa: "" },
-  { grupo: "Cokiii",        personas: ["Cokiii"],        mesa: "" },
-  { grupo: "Joel",          personas: ["Joel"],          mesa: "" },
-  { grupo: "Joha",          personas: ["Joha"],          mesa: "" },
-  { grupo: "Guille",        personas: ["Guille"],        mesa: "" },
-  { grupo: "Alvarez",       personas: ["Álvarez"],       mesa: "" },
-  { grupo: "Pipe",          personas: ["Pipe"],          mesa: "" },
-  { grupo: "Comi",          personas: ["Comi"],          mesa: "" },
-  { grupo: "Mune",          personas: ["Muñe"],          mesa: "" },
-  { grupo: "Marlon",        personas: ["Marlon"],        mesa: "" },
-  { grupo: "Tita",          personas: ["Tita"],          mesa: "" },
-  { grupo: "Jose-Bernardo", personas: ["José Bernardo"], mesa: "" },
-  { grupo: "Carli",         personas: ["Carli"],         mesa: "" },
-  { grupo: "Gracie",        personas: ["Gracie"],        mesa: "" },
-  { grupo: "Male",          personas: ["Male"],          mesa: "" },
-  { grupo: "Mateo",         personas: ["Mateo"],         mesa: "" },
-  { grupo: "Vale",          personas: ["Vale"],          mesa: "" },
-  { grupo: "Sandel",        personas: ["Sandel"],        mesa: "" },
-  { grupo: "Pikel",         personas: ["Pikel"],         mesa: "" },
-  { grupo: "Sara",          personas: ["Sara"],          mesa: "" },
-  { grupo: "Pablo",         personas: ["Pablo"],         mesa: "" },
-  { grupo: "Manu",          personas: ["Manu"],          mesa: "" },
-  { grupo: "Lore",          personas: ["Lore"],          mesa: "" },
-  { grupo: "Lau",           personas: ["Lau"],           mesa: "" },
-  { grupo: "Jose",          personas: ["Jose"],          mesa: "" },
-  { grupo: "Joseph",        personas: ["Joseph"],        mesa: "" },
-  { grupo: "Vivian",        personas: ["Vivian"],        mesa: "" },
-  { grupo: "Dani-Roca",     personas: ["Dani Roca"],     mesa: "" },
-  { grupo: "Jose2",         personas: ["Jose"],          mesa: "" },
-  { grupo: "Carito",        personas: ["Carito"],        mesa: "" },
-  { grupo: "Enric",         personas: ["Enric"],         mesa: "" },
-  { grupo: "Chiara",        personas: ["Chiara"],        mesa: "" },
+
+  // --- INDIVIDUALES --
+  { grupo: "Fabiola Alvarez",       personas: ["Fabiola Alvarez"],        },
+  { grupo: "Jhon-Ortiz",    personas: ["Jhon Ortiz"],     },
+  { grupo: "Bella",         personas: ["Tia Bella"],          },
+  { grupo: "Nacho",         personas: ["Tio Nacho"],          },
+
+  { grupo: "Atun",          personas: ["Atún"],           },
+  { grupo: "Ezequiel",      personas: ["Ezequiel"],       },
+  
+  { grupo: "Sabri",         personas: ["Sabri"],          },
+  { grupo: "Samy",          personas: ["Samy"],           },
+
+  { grupo: "Alfonso",       personas: ["Alfonso"],        },
+  { grupo: "Leo",           personas: ["Leo"],            },
+  { grupo: "Loredana",      personas: ["Loredana"],       },
+  
+
+  { grupo: "Cokiii",        personas: ["Cokiii"],         },
+  { grupo: "Joel",          personas: ["Joel"],           },
+  { grupo: "Guille",        personas: ["Guille"],         },
+
+  { grupo: "Mateo",         personas: ["Mateo"],          },
+  
+  { grupo: "Pikel",         personas: ["Pikel"],          },
+  { grupo: "Antonio",         personas: ["Antonio"],          },
+  { grupo: "Mara",         personas: ["Mara"],          },
+
+  
+  { grupo: "Joseph",        personas: ["Joseph"],         },
+  { grupo: "Vivian",        personas: ["Vivian"],         },
+  { grupo: "Dani-Roca",     personas: ["Dani Roca"],      },
+  
+
+
 
 ];
 
