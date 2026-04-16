@@ -69,6 +69,18 @@ const INVITADOS = [
   { grupo: "Joseph",        personas: ["Joseph"],         },
   { grupo: "Vivian",        personas: ["Vivian"],         },
   { grupo: "Dani-Roca",     personas: ["Dani Roca"],      },
+  { grupo: "Sana",          personas: ["Sana"],           },
+  { grupo: "Esperanza",     personas: ["Esperanza"],      },
+  { grupo: "Miquel",        personas: ["Miquel"],         },
+  { grupo: "Marc Guirao",   personas: ["Marc Guirao"],    },
+  { grupo: "Marc Girbau",   personas: ["Marc Girbau"],    },
+  { grupo: "Adria",         personas: ["Adria"],          },
+  { grupo: "Julia",         personas: ["Julia"],          },
+  { grupo: "Sergi",         personas: ["Sergi"],          },
+  { grupo: "Asier",         personas: ["Asier"],          },
+  { grupo: "Kseniya",       personas: ["Kseniya"],        },
+  { grupo: "Cesc",          personas: ["Cesc"],           },
+  { grupo: "Miguel",        personas: ["Miguel"],         },
   
 
 
