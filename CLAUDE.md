@@ -18,16 +18,18 @@ I am a **Web Page Designer Expert** specializing in elegant wedding invitation w
 
 ## 🚀 30-Second Overview
 
-This is a personalized wedding invitation website for **Alejandro & Priscila**, October 10, 2026. 
+This is a personalized wedding invitation website for **Alejandro & Priscila**, October 10, 2026.
 
 **Stack:**
-- 📄 **GitHub Pages** (hosting, free)
+- 📄 **GitHub Pages** (hosting, free) — live at `aimbett.github.io/boda/` via CNAME
 - 📊 **Google Sheets + Apps Script** (data, free)
 - 🎨 **Single HTML file** (no build process needed)
+- 📁 **`content.js`** — all editable strings centralized here
+- 📋 **`invitados.js`** — guest list with URL generator
 
 **What it does:**
 1. Guests receive personalized URLs with their names
-2. They RSVP with dietary preferences
+2. They RSVP with dietary preferences (multiple selection via checkboxes)
 3. Responses save to Google Sheets
 4. Admins view/manage all data in a control panel
 
@@ -42,20 +44,20 @@ This is a personalized wedding invitation website for **Alejandro & Priscila**, 
 
 ## 📋 Deployment Quick Start
 
-**For developers deploying this:**
-
 1. **Fork/clone this repo to your GitHub account**
 2. **Create a Google Sheet** for storing responses
 3. **Create a Google Apps Script** that acts as backend API
-4. **Copy the Apps Script URL** into `index.html` (line 491)
-5. **Generate new admin password** hash (instructions below)
+4. **Copy the Apps Script URL** into `index.html` (line 563)
+5. **Generate new admin password** hash (instructions in `docs/SECURITY.md`)
 6. **Push to GitHub** and enable Pages in Settings
 7. **Test** at `https://yourusername.github.io/boda/`
 
-**See detailed guides in `docs/` folder:**
+**Detailed guides in `docs/` folder:**
 - `docs/DEPLOYMENT.md` — Full GitHub Pages setup
 - `docs/GOOGLE_DRIVE_SETUP.md` — Google Sheets + Apps Script configuration
 - `docs/SECURITY.md` — Password generation and secrets rotation
+- `docs/INFRASTRUCTURE.md` — Architecture overview
+- `docs/TROUBLESHOOTING.md` — Common issues and fixes
 
 ---
 
@@ -65,381 +67,117 @@ This is a personalized wedding invitation website for **Alejandro & Priscila**, 
 
 ### Color Palette
 
-The site uses a sophisticated **cream, dark, and gold** palette:
+The site uses a **sky blue and dark navy** palette (customizable via admin panel):
 
 ```
 :root {
-  --cream:  #F5F0E8   /* Warm cream background */
-  --dark:   #1A1A18   /* Nearly black, primary text/borders */
-  --gold:   #C9A84C   /* Warm gold accent (highlights, focus) */
-  --mid:    #6B6860   /* Gray-brown, secondary text/descriptions */
-  --border: rgba(26,26,24,0.15)  /* 15% dark for subtle lines */
+  --cream:  #F0F8FF   /* Sky blue background */
+  --dark:   #1A3A52   /* Dark navy, primary text/borders */
+  --gold:   #0078D4   /* Accent blue (buttons, focus, highlights) */
+  --mid:    #5B7FA6   /* Medium blue, secondary text */
+  --border: rgba(26,58,82,0.15)  /* 15% dark for subtle lines */
 }
 ```
 
-**Where each color is used:**
-- `--cream`: Page background, card backgrounds, body text backgrounds
-- `--dark`: Primary text, headings, borders, buttons, SVG outlines
-- `--gold`: Accent elements (FAB button, hover states, highlight dates)
+**Color usage:**
+- `--cream`: Page background, card backgrounds
+- `--dark`: Primary text, headings, borders, buttons
+- `--gold`: Accent elements (FAB button, hover states, copy feedback)
 - `--mid`: Secondary text, labels, subtle information
 - `--border`: Dividers, subtle separation lines
 
+**Note:** The `--gold` name is a CSS convention kept from the original design; the current value is a blue accent (`#0078D4`), not gold.
+
 **Color Customization via Admin Panel:**
-- Site admins can change all 4 colors without touching code
-- Changes are previewed live with gradient bar
-- Settings persist in browser localStorage as key `wc`
+- Click FAB dot (bottom-right) → Enter password
+- "Personalizar colores" section — live preview bar
+- Settings persist in `localStorage` as key `wc`
 - Defaults restore with "Restablecer" button
 
 ### Typography
 
-**Font stack:**
 - **Fredoka One** (Google Fonts, cursive) — Headings, buttons, labels, badges
-  - Friendly, modern, perfect for occasions
-  - Sizes: 10px (tags) to 52px (main titles)
-- **Cormorant Garamond** (Google Fonts, serif italic) — Quotes, messages
-  - Elegant, formal, used for emotional text (welcome message, gift quote)
-  - Usually 18-21px, always italic
-- **Montserrat** (Google Fonts, sans) — Body text, forms
-  - Clean, readable, modern
-  - Weights: 300 (light, descriptions), 400 (normal), 500 (emphasis)
+- **Cormorant Garamond** (Google Fonts, serif italic) — Quotes, welcome message
+- **Montserrat** (Google Fonts, sans) — Body text, forms (weights 300/400/500)
 
-**Changing fonts:**
-1. Update Google Fonts link (line 15-16)
-2. Update CSS font-family declarations throughout
-3. Test readability at different sizes
+Font imports are on `index.html` line 16.
 
-### Spacing & Layout Grid
+### Responsive Breakpoint
 
-**Margin/padding system:**
-- 4px — Tiny gaps (button padding)
-- 8px — Small spacing (input fields, tiny gaps)
-- 12px — Medium spacing (gap between elements)
-- 16px — Standard spacing (section padding)
-- 20px — Large spacing (card padding)
-- 24px — Extra large (page margins)
-- 32px — Section spacing (vertical rhythm)
-
-**Responsive breakpoint:**
-- **Desktop**: All columns and full widths
-- **Mobile** (≤480px):
-  - 2-column grids become 1-column
-  - Font sizes reduce (38px → 38px for names, mostly unchanged for mobile-first)
-  - Spacing slightly reduced
-  - See lines 181-189 for all mobile changes
-
-**Layout examples:**
-```
-Hero section: 52px padding top/bottom, centered text
-Card grid: grid-template-columns: 1fr 1fr; gap: 16px
-Main page: max-width: 680px; margin: 0 auto; centered container
-```
+**Mobile (≤480px)** — line 196:
+- `hero-names`, `welcome-names`: 52px → 38px
+- `evgrid`: 2-column → 1-column
+- `stats-grid`: 3-column → 2-column
+- `sec` padding: `44px 32px` → `36px 20px`
+- `rsvp-card`: row → column layout
+- `admin-panel` padding: 32px → 20px
+- `.toronto-celebrating`: `right: 20px` → `right: 10px`
 
 ---
 
-## 🎨 Customizing Appearance
+## 🐾 Toronto Animations
 
-### Change Colors
+Toronto (the dog mascot) appears in **five** distinct positions:
 
-**Option 1: Edit CSS directly (permanent)**
-```css
-:root {
-  --cream: #YOUR_COLOR;
-  --dark: #YOUR_COLOR;
-  /* ... */
-}
-```
+| Location | Class | Animation | Duration |
+|---|---|---|---|
+| Welcome screen | `.welcome-toronto` | `torontoBounce` (bounce up/down) | 0.6s infinite |
+| Footer runner | `.toronto-runner` | `runAcross` (left → right) + leg/tail/ear | 9s infinite |
+| Hero section (right side) | `.toronto-celebrating` | `torontoJump` (jump) | 0.8s infinite |
+| Gift section | `.toronto-eating` | `torontoChew` (subtle squish) | 0.8s infinite |
+| Below RSVP | `.toronto-sleeping` | `torontoSleep` (slow float) | 2s infinite |
 
-**Option 2: Use admin panel (temporary, user-controlled)**
-- Click gold dot (FAB button) bottom-right → Enter password
-- Scroll to "Personalizar colores" section
-- Use color pickers to change palette
-- Click "Aplicar" to save (localStorage)
-- Click "Restablecer" to reset
+The runner dog uses sub-animations: `dogBounce`, `legFL/FR/RL/RR` (0.28s), `tailWag` (0.2s), `earFlap` (0.4s).
 
-### Change Fonts
+**SVG structure:** Each Toronto instance is a standalone inline SVG (`viewBox="0 0 110 78"`, or `0 0 100 68` for the runner). The sleeping variant has closed-eye paths and `Z` text bubbles as `<text>` elements.
 
-**To replace Fredoka One (headings):**
-1. Line 15-16: Replace font import
-2. Find all `.class` with `font-family: 'Fredoka One'` (lines 30, 67, 68, etc.)
-3. Replace with new font name
+---
 
-**To replace Cormorant Garamond (italics):**
-1. Line 15-16: Update import
-2. Lines 34, 70, 94: Update font-family
+## 📝 Content Customization — Easy Method
 
-**To replace Montserrat (body):**
-1. Line 15-16: Update import
-2. Line 21: Update font-family
-
-**Pro tip:** Keep similar weights (light, regular, bold) for replacement fonts.
-
-### Change Content (Text) — Easy Method
-
-**All editable text is centralized in `content.js`** — This is the easiest way to customize any text!
-
-**File:** `content.js` (entire file, ~150 lines)
+**All editable text lives in `content.js`** (~185 lines). This is the right place to change almost everything.
 
 **Structure:**
 ```javascript
 const PAGE_CONTENT = {
-  welcome: { /* welcome screen texts */ },
-  hero: { /* main heading texts */ },
-  event: { /* event details */ },
-  venue: { /* venue information */ },
-  dressCode: { /* dress code */ },
-  hotel: { /* hotel info */ },
-  gift: { /* gift message */ },
-  rsvp: { /* RSVP form texts */ },
-  footer: { /* footer */ },
-  admin: { /* admin panel labels */ },
-  auth: { /* password modal */ },
+  welcome: { tag, headline, headlinePersonalized, names, message,
+             messagePersonalized, submessage, submessagePersonalized,
+             locationSubtitle },
+  hero: { arch, names, fullNames, date, countdownLabels },
+  event: { title, date: { label, value }, time: { label, value } },
+  venue: { title, name, address, mapButtonText, mapLink },
+  dressCode: { title, text, emphasis },
+  hotel: { title, intro, codeLabel, code, instructions },
+  gift: { title, quote, message, emphasis },
+  rsvp: { title, locked, form, success, plusOne, dietOptions },
+  footer: { opening, signature },
+  admin: { panelTitle, colors, links, stats, confirmations },
+  auth: { title, subtitle, placeholder, error, loginBtn, cancelBtn },
+  states: { loading, error },
 };
 ```
 
-**Examples of editing:**
-
-**Change welcome message:**
-```javascript
-welcome: {
-  message: 'Toronto corrió muy rápido para traerte esta invitación',
-  // Change to:
-  message: 'You are cordially invited...',
-},
+**After editing `content.js`:**
+```bash
+git add content.js && git commit -m "Update content" && git push origin main
 ```
+GitHub Pages auto-deploys within ~30 seconds.
 
-**Change venue:**
-```javascript
-venue: {
-  name: 'Qgat Restaurant, Events & Hotel',  // Change this
-  address: 'Carretera de Cerdanyola, Bellaterra<br>Barcelona, España',  // Or this
-  mapLink: 'https://maps.app.goo.gl/qsc3siNPAXJwGCEy6',  // Or the map link
-},
-```
+### Current Key Values
 
-**Change hotel discount code:**
-```javascript
-hotel: {
-  code: 'BODAQGAT2026',  // Change this
-  // ... other fields
-},
-```
-
-**Change dietary options:**
-```javascript
-rsvp: {
-  dietOptions: [
-    'Sin restricciones',
-    'Vegetariano',  // Edit or remove any options
-    'Vegano',
-    // ... add or remove as needed
-  ],
-},
-```
-
-**After editing:**
-1. Save `content.js`
-2. Commit: `git add content.js && git commit -m "Update content"`
-3. Push: `git push origin main`
-4. GitHub auto-updates within 30 seconds
-5. Refresh site URL to see changes
-
-**Benefits of this approach:**
-✅ No HTML markup to worry about  
-✅ All texts in one organized place  
-✅ Similar structure to `invitados.js`  
-✅ Easy for non-technical users  
-✅ Safe to edit (can't break layout)  
-
-### Change Content (Text) — Detailed Method
-
-**If you need to edit text that's NOT in `content.js`:**
-
-**Update main dates/times:**
-- Line 311: `10 · OCTUBRE · 2026`
-- Line 335: `Sábado 10 · Oct · 2026`
-- Line 345: `6:00 PM` and `Ceremonia`
-- Line 489: Wedding datetime (`WD`)
-
-**Update venue:**
-- Line 358: Venue name
-- Line 359: Address
-- Line 360: Maps link (get new link from Google Maps)
-
-**Update dress code:**
-- Line 375-378: Color swatches (update `style="background:..."`  colors)
-- Line 380-381: Dress code text
-
-**Update hotel information:**
-- Line 395: Hotel description
-- Line 398: Discount code (`BODAQGAT2026`)
-- Line 400: Reservation instructions
-
-**Update gift information:**
-- Line 415: Gift quote
-- Line 416-417: Gift instructions
-
-**Update welcome messages:**
-- Line 226, 227, 230: Welcome screen text
-- Line 302-304: Hero section text
-
-### SVG Logo/Hero Modifications
-
-**The running dog (Toronto):**
-- Line 200-223: Welcome screen dog SVG
-- Line 237-261: Footer dog animation
-- Modify `<path>`, `<circle>`, `<ellipse>` elements to change shape
-- Modify `fill="#COLOR"` to change dog appearance
-- Keep same viewBox dimensions to maintain proportions
-
-**The couple silhouettes (hero):**
-- Line 268-300: Couple illustration SVG
-- Can modify paths and shapes
-- Leave viewBox="0 0 200 200" unchanged
-
-**Tip:** Use online SVG editors (svgedit.io) to modify visually, then copy path data back.
-
-### Layout & Spacing Adjustments
-
-**To add more space between sections:**
-- Line 76: `.sec { padding: 44px 32px; }` — Increase padding-top/bottom
-
-**To reduce mobile padding:**
-- Line 185: `.sec { padding: 36px 20px; }` — Adjust mobile values
-
-**To change card grid columns:**
-- Line 78: `.evgrid { grid-template-columns: 1fr 1fr; }` — Change to `1fr 1fr 1fr` for 3 columns
-
-**To adjust animation speed:**
-- Line 25: `fadeOutUp` — Change `0.7s` to different duration
-- Line 47: `runAcross` — Change `9s` for dog speed
-- Line 49: `dogBounce` — Change `0.28s` for bounce speed
-
-### Creating New Sections
-
-**Template for adding a new section:**
-```html
-<div class="sec">
-  <p class="sec-title">¡Nueva Sección!</p>
-  <div class="venue-block">  <!-- or create custom class -->
-    <svg><!-- your icon --></svg>
-    <p>Your content here</p>
-  </div>
-</div>
-```
-
-**Add CSS styling** (inside `<style>` tag):
-```css
-.new-section-class {
-  text-align: center;
-  padding: 20px;
-  /* ... */
-}
-```
-
-**Add Spanish content** (site is in Spanish):
-- All labels, buttons, messages are Spanish
-- Maintain tone (formal but warm)
-
----
-
-## 📱 Responsive Design
-
-### Mobile-First Philosophy
-
-The site starts with mobile-perfect experience, then enhances for desktop.
-
-**Breakpoint: 480px** (line 181)
-- Below 480px: Mobile layout activated
-- Above 480px: Desktop layout
-
-**What changes on mobile:**
-1. **Font sizes reduced**: 52px → 38px for names
-2. **Grids** become single-column: `1fr 1fr` → `1fr`
-3. **Stat grid** becomes 2-column: `1fr 1fr 1fr` → `1fr 1fr`
-4. **Section padding** reduced: `36px 20px` (vs `44px 32px` on desktop)
-5. **Welcome message**: slightly smaller font
-6. **RSVP cards**: `flex-direction: column` to stack vertically
-
-### Testing on Different Devices
-
-**Browser DevTools:**
-- Open Chrome/Firefox → F12 → Toggle device toolbar
-- Test at 320px (small phones), 480px (medium), 768px (tablets)
-
-**Real devices:**
-- iOS Safari: Click home button during testing
-- Android: Use native browser or Chrome
-
-**Common issues:**
-- Text too large: Reduce font-size
-- Images cut off: Adjust max-width or SVG viewBox
-- Touch buttons too small: Keep minimum 44px height/width
-
-### Touch-Friendly Design
-
-All buttons meet 44x44px minimum:
-- RSVP buttons (`.tbtn`): 5px padding (13px height total)
-- Submit button (`.sub-btn`): 14px padding (looks good)
-- Delete buttons (`.delete-btn`): 5px padding (small but acceptable for admin)
-
-**Adding touch-friendly hover:**
-- Desktop: `:hover` adds visual feedback
-- Mobile: No hover available, so active state is important
-- Keep clicked/active states visible
-
----
-
-## 📝 Content Customization Guide
-
-### Guest List Management
-
-**File:** `invitados.js` (entire file)
-
-**Add a group of guests:**
-```javascript
-{
-  grupo: "Unique-Group-Name",
-  personas: ["Full Name 1", "Full Name 2", "Full Name 3"],
-  mesa: "Table Name" // e.g., "Family", "Work Friends", etc.
-}
-```
-
-**Rules:**
-- `grupo` must be unique, no spaces (use hyphens or camelCase)
-- `personas` is array of full names
-- `mesa` organizes seating, any name works
-
-**After editing:**
-1. Open browser console (F12)
-2. Run: `generarLinks()` 
-3. Copy invitation URLs and send to guests
+| Field | Current Value |
+|---|---|
+| `hero.fullNames` | "Los Papás de Toronto José" |
+| `hero.arch` | "Se casan!" |
+| `event.title` | "A lo que vinimos, ¿Cuándo es La Fiesta?" |
+| `venue.address` | "Av. de la Via Augusta, 51, 08174 Sant Cugat del Vallès, Barcelona" |
+| `hotel.code` | "BODAQGAT2026" |
+| `footer.opening` | "Con amor y besos Toronto," |
+| `welcome.locationSubtitle` | "Sábado 10 Octubre · Qgat Hotel · Sant Cugat-Barcelona" |
 
 ### Dietary Options
 
-**Location:** `content.js` → `rsvp.dietOptions`
-
-```javascript
-rsvp: {
-  dietOptions: [
-    'Sin restricciones',
-    'Vegetariano',
-    'Vegano',
-    'Sin gluten',
-    'Sin lactosa',
-    'Halal',
-    'Otro',
-  ],
-},
-```
-
-**To modify:**
-1. Open `content.js`
-2. Find `rsvp.dietOptions` array
-3. Add/remove/edit options as needed
-4. Keep them in Spanish or translate all consistently
-5. Save and push to GitHub
-
-**Example - Remove "Halal", add "Kosher":**
+In `content.js` → `rsvp.dietOptions` (currently):
 ```javascript
 dietOptions: [
   'Sin restricciones',
@@ -447,24 +185,48 @@ dietOptions: [
   'Vegano',
   'Sin gluten',
   'Sin lactosa',
-  'Kosher',  // Changed from Halal
   'Otro',
 ],
 ```
 
-### Admin Panel
+Guests select via **checkboxes** (multiple allowed). Selecting "Otro" reveals a text input. Saved to Google Sheet as comma-separated string, e.g. `"Vegetariano, Sin gluten"`.
 
-**Access:**
-- Click small gold dot (bottom-right corner)
-- Enter admin password (hashed with SHA-256)
-- Default password hash: See `.env` or docs
+---
 
-**Features:**
-1. **Color customization**: Change palette, preview, save
-2. **Links management**: View and copy invitation URLs
-3. **Stats**: Count of Yes/No/Total responses
-4. **RSVP Management**: View all responses, delete entries
-5. **Refresh button**: Reload data from Google Sheets
+## 📝 Content Customization — Direct HTML Method
+
+For things not in `content.js`, key locations in `index.html`:
+
+| What to change | Line(s) |
+|---|---|
+| Wedding date/time constant | 561 (`WD`) |
+| Admin password hash | 562 (`PASS_HASH`) |
+| Google Apps Script URL | 563 (`SHEET_URL`) |
+| Secret token | 564 (`SECRET`) |
+| Hero couple photo | 281 (`assets/icons/couple_toronto.png`) |
+| Date card HTML | 343 |
+| Time card HTML | 353 |
+| Venue section HTML | 358–368 |
+| Hotel booking link href | 412 |
+| RSVP section | 465–468 |
+| Footer section | 497–505 |
+
+---
+
+## 🖼️ Assets
+
+**`assets/icons/`** contains:
+- `couple_toronto.png` — Photo of Ale & Pri with Toronto (200×200px, used in hero `<img>`)
+- `toronto-lineart.svg` — Line art dog (200×180px)
+- `couple-silhouette.svg` — Couple silhouette (200×200px, not currently embedded in main page)
+- `calendar-lineart.svg` — 28×28px calendar icon
+- `clock-lineart.svg` — 28×28px clock icon
+- `location-lineart.svg` — 60×60px map pin
+- `dressCode-lineart.svg` — 80×70px dress code illustration
+- `hotel-lineart.svg` — 60×52px hotel building
+- `gift-lineart.svg` — 60×56px gift box
+
+The SVG icons embedded directly in `index.html` (calendar, clock, location, dress code, hotel, gift) use stroke `#1A1A18` with no fill — these are separate from the `assets/` folder copies.
 
 ---
 
@@ -472,46 +234,41 @@ dietOptions: [
 
 ## 🔗 How Personalization Works
 
-### URL Parameters
-
 Guests receive URLs like:
 ```
 https://yourusername.github.io/boda/?grupo=Familia-Garcia&personas=Maria%20Garcia,Carlos%20Garcia
 ```
 
-**Parameters:**
-- `grupo` — Group identifier (matching `invitados.js`)
-- `personas` — Comma-separated names (URL encoded)
-
-**In code (line 495-500):**
+**In code (lines 567–575):**
 ```javascript
+const params = new URLSearchParams(window.location.search);
 const pG = params.get('grupo') || '';
 const pP = params.get('personas') || '';
 const pList = pP ? pP.split(',').map(s => s.trim()).filter(Boolean) : [];
+const isReal = pG.length > 0 && pList.length > 0;
 ```
 
-**Result:**
-- Without parameters → Generic invitation (RSVP locked)
+- Without parameters → Generic invitation (RSVP locked, shows padlock)
 - With parameters → Personalized invitation (RSVP form appears)
 
 ### Welcome Screen Personalization
 
-**Line 504-510:**
-```javascript
-function setupWelcome() {
-  if (!isReal) return;  // Skip if no personalization
-  const names = activeGuests.map(n => n.split(' ')[0]);  // Get first names
-  const saludo = ... // Build greeting like "¡Hola María y Carlos!"
-}
-```
+`setupWelcome()` (line 578) runs on page load:
+- Replaces `+1` with "acompañante" in greeting display names
+- Adjusts `headline`/`message`/`submessage` between singular and plural forms from `content.js`
+- Builds greeting: `"¡Hola María y Carlos!\n{headlinePersonalized}"`
 
-**Example:**
-- `personas=María García` → Greeting: "¡Hola María!"
-- `personas=María García,Carlos García` → "¡Hola María y Carlos!"
+### Plus-One Handling
+
+If a guest's name is exactly `'+1'` or ends with `'+1'`:
+- `hasPlusOne` flag is set (line 575)
+- A hidden companion block (`#plus-one-block`) appears when that guest selects "Sí"
+- Companion can enter their own name and dietary restrictions
+- Data merges back into the `guests` array on submit
 
 ---
 
-## ✅ RSVP System Architecture
+## ✅ RSVP System
 
 ### Data Flow
 
@@ -520,715 +277,228 @@ Guest clicks "¿Vienes?"
     ↓
 Guest selects Sí/No for each person
     ↓
-Shows dietary restrictions if "Sí" (multiple choice checkboxes)
+Dietary checkboxes appear for "Sí" attendees (multiple selection)
     ↓
-Guest can select multiple dietary restrictions
+Optional: companion details if +1 accepted
     ↓
 Guest adds optional message
     ↓
-Guest clicks "¡Confirmar asistencia!"
+"¡Confirmar asistencia!" → POST to SHEET_URL (no-cors)
     ↓
-Form sends POST to Google Apps Script (SHEET_URL)
+Apps Script appends to Google Sheet
     ↓
-Apps Script receives data + appends to Google Sheet
-    ↓
-Success message appears
-    ↓
-Admin panel shows new entry in real-time (after refresh)
+Success message replaces form
 ```
 
-### RSVP Form Data
+### What Gets Sent (line 901)
 
-**What gets sent (line 689-697):**
 ```javascript
 {
-  id: Date.now(),           // Unique submission ID
-  secret: SECRET,           // Auth token for Google Apps Script
-  grupo: "Familia-Garcia",  // Which group this is
-  timestamp: new Date(),    // When submitted
+  id: Date.now(),
+  secret: SECRET,
+  grupo: activeGroup,
+  timestamp: new Date().toLocaleString('es-ES'),
   guests: [
     { name: "María García", attending: "yes", diet: "Vegetariano, Sin gluten" },
-    // ↑ Multiple dietary restrictions joined by comma (can select multiple)
     { name: "Carlos García", attending: "no", diet: "Sin restricciones" }
   ],
-  message: "¡Nos vemos!" // Optional message
+  message: "¡Nos vemos!"
 }
 ```
 
-### Dietary Restrictions (Multiple Choice)
+Diet is comma-separated when multiple restrictions are selected. "Otro" is replaced by the custom text input value before sending.
 
-**Location:** `content.js` → `rsvp.dietOptions`
+### Google Sheets Columns
 
-Guests can now **select multiple dietary restrictions** via checkboxes:
-
-```javascript
-rsvp: {
-  dietOptions: [
-    'Sin restricciones',
-    'Vegetariano',
-    'Vegano',
-    'Sin gluten',
-    'Sin lactosa',
-    'Halal',
-    'Otro',
-  ],
-}
 ```
-
-**Example guest selections:**
-- Just vegetarian: `"Vegetariano"`
-- Vegetarian + no gluten: `"Vegetariano, Sin gluten"`
-- Multiple restrictions: `"Vegano, Sin lactosa, Halal"`
-- Custom: `"Vegano, Mi alergia específica"` (if "Otro" is selected)
-
-**In Google Sheet, diet column shows:** `"Vegetariano, Sin gluten"` (comma-separated)
-
-### Google Sheets Structure
-
-**Expected columns in Google Sheet:**
-```
-id         | nombre      | asiste | dieta        | grupo           | timestamp       | mensaje
-1234567890 | María García| Sí     | Vegetariano | Familia-Garcia | 2026-08-15 ...  | ¡Nos vemos!
-1234567891 | Carlos García| No    | Sin restricc| Familia-Garcia | 2026-08-15 ...  | 
+id | nombre | asiste | dieta | grupo | timestamp | mensaje
 ```
 
 ---
 
-## 🔐 Admin Panel Features
+## 🔐 Admin Panel
 
-### Accessing Admin
+**Access:** Click FAB (10×10px dot, bottom-right, `z-index: 1500`) → enter password.
 
-**Line 610-613:**
-1. Click FAB button (gold dot, bottom-right)
-2. Modal appears asking for password
-3. Enter password (hashed with SHA-256)
-4. Panel opens at bottom of page
+Password hashed with SHA-256 via `crypto.subtle.digest`. Hash stored at line 562 (`PASS_HASH`).
 
-### Color Customization
-
-**Section: "Personalizar colores"**
-1. Pick 4 colors with color pickers
-2. Preview bar shows gradient
-3. "Aplicar" saves to `localStorage` and updates page
-4. "Restablecer" resets to defaults
-
-### Links Management
-
-**Section: "Links por grupo"**
-- Shows all groups from `invitados.js`
-- Full invitation URLs for each group
-- "Copiar" button copies to clipboard
-
-### RSVP Statistics
-
-**Stats grid shows:**
-- **Confirmados** (Sí) count
-- **No asisten** (No) count
-- **Respuestas** Total responses
-
-**Auto-updates when:**
-- Clicking "Actualizar" button
-- Admin loads the page
-
-### RSVP Cards
-
-**Each response shows:**
-- Group name
-- Guest list with attendance status badges:
-  - 🟩 "Sí" (confirmed, dark)
-  - 🟥 "No" (declined, gray)
-  - 🟨 "Pendiente" (pending, yellow)
-  - 🏷️ Diet restrictions (if any, gold badge)
-- Optional message from guests
-- Timestamp
-- Delete button
-
-### Delete Function
-
-**Line 692-699:**
-```javascript
-async function deleteRSVP(idx, id) {
-  if (!confirm('¿Eliminar esta confirmación?')) return;
-  // Sends DELETE action to Google Apps Script
-  // Refreshes list after deletion
-}
-```
+**Sections:**
+1. **Personalizar colores** — 4 color pickers with live preview bar, Apply/Reset
+2. **Links por grupo** — All groups from `invitados.js` with copy-to-clipboard URLs
+3. **Stats grid** — Confirmed / Declined / Total counts
+4. **Confirmaciones** — RSVP cards with delete button; loaded via GET to `SHEET_URL?action=get&secret=...`
 
 ---
 
-# PART D: INFRASTRUCTURE & DEPLOYMENT
+# PART D: FILE REFERENCE
 
-## 🏗️ Architecture: GitHub Pages + Google Drive
-
-### Why This Stack?
-
-**GitHub Pages (static hosting):**
-- ✅ Free for public repos
-- ✅ Automatic HTTPS/SSL
-- ✅ CDN included (fast worldwide)
-- ✅ Git-based deployment (push = live)
-- ❌ Can't run backend code (solved by Apps Script)
-
-**Google Sheets + Apps Script (data layer):**
-- ✅ Free, no credit card needed
-- ✅ RSVP data in familiar spreadsheet
-- ✅ Easy export to Excel/PDF
-- ✅ Apps Script = free serverless backend
-- ✅ No database maintenance
-
-**Why not alternatives?**
-- ❌ **Vercel/Netlify**: Adds cost, overkill for static site
-- ❌ **Traditional hosting**: More expensive, more maintenance
-- ❌ **Firebase**: Costs money, overkill for this use case
-- ❌ **AWS/Azure**: Way too complex, not free tier
-
-### Data Flow Diagram
+## File Structure
 
 ```
-┌─────────────┐
-│   GitHub    │
-│    Pages    │ ← Static HTML/CSS/JS
-│             │   (index.html, invitados.js)
-└──────┬──────┘
-       │ Guest visits site
-       │
-       ▼
-┌─────────────────────────────────┐
-│    Guest Browser                 │
-│  • Renders invitation            │
-│  • Shows RSVP form               │
-│  • Stores color prefs locally    │
-└──────┬──────────────────────────┘
-       │ Guest submits RSVP
-       │ POST request
-       ▼
-┌────────────────────────────────────┐
-│  Google Apps Script (web app)      │
-│  • Receives guest data + SECRET    │
-│  • Validates request               │
-│  • Appends to Google Sheet         │
-└────────────┬─────────────────────┘
-             │
-             ▼
-        ┌──────────────┐
-        │ Google Sheet │
-        │ (database)   │
-        └──────────────┘
-             ▲
-             │ Admin retrieves data
-             │ GET request + SECRET
-             │
-       ┌─────┴─────────┐
-       │               │
-    Admin Panel   Downloads CSV
-  (shows live data) (for backup)
+boda/
+├── index.html          # Main file (~1075 lines) — all UI + all JS
+├── content.js          # All editable strings (~185 lines)
+├── invitados.js        # Guest list + link generator (~110 lines)
+├── CNAME               # Custom domain config
+├── CLAUDE.md           # This file
+├── README.md
+├── assets/
+│   └── icons/
+│       ├── couple_toronto.png       # Hero photo (used via <img>)
+│       ├── couple-silhouette.svg    # Not currently in main page
+│       ├── toronto-lineart.svg
+│       ├── calendar-lineart.svg
+│       ├── clock-lineart.svg
+│       ├── location-lineart.svg
+│       ├── dressCode-lineart.svg
+│       ├── hotel-lineart.svg
+│       ├── gift-lineart.svg
+│       └── README.md
+└── docs/
+    ├── DEPLOYMENT.md
+    ├── GOOGLE_DRIVE_SETUP.md
+    ├── INFRASTRUCTURE.md
+    ├── SECURITY.md
+    └── TROUBLESHOOTING.md
 ```
 
----
+## `index.html` Section Map (~1075 lines)
+
+| Lines | Content |
+|---|---|
+| 1–16 | HTML head (meta, OG tags, Google Fonts) |
+| 17–205 | All CSS (inline, no external stylesheet) |
+| 19 | `:root` CSS variables (colors) |
+| 22–38 | Welcome screen styles |
+| 40–43 | FAB fixed button |
+| 45–62 | Toronto runner animations |
+| 64–77 | Toronto celebrating/eating/sleeping keyframes |
+| 79–183 | Main page, cards, RSVP, admin, modal styles |
+| 196–204 | Mobile media query (≤480px) |
+| 207–247 | Welcome screen UI + bouncing Toronto SVG |
+| 249–275 | Running dog footer animation SVG |
+| 277–544 | Main page (`#main-page`, hidden until `enterPage()`) |
+| 280–325 | Hero section (photo + countdown + celebrating Toronto) |
+| 327–355 | Event section (date + time cards) |
+| 358–368 | Venue section |
+| 371–391 | Dress code section |
+| 393–413 | Hotel section |
+| 416–463 | Gift section (gift icon + eating Toronto) |
+| 465–468 | RSVP section container |
+| 470–495 | Sleeping Toronto |
+| 497–505 | Footer |
+| 508–543 | Admin panel |
+| 546–556 | Auth modal |
+| 558–559 | `<script>` tags loading `invitados.js` and `content.js` |
+| 560–1072 | All JavaScript (inline `<script>`) |
+| 561–565 | Constants: `WD`, `PASS_HASH`, `SHEET_URL`, `SECRET`, `DIETS` |
+| 567–575 | URL param parsing, `isReal`, `activeGuests`, state vars |
+| 578–590 | `setupWelcome()` |
+| 592–691 | `populateContent()` — maps `PAGE_CONTENT` keys to DOM IDs |
+| 693–701 | `enterPage()` — welcome → main transition (700ms fade) |
+| 703–827 | `dietSelect()`, `dietSelectPlusOne()`, `renderRSVP()` |
+| 829–855 | `setG()` — toggle yes/no, show/hide diet panel and +1 block |
+| 857–915 | `submitRSVP()` — build payload, POST no-cors |
+| 918–950 | Admin auth: FAB click, `checkAuth()`, `closeModal()`, `openAdmin()` |
+| 952–998 | `loadRSVPs()`, `renderRSVPCards()` |
+| 1001–1008 | `deleteRSVP()` |
+| 1010–1033 | `renderLinks()`, `copyLink()` |
+| 1035–1059 | Color system: `applyColors()`, `resetColors()`, `loadColors()` |
+| 1061–1069 | `tick()` — countdown timer |
+| 1071 | Bootstrap: `populateContent(); setupWelcome(); loadColors(); updatePreview();` |
+
+## `invitados.js` Structure
 
-## 🚀 Complete Deployment Process
-
-**See detailed guides:**
-- `docs/DEPLOYMENT.md` — GitHub Pages setup
-- `docs/GOOGLE_DRIVE_SETUP.md` — Google Sheets + Apps Script
-- `docs/SECURITY.md` — Password and secrets
-
-### Quick 5-Minute Setup
-
-1. **Fork repo** to your GitHub account
-2. **Create Google Sheet** with columns: `id, nombre, asiste, dieta, grupo, timestamp, mensaje`
-3. **Create Google Apps Script** (see template in `docs/`)
-4. **Copy Apps Script URL** → paste into `index.html` line 491
-5. **Generate new password hash** (see `docs/SECURITY.md`)
-6. **Update `PASS_HASH`** in `index.html` line 490
-7. **Enable GitHub Pages** in repo Settings → branch: main
-8. **Test** at `https://yourusername.github.io/boda/`
-
----
-
-## 🔧 Troubleshooting
-
-### "RSVP not saving" (form won't submit)
-
-**Check:**
-1. Is `SHEET_URL` correct? (Line 491)
-2. Is Google Apps Script deployed as web app?
-3. Is SECRET correct? (Line 492)
-4. Check browser console (F12) for errors
-5. Is Google Sheet accessible?
-
-**Solution:**
-- See `docs/GOOGLE_DRIVE_SETUP.md` for Apps Script template
-- Ensure Apps Script has CORS headers configured
-- Try submitting again (no-cors mode may hide errors)
-
-### "Admin panel not loading responses"
-
-**Check:**
-1. Is CORS configured in Google Apps Script?
-2. Is SECRET correct?
-3. Is Google Sheet populated?
-
-**Solution:**
-- Add CORS headers to `doGet()` in Apps Script (see docs)
-- Check Sheet has data (test manual insert)
-- Look at browser network tab (F12) for failed requests
-
-### "Styling looks broken" on mobile
-
-**Check:**
-1. Test at 480px breakpoint (F12 device mode)
-2. Check mobile CSS media query (line 181)
-3. Verify viewport meta tag (line 5)
-
-**Solution:**
-- Adjust breakpoint if needed
-- Test on real device, not just DevTools
-
-### "Countdown timer wrong"
-
-**Check:**
-1. Is `WD` date correct? (Line 489)
-2. Browser timezone settings
-3. Wedding date format: `YYYY-MM-DDTHH:MM:SS`
-
-**Solution:**
-- Update `WD` to correct date/time
-- Check browser console for errors
-
-### "Colors not saving"
-
-**Check:**
-1. Browser localStorage enabled?
-2. Private/incognito browsing?
-3. Browser storage full?
-
-**Solution:**
-- Try in normal browsing mode (not incognito)
-- Clear browser cache and try again
-- Use admin panel "Restablecer" button
-
----
-
-## 📊 Performance & Optimization
-
-### GitHub Pages Performance
-
-- **CDN included**: Automatically fast worldwide
-- **GZIP compression**: Enabled by default
-- **Cache headers**: 10 minutes default (good balance)
-
-### Optimizations Already Built-In
-
-✅ **Minified inline CSS** (no separate stylesheet request)
-✅ **SVG icons** (no image files to load)
-✅ **Google Fonts preconnect** (line 15, faster loading)
-✅ **CSS variables** (no duplicate colors)
-✅ **Single HTML file** (one request = everything)
-
-### Optional Optimizations (if needed)
-
-1. **Lazy-load images**: Use `loading="lazy"` on images
-2. **Defer Javascript**: Already inline, but could split
-3. **Compress SVGs**: Use SVGO tool to minify paths
-4. **Cache-buster**: Add ?v=2 to force fresh CSS
-
-### Lighthouse Score Target
-
-Current site should score:
-- **Performance**: 95+ (static files)
-- **Accessibility**: 95+ (good semantic HTML)
-- **Best Practices**: 90+ (secure HTTPS)
-- **SEO**: 100 (meta tags included)
-
----
-
-## ♿ Accessibility & Inclusive Design
-
-### Color Contrast
-
-✅ **All text meets WCAG AA standard:**
-- Dark text on cream: 17.3:1 ratio (excellent)
-- Gold text on cream: 4.6:1 ratio (passes AA)
-
-✅ **Don't use color alone:**
-- Attendance status uses badges with text ("Sí", "No")
-- Not just color
-
-### Semantic HTML
-
-✅ **Proper heading hierarchy:**
-- `<h1>` for main heading
-- `<p>` for text
-- `<label>` for form labels
-- `<button>` for interactive elements
-
-### Keyboard Navigation
-
-✅ **All interactive elements keyboard accessible:**
-- Tab through buttons and form inputs
-- Enter to activate
-- Escape to close modal
-
-### Mobile Accessibility
-
-✅ **Touch-friendly:**
-- Buttons ≥44px tall
-- Links have visible focus states
-- Form inputs zoom correctly on mobile
-
----
-
-## 🔒 Security Best Practices
-
-### Public Repo Security
-
-Since repo is public for GitHub Pages:
-
-✅ **Acceptable:**
-- Admin password is hashed (SHA-256), not plaintext
-- Google Apps Script URL is public (anyone can see it)
-- Secret token visible (acceptable for public wedding site)
-
-⚠️ **Considerations:**
-- Anyone can submit RSVPs using your Sheet URL
-- Solution: Use SECRET token for validation in Apps Script
-- Anyone can read guest names from URLs
-- Solution: This is intentional for wedding (public event)
-
-### Password Management
-
-**Current password reset process:**
-1. Create new password
-2. Hash locally: `crypto.subtle.digest('SHA-256', ...)`
-3. Update `PASS_HASH` in `index.html`
-4. Commit + push to GitHub
-
-**See `docs/SECURITY.md` for detailed steps**
-
-### Google Apps Script Security
-
-**Must include CORS headers:**
-```javascript
-function doPost(e) {
-  // ... process data ...
-  var output = ContentService.createTextOutput(JSON.stringify(data));
-  output.setMimeType(ContentService.MimeType.JSON);
-  // CRITICAL: Add these lines for GitHub Pages access
-  // Unfortunately, Apps Script doesn't support CORS headers directly
-  // Solution: Use no-cors mode on client, or proxy
-  return output;
-}
-```
-
-**See `docs/GOOGLE_DRIVE_SETUP.md` for complete template**
-
----
-
-# PART E: ADVANCED TOPICS & FUTURE
-
-## 🎬 Performance & Animations
-
-### CSS Animations Used
-
-1. **`fadeOutUp`** (0.7s)
-   - Welcome screen exit
-   - Translatey + opacity fade
-   - See line 25-26
-
-2. **`torontoBounce`** (0.6s infinite)
-   - Welcome screen dog
-   - Small vertical bounce
-   - See line 27-28
-
-3. **`runAcross`** (9s linear infinite)
-   - Running dog footer animation
-   - Left to right across screen
-   - See line 47-48
-
-4. **`dogBounce`** (0.28s infinite)
-   - Dog body while running
-   - See line 49-50
-
-5. **`legFL`, `legFR`, `legRL`, `legRR`** (0.28s infinite)
-   - Dog leg movements
-   - Rotate animation on transform-origin
-   - See lines 51-58
-
-6. **`tailWag`** (0.2s infinite)
-   - Dog tail swinging
-   - See line 59-60
-
-7. **`earFlap`** (0.4s infinite)
-   - Dog ear movement
-   - See line 61-62
-
-### Customizing Animations
-
-To slow down dog running:
-- Line 47: Change `9s` to `12s` for slower pace
-
-To speed up leg motion:
-- Line 51-58: Change `0.28s` to `0.15s` for faster run
-
-To add new animation:
-```css
-@keyframes myAnimation {
-  0% { /* start state */ }
-  100% { /* end state */ }
-}
-
-.my-element {
-  animation: myAnimation 1s ease-in-out infinite;
-}
-```
-
----
-
-## 📈 Analytics & Data Export
-
-### Viewing Responses
-
-**Via admin panel:**
-- All responses show in real-time after refresh
-- Each card shows: guest names, attendance, diet, timestamp
-- Stats cards show totals
-
-**Via Google Sheet directly:**
-- Open Sheet in Google Drive
-- Manually view/edit responses
-- Export as CSV or Excel
-
-**Via download:**
-- Right-click in Google Sheet
-- Download as CSV → open in Excel
-
-### Data Analysis Ideas
-
-✅ **Easy analyses (in Sheet):**
-- Filter by "Sí" vs "No" attendance
-- Count dietary restrictions
-- Group by table assignment
-- Search for messages
-
-✅ **Advanced (export to Excel):**
-- Pivot tables
-- Charts and graphs
-- Seating arrangements
-- Timeline of RSVPs
-
----
-
-## 🚀 Future Enhancements (Without Over-Engineering)
-
-### Low-Effort Additions
-
-✅ **Add wedding day live updates** (new section with latest info)
-✅ **Add photo gallery** (simple image gallery or link to album)
-✅ **Add countdown timer variations** (flip clock, bar progress)
-✅ **Add testimonials** (guest messages display)
-✅ **Add thank you page** (after RSVP confirmation)
-
-### Medium-Effort Additions
-
-⚠️ **Email notifications** (requires backend)
-⚠️ **SMS confirmations** (requires Twilio, paid)
-⚠️ **Plus-one management** (more complex form logic)
-⚠️ **Seating chart** (visual table assignments)
-
-### Not Recommended (Over-Engineering)
-
-❌ **Mobile app** (too complex for this use)
-❌ **User accounts** (not needed for wedding)
-❌ **Real-time chat** (scope creep)
-❌ **Payment processing** (adds complexity)
-❌ **Multiple languages** (already in Spanish, simple enough)
-
-**Philosophy:** Only add if it serves the guests' experience directly.
-
----
-
-## 🛠️ Development Workflow
-
-### Local Testing Setup
-
-**Start local server:**
-```bash
-# Python 3
-python3 -m http.server 8000
-
-# Or Python 2
-python -m SimpleHTTPServer 8000
-
-# Or Node (if you have http-server)
-npx http-server
-```
-
-**Then visit:** `http://localhost:8000`
-
-**Test personalized URLs:**
-```
-http://localhost:8000/index.html?grupo=test&personas=John%20Doe
-```
-
-### Git Workflow
-
-**Make changes → Commit → Push → Deploy**
-
-```bash
-# 1. Make edits (CLAUDE.md, index.html, invitados.js, etc.)
-git add .
-git commit -m "Update [what changed]"
-
-# 2. Push to GitHub
-git push origin main
-
-# 3. GitHub Pages auto-deploys
-# Wait 30 seconds, then refresh https://yourusername.github.io/boda/
-```
-
-### Collaborative Editing
-
-✅ **Git workflow:**
-1. Create feature branch: `git checkout -b fix/color-scheme`
-2. Make changes
-3. Push branch: `git push origin fix/color-scheme`
-4. Create pull request on GitHub
-5. Review + merge to main
-6. Main branch auto-deploys
-
-✅ **Non-technical collaborators:**
-- Just send changes via email/message
-- Provide specific file names and line numbers
-- Example: "Change line 358 from 'Qgat Restaurant' to 'Our Venue'"
-
----
-
-## 📖 Complete File Reference
-
-### `index.html` — Main file (~765 lines)
-
-**Key sections:**
-- Line 1-17: HTML head (meta, fonts, title)
-- Line 18-189: Complete CSS (inline, no external stylesheets)
-- Line 192-234: Welcome screen UI
-- Line 235-262: Running dog animation
-- Line 264-435: Main page content (hero, venue, hotel, gift, RSVP)
-- Line 437-472: Admin panel
-- Line 475-485: Auth modal
-- Line 488-763: JavaScript (inline, all functionality)
-
-**Critical constants (line 489-493):**
-- `WD`: Wedding date-time
-- `PASS_HASH`: Admin password (SHA-256)
-- `SHEET_URL`: Google Apps Script endpoint
-- `SECRET`: Auth token for Apps Script
-- `DIETS`: Dietary options array
-
-**Main functions:**
-- `setupWelcome()`: Personalization
-- `enterPage()`: Welcome → main transition
-- `renderRSVP()`: Draw RSVP form
-- `submitRSVP()`: Send data to Apps Script
-- `checkAuth()`: Admin authentication
-- `loadRSVPs()`: Fetch responses from Sheet
-- `applyColors()`: Update CSS variables
-- `tick()`: Update countdown timer
-
-### `invitados.js` — Guest list (~60 lines)
-
-**Structure:**
 ```javascript
 const INVITADOS = [
   {
-    grupo: "Unique-Name",
-    personas: ["Full Name 1", "Full Name 2"],
-    mesa: "Table"
+    grupo: "Unique-Name",          // URL-safe identifier, must be unique
+    personas: ["Full Name 1", "Full Name 2"],  // Names in greeting & RSVP
+    // mesa: "Table"               // OPTIONAL — seating group, not required
   },
-  // ... more guests
+  // Plus-one example:
+  { grupo: "Joel-Joel", personas: ["Joel", "+1"] },
+  // ...
 ];
-
-// Helper functions
-function generarLinks(base) { /* ... */ }
 ```
 
-**Usage:**
-- Edit `INVITADOS` array to add/remove guests
-- Run `generarLinks()` in browser console to see all URLs
+**Rules:**
+- `grupo` must be unique; use hyphens, no spaces
+- `personas` array drives the welcome greeting and RSVP form
+- `+1` (exact string) or names ending in `+1` trigger the companion flow
+- `mesa` field is optional and not displayed to guests
 
-### `.gitignore` — Files to ignore
-
-Add if needed:
-```
-node_modules/
-.env
-*.local.js
-config.json
-.DS_Store
+**Generate all invitation URLs (open browser console on the site):**
+```javascript
+generarLinks()
 ```
 
 ---
 
-## 📝 Common Code Patterns
+# PART E: INFRASTRUCTURE & DEPLOYMENT
 
-### Working with URL Parameters
-```javascript
-const params = new URLSearchParams(window.location.search);
-const groupId = params.get('grupo') || '';  // Gets ?grupo=value
+## Architecture
+
+```
+GitHub Pages (static) ──► Guest Browser ──► POST (no-cors) ──► Google Apps Script ──► Google Sheet
+                               │                                        │
+                           Admin Panel ◄────────── GET (json) ─────────┘
 ```
 
-### Fetching from Google Apps Script
-```javascript
-await fetch(SHEET_URL, {
-  method: 'POST',
-  mode: 'no-cors',  // Bypass CORS (response opaque)
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify(data)
-});
+**Constants (index.html lines 561–564):**
+- `WD` — Wedding date/time (`new Date('2026-10-10T18:00:00')`)
+- `PASS_HASH` — SHA-256 hex of admin password
+- `SHEET_URL` — Google Apps Script web app endpoint
+- `SECRET` — Shared secret for Apps Script validation
+
+## Local Development
+
+```bash
+# Start local server
+python3 -m http.server 8000
+
+# Test personalized URL
+open "http://localhost:8000/?grupo=test&personas=Maria%20Garcia,Carlos%20Garcia"
 ```
 
-### Updating CSS Variables
-```javascript
-const root = document.documentElement;
-root.style.setProperty('--cream', '#F5F0E8');
-root.style.setProperty('--dark', '#1A1A18');
-```
+## Git Workflow
 
-### Hashing Password with SHA-256
-```javascript
-const hash = Array.from(
-  new Uint8Array(
-    await crypto.subtle.digest('SHA-256', 
-      new TextEncoder().encode(password))
-  )
-).map(b => b.toString(16).padStart(2,'0')).join('');
-```
-
-### Working with localStorage
-```javascript
-// Save
-localStorage.setItem('wc', JSON.stringify({pa, dk, p, m}));
-
-// Load
-const saved = JSON.parse(localStorage.getItem('wc'));
+```bash
+git add content.js invitados.js   # or index.html
+git commit -m "Describe the change"
+git push origin main
+# GitHub Pages auto-deploys in ~30 seconds
 ```
 
 ---
 
-## 🎯 Final Notes
+# PART F: CONVENTIONS FOR AI ASSISTANTS
 
-**This is not a generic template.**
-This website is designed specifically for Alejandro & Priscila's wedding. While the architecture (GitHub Pages + Google Drive) could work for other weddings, every design choice reflects their style and story (including Toronto the dog!).
-
-**When in doubt, ask:**
-If you're modifying this and unsure of the impact, test locally first and check `docs/TROUBLESHOOTING.md` or examine the code changes carefully.
-
-**Keep it simple.**
-Resist the urge to add complex features. The best wedding website is one that works reliably on the day, not one with cutting-edge features that break.
-
-**Document your changes.**
-If you modify this, update this CLAUDE.md file so the next developer understands your changes.
+1. **Edit `content.js` for text changes** — do not hardcode strings in `index.html`
+2. **Edit `invitados.js` for guest list changes** — never put guest data elsewhere
+3. **No build step** — plain HTML/CSS/JS; do not introduce npm, bundlers, or frameworks
+4. **No comments in code** — keep the no-comment convention already in place
+5. **Preserve inline SVG Toronto** — do not replace with external images; the SVG is intentional
+6. **`assets/couple_toronto.png`** is referenced via `<img>` at line 281 — do not inline it as SVG
+7. **No new sections without explicit request** — keep page structure stable
+8. **Color CSS variables** are set in `:root` at line 19; admin panel overrides them via `style.setProperty`
+9. **`no-cors` mode** on RSVP POST is intentional — response is opaque but data reaches Apps Script
+10. **SHA-256 password** — never log or expose the plaintext password; change via `docs/SECURITY.md`
+11. **`mesa` field** in `invitados.js` is optional — do not add it to entries that don't have it
 
 ---
 
-**Happy wedding! 🐾💍✨**
+## 🔧 Troubleshooting Quick Reference
+
+| Problem | Check |
+|---|---|
+| RSVP not saving | `SHEET_URL` (line 563), Apps Script deployed, `SECRET` matches |
+| Admin not loading responses | CORS in Apps Script `doGet()`, `SECRET` matches |
+| Styling broken on mobile | 480px breakpoint (line 196), viewport meta (line 5) |
+| Countdown wrong | `WD` value (line 561), browser timezone |
+| Colors not saving | Not incognito, `localStorage` enabled |
+| Personalization not showing | URL has `?grupo=X&personas=Y`, both non-empty |
+
+---
+
+**Happy wedding! 🐾💍**
