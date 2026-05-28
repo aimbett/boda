@@ -83,6 +83,7 @@ const INVITADOS = [
   { grupo: "Asier",         personas: ["Asier"],          },
   { grupo: "Kseniya",       personas: ["Kseniya"],        },
   { grupo: "Cesc",          personas: ["Cesc"],           },
+  { grupo: "Juan-Diego",     personas: ["Juan Diego"],     },
   { grupo: "Miguel",        personas: ["Miguel"],         },
   { grupo: "Rafa",          personas: ["Rafa"],           },
   { grupo: "Jota",          personas: ["Jota"],           },
