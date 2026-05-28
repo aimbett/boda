@@ -38,6 +38,7 @@ const INVITADOS = [
   { grupo: "Sara-Pablo",          personas: ["Sara", "Pablo"],           },
   { grupo: "Joel-Joel",          personas: ["Joel", "+1"],           },
   { grupo: "Maria-Andres",       personas: ["Maria Kreuzer", "Andres Sánchez"], },
+  { grupo: "Eric-Vero",          personas: ["Eric Defrancq", "Vero Defrancq"], },
 
 
   // --- INDIVIDUALES --
