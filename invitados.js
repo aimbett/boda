@@ -39,6 +39,7 @@ const INVITADOS = [
   { grupo: "Joel-Joel",          personas: ["Joel", "+1"],           },
   { grupo: "Maria-Andres",       personas: ["Maria Kreuzer", "Andres Sánchez"], },
   { grupo: "Eric-Vero",          personas: ["Eric Defrancq", "Vero Defrancq"], },
+  { grupo: "Marc-Girbau",   personas: ["Marc Girbau", "+1"],    },
 
 
   // --- INDIVIDUALES --
@@ -76,7 +77,6 @@ const INVITADOS = [
   { grupo: "Esperanza",     personas: ["Esperanza"],      },
   { grupo: "Miquel",        personas: ["Miquel"],         },
   { grupo: "Marc-Guirao",   personas: ["Marc Guirao"],    },
-  { grupo: "Marc-Girbau",   personas: ["Marc Girbau"],    },
   { grupo: "Adria",         personas: ["Adria"],          },
   { grupo: "Julia",         personas: ["Julia"],          },
   { grupo: "Sergi",         personas: ["Sergi"],          },
