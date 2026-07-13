@@ -57,7 +57,7 @@ const INVITADOS = [
 
   { grupo: "Alfonso",       personas: ["Alfonso"],        },
   { grupo: "Leo",           personas: ["Leo"],            },
-  { grupo: "Loredana",      personas: ["Loredana"],       },
+  { grupo: "Loredana",      personas: ["Loredana", "+1"],       },
   { grupo: "Cokiii",        personas: ["Francelis"],         },
 
   { grupo: "Guille",        personas: ["Guille"],         },
