@@ -47,7 +47,7 @@ const INVITADOS = [
   { grupo: "Andre",       personas: ["Andre"], },
 
   // --- Orange---
-  { grupo: "Kenji",        personas: ["Kenji", "+1"],         },
+  { grupo: "Kenji",        personas: ["Kenji", "Nuria"],         },
   { grupo: "Ona",       personas: ["Ona", "+1"], },
 
 
