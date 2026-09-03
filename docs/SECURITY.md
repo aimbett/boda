@@ -131,6 +131,7 @@ Anyone who clones your repo sees:
 ❌ **Line 491:** Google Apps Script URL
 ❌ **Line 492:** SECRET token
 ❌ **invitados.js:** All guest names and groups
+✅ **IBAN / bank details:** NOT in the repo — stored in Apps Script **Script Properties** and fetched at runtime (see `docs/GOOGLE_DRIVE_SETUP.md` Part 7). Only the public `revolut.me` link lives in `content.js`.
 
 ### Is this a problem?
 

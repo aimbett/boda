@@ -106,6 +106,9 @@ body{background:var(--cream);color:var(--dark);font-family:'Montserrat',sans-ser
 .hotel-code{font-family:'Fredoka One',cursive;font-size:20px;color:var(--cream);letter-spacing:3px;}
 .hotel-code-lbl{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--mid);margin-bottom:6px;}
 .hotel-text{font-size:13px;font-weight:300;color:var(--mid);line-height:1.8;}
+.pay-block{margin-top:18px;display:flex;flex-direction:column;align-items:center;gap:12px;}
+.iban-code{font-family:'Fredoka One',cursive;font-size:15px;letter-spacing:1.5px;color:var(--cream);word-break:break-all;}
+.iban-holder{font-size:11px;font-weight:300;color:var(--cream);opacity:0.85;margin-top:6px;line-height:1.5;}
 .regalo-quote{font-family:'Cormorant Garamond',serif;font-size:20px;font-style:italic;color:var(--dark);line-height:1.7;margin-bottom:12px;max-width:360px;margin-left:auto;margin-right:auto;}
 .regalo-sub{font-size:12px;font-weight:300;color:var(--mid);line-height:1.8;}
 
@@ -459,6 +462,7 @@ body{background:var(--cream);color:var(--dark);font-family:'Montserrat',sans-ser
       <p class="regalo-quote" id="gift-quote">"El mejor regalo es su presencia y su alegría."</p>
       <p class="regalo-sub" id="gift-message">Si desean tener un detalle, una contribución en efectivo<br>o transferencia será recibida con mucho amor.<br>
       <span style="font-family:'Fredoka One',cursive;font-size:12px;color:var(--dark);" id="gift-emphasis">Los datos se comparten personalmente.</span></p>
+      <div id="gift-payment"></div>
     </div>
   </div>
 
@@ -649,7 +653,7 @@ function populateContent(){
   // Gift section
   if(document.getElementById('gift-title')) document.getElementById('gift-title').textContent = PAGE_CONTENT.gift.title;
   if(document.getElementById('gift-quote')) document.getElementById('gift-quote').textContent = PAGE_CONTENT.gift.quote;
-  if(document.getElementById('gift-message')) document.getElementById('gift-message').innerHTML = PAGE_CONTENT.gift.message + '<br><span style="font-family:\'Fredoka One\',cursive;font-size:12px;color:var(--dark);">' + PAGE_CONTENT.gift.emphasis + '</span>';
+  if(document.getElementById('gift-message')) document.getElementById('gift-message').innerHTML = PAGE_CONTENT.gift.message + '<br><span style="font-family:\'Fredoka One\',cursive;font-size:12px;color:var(--dark);">' + (isReal ? PAGE_CONTENT.gift.payment.intro : PAGE_CONTENT.gift.emphasis) + '</span>';
 
   // RSVP section
   if(document.getElementById('rsvp-title')) document.getElementById('rsvp-title').textContent = PAGE_CONTENT.rsvp.title;
@@ -751,6 +755,31 @@ function dietSelectPlusOne(){
       <input type="text" class="finput" id="diet-other-plus-one" placeholder="${PAGE_CONTENT.rsvp.form.dietCustomPlaceholder}" style="display:none;margin-top:8px;" oninput="gDietOther['plus-one']=this.value">
     </div>
   `;
+}
+
+async function renderPayment(){
+  const c=document.getElementById('gift-payment');
+  if(!c||!isReal) return;
+  const p=PAGE_CONTENT.gift.payment;
+  c.innerHTML=`<div class="pay-block">
+    <a class="map-link" href="${p.revolutUrl}" target="_blank" rel="noopener">${p.revolutLabel}</a>
+    <p class="hotel-text" id="pay-status">${p.loading}</p>
+  </div>`;
+  const s=document.getElementById('pay-status');
+  try{
+    const res=await fetch(`${SHEET_URL}?action=pago&secret=${SECRET}&grupo=${encodeURIComponent(activeGroup)}`);
+    const json=await res.json();
+    const iban=String(json.iban||'').replace(/\s+/g,'').toUpperCase();
+    if(!iban) throw new Error('no iban');
+    const pretty=iban.replace(/(.{4})/g,'$1 ').trim();
+    const titular=json.titular?`<div class="iban-holder">${json.titular}</div>`:'';
+    s.outerHTML=`<div class="hotel-code-box">
+      <div class="hotel-code-lbl">${p.ibanLabel}</div>
+      <div class="iban-code">${pretty}</div>
+      ${titular}
+    </div>
+    <button class="copy-btn" id="pay-copy" onclick="copyLink('${iban}','pay-copy','${p.copiedButton}','${p.copyButton}')">${p.copyButton}</button>`;
+  }catch(e){ s.textContent=p.error; }
 }
 
 function renderRSVP(){
@@ -1024,12 +1053,14 @@ function renderLinks(){
   }).join('');
 }
 
-function copyLink(url,btnId){
+function copyLink(url,btnId,doneLbl,idleLbl){
+  const b=document.getElementById(btnId);
+  const done=doneLbl||'¡Listo!', idle=idleLbl||'Copiar';
+  if(!navigator.clipboard){ window.prompt(idle,url); return; }
   navigator.clipboard.writeText(url).then(()=>{
-    const b=document.getElementById(btnId);
-    b.textContent='¡Listo!';b.classList.add('copied');
-    setTimeout(()=>{b.textContent='Copiar';b.classList.remove('copied');},2000);
-  });
+    b.textContent=done;b.classList.add('copied');
+    setTimeout(()=>{b.textContent=idle;b.classList.remove('copied');},2000);
+  }).catch(()=>{ window.prompt(idle,url); });
 }
 
 // COLORS
@@ -1068,7 +1099,7 @@ function tick(){
   document.getElementById('cd-s').textContent=String(Math.floor((diff%60000)/1000)).padStart(2,'0');
 }
 
-populateContent();setupWelcome();loadColors();updatePreview();
+populateContent();setupWelcome();renderPayment();loadColors();updatePreview();
 </script>
 </body>
 </html>

@@ -75,6 +75,16 @@ const PAGE_CONTENT = {
     quote: '"El mejor regalo es su presencia y su alegría."',
     message: 'Si desean tener un detalle, una contribución en efectivo<br>o transferencia será recibida con mucho amor.',
     emphasis: 'Los datos se comparten personalmente.',
+    payment: {
+      intro: 'Si prefieres hacerlo por transferencia, aquí tienes cómo:',
+      revolutLabel: 'Enviar por Revolut',
+      revolutUrl: 'https://revolut.me/aimbett',
+      ibanLabel: 'IBAN',
+      copyButton: 'Copiar',
+      copiedButton: '¡Listo!',
+      loading: 'Cargando datos...',
+      error: 'No pudimos cargar los datos. Escríbenos y te los pasamos.',
+    },
   },
 
   // RSVP section

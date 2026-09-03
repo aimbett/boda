@@ -160,6 +160,17 @@ function doGet(e) {
         .setMimeType(ContentService.MimeType.JSON);
     }
     
+    // Payment details (IBAN) — read from Script Properties, never from the repo
+    if (e.parameter.action === 'pago') {
+      const props = PropertiesService.getScriptProperties();
+      return ContentService
+        .createTextOutput(JSON.stringify({
+          iban: props.getProperty('IBAN') || '',
+          titular: props.getProperty('TITULAR') || ''
+        }))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+    
     // Get all data from sheet (skip header row)
     const sheet = SpreadsheetApp.getActiveSheet();
     const data = sheet.getDataRange().getValues();
@@ -405,6 +416,40 @@ If you changed it in Apps Script, update it here too.
 - Verify SECRET matches
 - Test with `testDoPost()` function
 - Check Sheet has correct column headers
+
+---
+
+## Part 7: Payment details (IBAN) via Script Properties
+
+The gift section shows a Revolut link (public, lives in `content.js` → `gift.payment.revolutUrl`) and an IBAN. The IBAN is **never** stored in the repo: the site fetches it at runtime with `?action=pago&secret=...`, and only for guests who open a personalized link (`?grupo=&personas=`).
+
+### Step 1: Add Script Properties
+
+1. Open the Apps Script editor
+2. Click ⚙️ **Project Settings** (left sidebar)
+3. Scroll to **Script Properties** → **Add script property**
+4. Add two properties:
+   - `IBAN` → your IBAN (spaces are fine, the site strips them)
+   - `TITULAR` → account holder name shown under the IBAN
+5. **Save script properties**
+
+### Step 2: Make sure `doGet` has the `pago` branch
+
+The full script in Part 2 already includes it (the `if (e.parameter.action === 'pago')` block right after the SECRET check). If you deployed before this was added, paste that block into your `doGet`.
+
+### Step 3: Redeploy
+
+**Deploy** → **Manage deployments** → pencil icon → **Version: New version** → **Deploy**. The web app URL does not change, so `SHEET_URL` in `index.html` stays the same.
+
+### Step 4: Test
+
+Open in a browser (replace with your values):
+```
+https://script.google.com/macros/s/YOUR_ID/exec?action=pago&secret=torontoboda2026
+```
+Expected: `{"iban":"ES..","titular":"..."}`. Then open a personalized invitation link and check the gift section shows the Revolut button, the IBAN box and the copy button.
+
+**Note:** `SECRET` is visible in `index.html`, so this is not cryptographic secrecy. The point is that the IBAN is not in git history, not indexed by GitHub code search, and not reachable by repo scrapers.
 
 ---
 

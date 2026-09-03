@@ -148,7 +148,9 @@ const PAGE_CONTENT = {
   venue: { title, name, address, mapButtonText, mapLink },
   dressCode: { title, text, emphasis },
   hotel: { title, intro, codeLabel, code, instructions },
-  gift: { title, quote, message, emphasis },
+  gift: { title, quote, message, emphasis,
+          payment: { intro, revolutLabel, revolutUrl, ibanLabel,
+                     copyButton, copiedButton, loading, error } },
   rsvp: { title, locked, form, success, plusOne, dietOptions },
   footer: { opening, signature },
   admin: { panelTitle, colors, links, stats, confirmations },
@@ -192,6 +194,13 @@ dietOptions: [
 Guests select via **checkboxes** (multiple allowed). Selecting "Otro" reveals a text input. Saved to Google Sheet as comma-separated string, e.g. `"Vegetariano, Sin gluten"`.
 
 ---
+
+### Gift / Payment Details
+
+- `gift.payment.revolutUrl` (public `revolut.me` link) lives in `content.js`.
+- The **IBAN is never in the repo**. `renderPayment()` in `index.html` fetches `SHEET_URL?action=pago&secret=...` and the Apps Script returns `{iban, titular}` from its **Script Properties** (`IBAN`, `TITULAR`). Setup in `docs/GOOGLE_DRIVE_SETUP.md` Part 7.
+- Payment details render into `#gift-payment` only when `isReal` (personalized link). Without a link the section shows `gift.emphasis` as before.
+- Reuses `.map-link` (Revolut button), `.hotel-code-box` + `.iban-code` (IBAN box) and `.copy-btn` + `copyLink()` (copy IBAN).
 
 ## 📝 Content Customization — Direct HTML Method
 
@@ -383,7 +392,7 @@ boda/
 | 358–368 | Venue section |
 | 371–391 | Dress code section |
 | 393–413 | Hotel section |
-| 416–463 | Gift section (gift icon + eating Toronto) |
+| 416–464 | Gift section (gift icon + eating Toronto + `#gift-payment`) |
 | 465–468 | RSVP section container |
 | 470–495 | Sleeping Toronto |
 | 497–505 | Footer |
