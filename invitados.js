@@ -40,6 +40,7 @@ const INVITADOS = [
   { grupo: "Maria-Andres",       personas: ["Maria Kreuzer", "Andres Sánchez"], },
   { grupo: "Eric-Vero",          personas: ["Eric Defrancq", "Vero Defrancq"], },
   { grupo: "Marc-Girbau",   personas: ["Marc Girbau", "+1"],    },
+  { grupo: "Karel-Tatiana", personas: ["Karel Verkleij", "Tatiana Bikeeva"], },
 
   // --- SCOPELY MGO---
   { grupo: "Marine",        personas: ["Marine", "+1"],         },
